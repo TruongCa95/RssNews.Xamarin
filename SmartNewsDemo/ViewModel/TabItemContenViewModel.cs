@@ -36,14 +36,12 @@ namespace SmartNewsDemo.ViewModel
         {
             IsLoading = true;
             GetData(url);
-            RefreshCommand = new Command(execute: () =>
+            RefreshCommand = new Command(() =>
             {
+                IsRefreshing = true;
                 GetData(url);
-            },
-            canExecute: () =>
-            {
-                return !IsRefreshing;
-             });
+                IsRefreshing = false;
+            });
             SelectedCommand = new Command(HandleSelectedItem);
             FilterCommand = new Command((async)=>
             {
