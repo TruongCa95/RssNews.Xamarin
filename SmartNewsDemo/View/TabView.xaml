@@ -7,17 +7,15 @@
              x:Class="SmartNewsDemo.View.TabView">
     <ContentPage.Content>
         <SftabView:SfTabView x:Name="theTabView" 
-                             Margin="0,0,0,10"
+                             Margin="0,0,0,0"
                              Grid.Row="0"
                              BackgroundColor="White"
                              IsScrollButtonEnabled="False"
-                             ScrollButtonBackgroundColor="White"
                              OverflowMode="Scroll"
-                             ScrollButtonForegroundColor="White"
                              Items="{Binding Tabitems}">
-            <SftabView:SfTabView.Behaviors>
+            <!--<SftabView:SfTabView.Behaviors>
                 <behavior:EventToCommandBehavior EventName="TabItemTapped" Command="{Binding TappedCommand}"/>
-            </SftabView:SfTabView.Behaviors>
+            </SftabView:SfTabView.Behaviors>-->
     </SftabView:SfTabView>
     </ContentPage.Content>
 </ContentPage>

@@ -14,22 +14,11 @@
                 <Setter Property="BackgroundColor" Value="Azure"/>
                 <Setter Property="SelectionMode" Value="Single"/>
                 <Setter Property="RowHeight" Value="100"/>
-                <Style.Triggers>
-                    <Trigger TargetType="ListView" Property="IsFocused" Value="True">
-                        <Setter Property="BackgroundColor" Value="Gray"/>
-                    </Trigger>
-                </Style.Triggers>
             </Style>
             <converter:DateTimeConverter x:Key="DateTimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView x:Name="Scrollviewer" 
-                    HorizontalScrollBarVisibility="Never"
-                    >
-            <!--<ScrollView.Behaviors>
-                <behavior:EventToCommandBehavior EventName="Scrolled" Command="{Binding ScollChangedCommand}"/>
-            </ScrollView.Behaviors>-->
         <StackLayout x:Name="content">
             <SearchBar x:Name="searchBar"
                        Text="{Binding SearchText, Mode=TwoWay}"
@@ -68,7 +57,7 @@
                                            Aspect="AspectFill"
                                            HeightRequest="60"
                                            WidthRequest="100" 
-                                           BackgroundColor="GreenYellow"/>
+                                           BackgroundColor="Transparent"/>
                                     <Label Grid.Column="1"
                                            Text="{Binding Title}"
                                            LineBreakMode="WordWrap"
@@ -95,6 +84,5 @@
                 <!--<ActivityIndicator x:Name="Loading" IsRunning="True" IsVisible="{Binding IsLoading}" VerticalOptions="Center" HorizontalOptions="Center" Color="Blue"/>-->
             </StackLayout>
         </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
