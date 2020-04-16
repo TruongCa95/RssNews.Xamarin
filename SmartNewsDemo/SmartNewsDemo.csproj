@@ -43,5 +43,6 @@
     <Folder Include="Common\Control\" />
     <Folder Include="Common\Data\" />
     <Folder Include="Common\Data\Thumbnail\" />
+    <Folder Include="Common\Services\" />
   </ItemGroup>
 </Project>

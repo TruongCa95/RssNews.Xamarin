@@ -19,7 +19,7 @@ namespace SmartNewsDemo.Utilitis
     public class HttpResponse : BaseViewModel
     {
 
-        public static ObservableCollection<NewsArctile> listresult { get; set; }
+        public static ObservableCollection<NewsArticles> listresult { get; set; }
 
         /// <summary>
         /// check connect internet
@@ -67,9 +67,9 @@ namespace SmartNewsDemo.Utilitis
                         XElement channel = rss.Element(XName.Get("channel"));
 
                         //binding data to item
-                        List<NewsArctile> articles = channel.Elements(XName.Get("item")).Select((XElement element) =>
+                        List<NewsArticles> articles = channel.Elements(XName.Get("item")).Select((XElement element) =>
                         {
-                            var result = new NewsArctile();
+                            var result = new NewsArticles();
                             {
                                 result.Title = element.Element(XName.Get("title")).Value;
                                 result.Description = element.Element(XName.Get("description")).Value;
@@ -79,12 +79,13 @@ namespace SmartNewsDemo.Utilitis
                             }
                             return result;
                         }).ToList();
-                        listresult = new ObservableCollection<NewsArctile>(articles);
+                        listresult = new ObservableCollection<NewsArticles>(articles);
                     }
                 }
             }
             catch (Exception)
             {
+                
                 Application.Current.MainPage.DisplayAlert("Server Error", "Not Response", "OK");
                 return;
             }

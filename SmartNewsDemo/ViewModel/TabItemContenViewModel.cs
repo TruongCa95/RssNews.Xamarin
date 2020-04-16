@@ -19,43 +19,60 @@ namespace SmartNewsDemo.ViewModel
     public class TabItemContenViewModel : BaseViewModel
     {
         #region properties, variable
-        public ObservableCollection<NewsArctile> Arctiles { get; set; }       
-        public NewsArctile SelectedArctile { get; set; }
+        public ObservableCollection<NewsArticles> Arctiles { get; set; }
+        public NewsArticles SelectedArctile { get; set; }
         public bool IsRefreshing { get; set; }
         public bool IsLoading { get; set; }
+        public string SearchText { get; set; }
         #endregion
 
         #region Command
         public ICommand RefreshCommand { get; private set; }
         public ICommand SelectedCommand { get; private set; }
-        public ICommand BackCommand { get; private set; }
+        public ICommand FilterCommand { get; private set; }
+        //public ICommand BackCommand { get; private set; }
         #endregion
         public TabItemContenViewModel(string url)
         {
             IsLoading = true;
             GetData(url);
-            RefreshCommand = new Command(() =>
-             {
-                 IsRefreshing = true;
-                 GetData(url);
-                 IsRefreshing = false;
+            RefreshCommand = new Command(execute: () =>
+            {
+                GetData(url);
+            },
+            canExecute: () =>
+            {
+                return !IsRefreshing;
              });
             SelectedCommand = new Command(HandleSelectedItem);
-            BackCommand = new Command(BackPage);
-            IsLoading = false;           
+            FilterCommand = new Command((async)=>
+            {
+               FilterItems();
+            });
+            IsLoading = false;
             //Task.Run(async () => await HandleSelectedItem(SelectedArctile.Link));
         }
         public async void HandleSelectedItem()
         {
-            if(SelectedArctile!= null)
+            if (SelectedArctile != null)
             {
                 var source = SelectedArctile.Link;
                 await Application.Current.MainPage.Navigation.PushAsync(new ContentDetail(source));
-            } 
+            }
         }
-        private async void BackPage(object obj)
+        private async void FilterItems()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new TabView());
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                Arctiles= HttpResponse.listresult;
+            }
+            else
+            {
+                var SearchResults = HttpResponse.listresult.ToList();
+                SearchResults.Where(x => x.Title.StartsWith(SearchText, StringComparison.InvariantCultureIgnoreCase))
+                        .ToList();
+                Arctiles = new ObservableCollection<NewsArticles>(SearchResults);
+            }
         }
 
         private void GetData(string url)

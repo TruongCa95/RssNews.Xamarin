@@ -14,17 +14,18 @@ namespace SmartNewsDemo.ViewModel
         #region properties,variable
         public TabItemCollection Tabitems { get; set; }
         public SfTabView tabView;
+        public SfTabItem tabItem;
         public SelectionIndicatorSettings Setting { get; set; }
         #endregion
 
         #region Command
-        public ICommand Backcommand { get; private set; }
+        public ICommand TappedCommand { get; private set; }
+        public ICommand ScollChangedCommand { get; private set; }
         #endregion
         #region Data
         string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green","Red","Orange" };
         string[] RssItems = {
             "https://tinhte.vn/rss",
-            "https://laodong.vn/rss/home.rss",
             "https://cafebiz.vn/cong-nghe.rss",
             "https://gamek.vn/trang-chu.rss",
             "https://cafef.vn/trang-chu.rss",
@@ -34,13 +35,20 @@ namespace SmartNewsDemo.ViewModel
 
         public TabViewViewModel()
         {
+            Tabitems = new TabItemCollection();
             SetContent();
-            Backcommand = new Command(BackPage);
+            TappedCommand = new Command(HandleTappedItem);
+            ScollChangedCommand = new Command(HandleScrollChanged);
         }
 
-        private async void BackPage(object obj)
+        private void HandleScrollChanged(object obj)
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new TabView());
+            Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
+        }
+
+        private void HandleTappedItem(object obj)
+        {
+           
         }
 
         public void SettingIndicator()
@@ -57,7 +65,7 @@ namespace SmartNewsDemo.ViewModel
             //Create Dictonary (color, url)
             IDictionary<string[], string[]> RssSource = new Dictionary<string[], string[]>();
             RssSource.Add(ColorItems, RssItems);
-            Tabitems = new TabItemCollection();
+
             //Process Auto generate tabitem
             if (RssSource.Count != 0)
             {
@@ -71,7 +79,7 @@ namespace SmartNewsDemo.ViewModel
                         var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
                         TabItemContents content = new TabItemContents(itemRss);
                         TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
-                        var TabElement = new SfTabItem
+                        tabItem = new SfTabItem
                         {
                             
                             HeaderContent = headers.Content,
@@ -80,7 +88,7 @@ namespace SmartNewsDemo.ViewModel
                             FontIconFontSize = 100
                         };
                         i += 1;
-                        Tabitems.Add(TabElement);
+                        Tabitems.Add(tabItem);
                     }
                 }
             }
