@@ -16,19 +16,11 @@ namespace SmartNewsDemo.ViewModel
         #endregion
 
         #region Command
-        public ICommand ClickCommand { get; set; }
         #endregion
         public TabItemHeaderViewModel(string title, string color)
         {
             btnTitle = title;
-            btnColor = color;
-            Height = 100;
-            ClickCommand = new Command(Animationbutton);
-        }
-
-        private void Animationbutton(object obj)
-        {
-            Height = 200;
+            btnColor = color;  
         }
     }
 }

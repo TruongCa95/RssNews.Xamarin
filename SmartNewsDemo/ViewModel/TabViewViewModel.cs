@@ -15,12 +15,10 @@ namespace SmartNewsDemo.ViewModel
         public TabItemCollection Tabitems { get; set; }
         public SfTabView tabView;
         public SfTabItem tabItem;
-        public SelectionIndicatorSettings Setting { get; set; }
         #endregion
 
         #region Command
         public ICommand TappedCommand { get; private set; }
-        public ICommand ScollChangedCommand { get; private set; }
         #endregion
         #region Data
         string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green","Red","Orange" };
@@ -38,28 +36,13 @@ namespace SmartNewsDemo.ViewModel
             Tabitems = new TabItemCollection();
             SetContent();
             TappedCommand = new Command(HandleTappedItem);
-            ScollChangedCommand = new Command(HandleScrollChanged);
-        }
-
-        private void HandleScrollChanged(object obj)
-        {
-            Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
         }
 
         private void HandleTappedItem(object obj)
         {
-           
+            Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
         }
 
-        public void SettingIndicator()
-        {
-            var selectionIndicatorSettings = new SelectionIndicatorSettings();
-            selectionIndicatorSettings.Color = Color.Transparent;
-            selectionIndicatorSettings.Position = SelectionIndicatorPosition.Bottom;
-            selectionIndicatorSettings.StrokeThickness = -100;
-            selectionIndicatorSettings.AnimationDuration = 5;
-            Setting = selectionIndicatorSettings;
-        }
         public void SetContent()
         {
             //Create Dictonary (color, url)
