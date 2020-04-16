@@ -18,12 +18,5 @@ namespace SmartNewsDemo.View
             InitializeComponent();
             this.BindingContext = new TabItemHeaderViewModel(title, color);
         }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Frame frame = sender as Frame;
-            frame.Margin = new Thickness(0,0,0,0);
-            frame = new Frame();
-        }
     }
 }

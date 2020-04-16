@@ -14,23 +14,10 @@ namespace SmartNewsDemo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabItemContents : ContentPage
     {
-
         public TabItemContents(string url)
         {
             InitializeComponent();
             this.BindingContext = new TabItemContenViewModel(url);
         }
-
-        //private void lst_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        //{
-        //    if(e.SelectedItem!=null)
-        //    {
-        //        var senderitem = (NewsArticles)e.SelectedItem;
-        //        //webViewDetail.Source = senderitem.Link;
-        //        //content.IsVisible = false;
-        //        //Detail.IsVisible = true;
-                
-        //    }
-        //}
     }
 }

@@ -14,9 +14,6 @@
                    Margin="0,10,0,0"
                    HeightRequest="400"
                    BackgroundColor="{Binding Source={x:Reference lbl}, Path=BackgroundColor}">
-                <!--<Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-            </Frame.GestureRecognizers>-->
                 <Label x:Name="lbl" 
                    Text="{Binding btnTitle}" 
                    Margin="-10"
