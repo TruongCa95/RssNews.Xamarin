@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -9,6 +9,14 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Common\Data\Thumbnail\theWitcher.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Common\Data\Thumbnail\theWitcher.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Fody" Version="6.1.1">
@@ -41,8 +49,6 @@
   <ItemGroup>
     <Folder Include="Common\Converter\" />
     <Folder Include="Common\Control\" />
-    <Folder Include="Common\Data\" />
-    <Folder Include="Common\Data\Thumbnail\" />
     <Folder Include="Common\Services\" />
   </ItemGroup>
 </Project>

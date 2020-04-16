@@ -75,7 +75,7 @@ namespace SmartNewsDemo.Utilitis
                                 result.Description = element.Element(XName.Get("description")).Value;
                                 result.Link = element.Element(XName.Get("link")).Value;
                                 result.Updated = element.Element(XName.Get("pubDate")).Value;
-                                result.ThumbnailUrl = "";
+                                result.ThumbnailUrl = ImageSource.FromResource("SmartNewsDemo.Common.Data.Thumbnail.theWitcher.jpg"); 
                             }
                             return result;
                         }).ToList();
