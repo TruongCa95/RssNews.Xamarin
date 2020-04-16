@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:SmartNewsDemo.Converter"
+             xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="SmartNewsDemo.View.TabItemContents">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DateTimeConverter x:Key="DateTimeConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout x:Name="content">
+            <ListView x:Name="lst"
+                      SelectionMode="Single"
+                      BackgroundColor="Azure"
+                      ItemsSource="{Binding Arctiles}" 
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      SelectedItem="{Binding SelectedArctile, Mode=TwoWay}"
+                      RowHeight="100"                     
+                      CachingStrategy="RecycleElementAndDataTemplate">
+                <ListView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectedCommand}"/>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2"
+                                           Source="{Binding ThumbnailUrl}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="60"
+                                           WidthRequest="100" 
+                                           BackgroundColor="GreenYellow"/>
+                                <Label Grid.Column="1"
+                                           Text="{Binding Title}"
+                                           LineBreakMode="WordWrap"
+                                           FontAttributes="Bold"
+                                           FontFamily="Lobster"
+                                           TextColor="Green"/>
+                                <Label Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="{Binding Provider}"
+                                           LineBreakMode="TailTruncation"
+                                           HorizontalTextAlignment="Start"
+                                           VerticalOptions="End"/>
+                                <Label Grid.Row="1"
+                                           Grid.Column="1"
+                                           Text="{Binding Updated, Converter={StaticResource DateTimeConverter}}"
+                                           TextColor="Black"
+                                           HorizontalTextAlignment="End"
+                                           VerticalOptions="End"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ActivityIndicator x:Name="Loading" IsRunning="True" IsVisible="{Binding IsLoading}" VerticalOptions="Center" HorizontalOptions="Center" Color="Blue"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
