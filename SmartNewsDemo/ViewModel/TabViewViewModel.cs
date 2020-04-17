@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using SmartNewsDemo.Utilitis;
 using SmartNewsDemo.View;
 using Syncfusion.XForms.TabView;
 using Xamarin.Forms;
@@ -47,34 +48,38 @@ namespace SmartNewsDemo.ViewModel
 
         public void SetContent()
         {
-            //Create Dictonary (color, url)
-            IDictionary<string[], string[]> RssSource = new Dictionary<string[], string[]>();
-            RssSource.Add(ColorItems, RssItems);
-
-            //Process Auto generate tabitem
-            if (RssSource.Count != 0)
+            var isConnected = HttpResponse.CheckNetwork();
+            if (isConnected)
             {
-                int i = 0;
-                foreach (var itemRss in RssItems)
+                //Create Dictonary (color, url)
+                IDictionary<string[], string[]> RssSource = new Dictionary<string[], string[]>();
+                RssSource.Add(ColorItems, RssItems);
+
+                //Process Auto generate tabitem
+                if (RssSource.Count != 0)
                 {
-                    var NamePath = itemRss.Substring(8);
-                    int index = NamePath.IndexOf('.');
-                    if (index > 0)
+                    int i = 0;
+                    foreach (var itemRss in RssItems)
                     {
-                        var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
-                        TabItemContents content = new TabItemContents(itemRss);
-                        TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
-                       tabItem = new SfTabItem
+                        var NamePath = itemRss.Substring(8);
+                        int index = NamePath.IndexOf('.');
+                        if (index > 0)
                         {
-                            
-                            HeaderContent = headers.Content,
-                            //HeaderText=pieces,
-                            Content = content.Content,
-                            FontIconFontFamily = "Arial",
-                            FontIconFontSize = 100
-                        };
-                        i += 1;
-                        Tabitems.Add(tabItem);
+                            var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
+                            TabItemContents content = new TabItemContents(itemRss);
+                            TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
+                            tabItem = new SfTabItem
+                            {
+
+                                HeaderContent = headers.Content,
+                                //HeaderText=pieces,
+                                Content = content.Content,
+                                FontIconFontFamily = "Arial",
+                                FontIconFontSize = 100
+                            };
+                            i += 1;
+                            Tabitems.Add(tabItem);
+                        }
                     }
                 }
             }
