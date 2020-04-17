@@ -11,12 +11,6 @@
                        Source="{Binding Link}"
                        HorizontalOptions="CenterAndExpand"
                        VerticalOptions="FillAndExpand"/>
-            <!--<Button Text="Back" 
-                        Command="{Binding Backcommand}" 
-                        HeightRequest="50" 
-                        WidthRequest="100"
-                        HorizontalOptions="Start"
-                        BackgroundColor="WhiteSmoke"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
