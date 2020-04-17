@@ -75,12 +75,9 @@ namespace SmartNewsDemo.ViewModel
 
         private void GetData(string url)
         {
-            var isConnected = HttpResponse.CheckNetwork();
-            if (isConnected)
-            {
-                HttpResponse.ReponseServer(url);
-                Arctiles = HttpResponse.listresult;
-            }
+            
+            HttpResponse.ReponseServer(url);
+            Arctiles = HttpResponse.listresult;
                 
         }
     }
