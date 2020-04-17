@@ -28,7 +28,10 @@ namespace SmartNewsDemo.Utilitis
         {
             if (!CrossConnectivity.Current.IsConnected)
             {
-                Application.Current.MainPage.DisplayAlert("No Internet Connection", "Please connect to Internet", "OK");
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage.DisplayAlert("No Internet Connection", "Please connect to Internet", "OK");
+                });
                 return false;
             }
             else

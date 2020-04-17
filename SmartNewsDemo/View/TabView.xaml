@@ -14,9 +14,9 @@
                              OverflowMode="Scroll"
                              TabItemTapped="TabView_TabItemTapped"
                              Items="{Binding Tabitems}">
-            <!--<SftabView:SfTabView.Behaviors>
+            <SftabView:SfTabView.Behaviors>
                 <behavior:EventToCommandBehavior EventName="TabItemTapped" Command="{Binding TappedCommand}"/>
-            </SftabView:SfTabView.Behaviors>-->
+            </SftabView:SfTabView.Behaviors>
     </SftabView:SfTabView>
     </ContentPage.Content>
 </ContentPage>

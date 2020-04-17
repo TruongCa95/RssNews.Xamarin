@@ -48,7 +48,6 @@ namespace SmartNewsDemo.ViewModel
                FilterItems();
             });
             IsLoading = false;
-            //Task.Run(async () => await HandleSelectedItem(SelectedArctile.Link));
         }
         public async void HandleSelectedItem()
         {
@@ -81,6 +80,7 @@ namespace SmartNewsDemo.ViewModel
                 HttpResponse.ReponseServer(url);
                 Arctiles = HttpResponse.listresult;
             }
+                
         }
     }
 }
