@@ -88,8 +88,10 @@ namespace SmartNewsDemo.Utilitis
             }
             catch (Exception)
             {
-                
-                Application.Current.MainPage.DisplayAlert("Server Error", "Not Response", "OK");
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage.DisplayAlert("Server Error", "Not Response", "OK");
+                });
                 return;
             }
         }

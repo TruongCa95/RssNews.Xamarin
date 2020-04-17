@@ -15,6 +15,7 @@ namespace SmartNewsDemo.ViewModel
         public TabItemCollection Tabitems { get; set; }
         public SfTabView tabView;
         public SfTabItem tabItem;
+        //public ObservableCollection<TabItem> TabItems { get; set; }
         #endregion
 
         #region Command
@@ -34,6 +35,7 @@ namespace SmartNewsDemo.ViewModel
         public TabViewViewModel()
         {
             Tabitems = new TabItemCollection();
+            //TabItems = new ObservableCollection<TabItem>();
             SetContent();
             TappedCommand = new Command(HandleTappedItem);
         }
@@ -62,10 +64,11 @@ namespace SmartNewsDemo.ViewModel
                         var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
                         TabItemContents content = new TabItemContents(itemRss);
                         TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
-                        tabItem = new SfTabItem
+                       tabItem = new SfTabItem
                         {
                             
                             HeaderContent = headers.Content,
+                            //HeaderText=pieces,
                             Content = content.Content,
                             FontIconFontFamily = "Arial",
                             FontIconFontSize = 100

@@ -43,7 +43,7 @@ namespace SmartNewsDemo.ViewModel
                 IsRefreshing = false;
             });
             SelectedCommand = new Command(HandleSelectedItem);
-            FilterCommand = new Command((async)=>
+            FilterCommand = new Command(()=>
             {
                FilterItems();
             });
@@ -56,8 +56,9 @@ namespace SmartNewsDemo.ViewModel
                 var source = SelectedArctile.Link;
                 await Application.Current.MainPage.Navigation.PushAsync(new ContentDetail(source));
             }
+            SelectedArctile = null;
         }
-        private async void FilterItems()
+        private void FilterItems()
         {
             if (string.IsNullOrWhiteSpace(SearchText))
             {
