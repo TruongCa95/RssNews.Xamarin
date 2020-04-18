@@ -48,55 +48,61 @@ namespace SmartNewsDemo.Utilitis
             {
                 if (url != string.Empty)
                 {
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
+                    Uri ourUri = new Uri(url);
                     //Create a WebRequest
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
                     // Set credentials to use for this request
                     request.Credentials = CredentialCache.DefaultCredentials;
-
                     HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                    if (response != null)
+                    // Use "ResponseUri" property to get the actual Uri from where the response was attained.
+                    if (ourUri.Equals(response.ResponseUri))
                     {
-                        // Get XMLRss
-                        Stream stream = response.GetResponseStream();
-
-                        // Pipes the stream to a higher level stream reader with the required encoding format.
-                        StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-                        string xml = reader.ReadToEnd();
-
-                        //Parse XML to data
-                        XDocument doc = XDocument.Parse(xml);
-                        XElement rss = doc.Element(XName.Get("rss"));
-                        XElement channel = rss.Element(XName.Get("channel"));
-
-                        //binding data to item
-                        List<NewsArticles> articles = channel.Elements(XName.Get("item")).Select((XElement element) =>
+                        if (response != null)
                         {
-                            var result = new NewsArticles();
+                            // Get XMLRss
+                            Stream stream = response.GetResponseStream();
+
+                            // Pipes the stream to a higher level stream reader with the required encoding format.
+                            StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                            string xml = reader.ReadToEnd();
+
+                            //Parse XML to data
+                            XDocument doc = XDocument.Parse(xml);
+                            XElement rss = doc.Element(XName.Get("rss"));
+                            XElement channel = rss.Element(XName.Get("channel"));
+
+                            //binding data to item
+                            List<NewsArticles> articles = channel.Elements(XName.Get("item")).Select((XElement element) =>
                             {
-                                result.Title = element.Element(XName.Get("title")).Value;
-                                result.Description = element.Element(XName.Get("description")).Value;
-                                result.Link = element.Element(XName.Get("link")).Value;
-                                result.Updated = element.Element(XName.Get("pubDate")).Value;
-                                var pattern = @"(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)";
-                                var img = element.Element(XName.Get("description")).Value;
-                                if(Regex.IsMatch(img,pattern))
+                                var result = new NewsArticles();
                                 {
-                                    foreach( Match m in Regex.Matches(img,pattern))
+                                    result.Title = element.Element(XName.Get("title")).Value;
+                                    result.Description = element.Element(XName.Get("description")).Value;
+                                    result.Link = element.Element(XName.Get("link")).Value;
+                                    result.Updated = element.Element(XName.Get("pubDate")).Value;
+                                    var pattern = @"(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)";
+                                    var img = element.Element(XName.Get("description")).Value;
+                                    if (Regex.IsMatch(img, pattern))
                                     {
-                                        result.ThumbnailUrl = m.Value;
+                                        foreach (Match m in Regex.Matches(img, pattern))
+                                        {
+                                            result.ThumbnailUrl = m.Value;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        result.ThumbnailUrl = "https://i.ibb.co/dc1xD7C/news-icon-30.jpg";
                                     }
                                 }
-                                else
-                                {
-                                    result.ThumbnailUrl = "https://i.ibb.co/dc1xD7C/news-icon-30.jpg";
-                                }
-                            }
-                            return result;
-                        }).ToList();
-                        listresult = new ObservableCollection<NewsArticles>(articles);
+                                return result;
+                            }).ToList();
+                            listresult = new ObservableCollection<NewsArticles>(articles);
+                        }
                     }
+                    else
+                    {
+                        throw  new Exception();
+                    }    
                 }
             }
             catch (Exception)

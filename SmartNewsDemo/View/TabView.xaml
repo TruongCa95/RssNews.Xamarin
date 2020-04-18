@@ -15,11 +15,14 @@
                              BackgroundColor="White"
                              IsScrollButtonEnabled="False"
                              OverflowMode="Scroll"
+                             TabItemTapped="theTabView_TabItemTapped"
+                             SelectedIndex="{Binding TabItemIndex}"
                              Items="{Binding Tabitems}">
             <SftabView:SfTabView.Behaviors>
-                <behavior:EventToCommandBehavior EventName="TabItemTapped" Command="{Binding TappedCommand}"/>
+                <!--<behavior:EventToCommandBehavior EventName="TabItemTapped" Command="{Binding TappedCommand}"/>-->
+                <behavior:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectionChangeCommand}"/>
             </SftabView:SfTabView.Behaviors>
-    </SftabView:SfTabView>
+        </SftabView:SfTabView>
 
     </ContentPage.Content>
 </ContentPage>

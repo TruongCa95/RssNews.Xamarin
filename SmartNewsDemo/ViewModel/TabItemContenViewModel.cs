@@ -18,11 +18,12 @@ namespace SmartNewsDemo.ViewModel
 
     public class TabItemContenViewModel : BaseViewModel
     {
-        #region properties, variable
+        #region Properties, Variable
         public ObservableCollection<NewsArticles> Arctiles { get; set; }
         public NewsArticles SelectedArctile { get; set; }
         public bool IsRefreshing { get; set; }
         public bool IsLoading { get; set; }
+        public bool lstVisiable { get; set; }
         public string SearchText { get; set; }
         #endregion
 
@@ -30,25 +31,32 @@ namespace SmartNewsDemo.ViewModel
         public ICommand RefreshCommand { get; private set; }
         public ICommand SelectedCommand { get; private set; }
         public ICommand FilterCommand { get; private set; }
-        //public ICommand BackCommand { get; private set; }
+        public ICommand ReloadCommand { get; private set; }
         #endregion
         public TabItemContenViewModel(string url)
         {
-            IsLoading = true;
-            GetData(url);
-            RefreshCommand = new Command(() =>
+            GetDataAsync(url);
+            RefreshCommand = new Command((async) =>
             {
                 IsRefreshing = true;
-                GetData(url);
+                GetDataAsync(url);
                 IsRefreshing = false;
             });
-            SelectedCommand = new Command(HandleSelectedItem);
-            FilterCommand = new Command(()=>
+            ReloadCommand = new Command(() =>
             {
-               FilterItems();
+                if (SearchText == string.Empty)
+                {
+                    GetDataAsync(url);
+                }
+
             });
-            IsLoading = false;
+            SelectedCommand = new Command(HandleSelectedItem);
+            FilterCommand = new Command(() =>
+            {
+                HandleFilterItems();
+            });
         }
+        #region Event
         public async void HandleSelectedItem()
         {
             if (SelectedArctile != null)
@@ -58,28 +66,27 @@ namespace SmartNewsDemo.ViewModel
             }
             SelectedArctile = null;
         }
-        private void FilterItems()
+        private void HandleFilterItems()
         {
-            if (string.IsNullOrWhiteSpace(SearchText))
+            if (!string.IsNullOrWhiteSpace(SearchText))
             {
-                Arctiles= HttpResponse.listresult;
-            }
-            else
-            {
-                var SearchResults = HttpResponse.listresult.ToList();
-                SearchResults.Where(x => x.Title.StartsWith(SearchText, StringComparison.InvariantCultureIgnoreCase))
-                        .ToList();
-                Arctiles = new ObservableCollection<NewsArticles>(SearchResults);
+                Arctiles = new ObservableCollection<NewsArticles>(HttpResponse.listresult.ToList().Where(
+                    c => c.Title.ToLower().Contains(SearchText.ToLower())));
             }
         }
 
-        private void GetData(string url)
+        private async void GetDataAsync(string url)
         {
-            
-            HttpResponse.ReponseServer(url);
-            Arctiles = HttpResponse.listresult;
-                
+            IsLoading = true;
+            var task = Task.Run(() =>
+            {
+                HttpResponse.ReponseServer(url);
+                Arctiles = HttpResponse.listresult;
+            });
+            await task;
+            IsLoading = false;
         }
+        #endregion
     }
 }
 

@@ -16,11 +16,14 @@ namespace SmartNewsDemo.ViewModel
         public TabItemCollection Tabitems { get; set; }
         public SfTabView tabView;
         public SfTabItem tabItem;
+
+        public int TabItemIndex { get; set; }
         //public ObservableCollection<TabItem> TabItems { get; set; }
         #endregion
 
         #region Command
         public ICommand TappedCommand { get; private set; }
+        public ICommand SelectionChangeCommand { get; set; }
         #endregion
         #region Data
         string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green","Red","Orange" };
@@ -43,7 +46,10 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleTappedItem(object obj)
         {
-            Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
+            var a = tabItem;
+            var b = TabItemIndex;
+
+            //Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
         }
 
         public void SetContent()

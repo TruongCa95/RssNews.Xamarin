@@ -28,15 +28,19 @@
                        PlaceholderColor="Orange"
                        FontSize="Medium"
                        SearchCommand="{Binding FilterCommand}">
+                <SearchBar.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="TextChanged" Command="{Binding ReloadCommand}"/>
+                </SearchBar.Behaviors>
             </SearchBar>
             <StackLayout x:Name="lst">
                 <ListView x:Name="lstdetail"
-                      ItemsSource="{Binding Arctiles}" 
-                      IsPullToRefreshEnabled="True"
-                      RefreshCommand="{Binding RefreshCommand}"
-                      IsRefreshing="{Binding IsRefreshing}" 
-                      SelectedItem="{Binding SelectedArctile, Mode=TwoWay}"  
-                      CachingStrategy="RecycleElementAndDataTemplate">
+                          ItemsSource="{Binding Arctiles}" 
+                          IsPullToRefreshEnabled="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}" 
+                          MinimumHeightRequest="100"
+                          SelectedItem="{Binding SelectedArctile, Mode=TwoWay}"  
+                          CachingStrategy="RecycleElementAndDataTemplate">
                     <ListView.Behaviors>
                         <behavior:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectedCommand}"/>
                     </ListView.Behaviors>
@@ -81,7 +85,13 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <!--<ActivityIndicator x:Name="Loading" IsRunning="True" IsVisible="{Binding IsLoading}" VerticalOptions="Center" HorizontalOptions="Center" Color="Blue"/>-->
+                <ActivityIndicator x:Name="Loading" 
+                               IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center" 
+                               MinimumHeightRequest="{Binding Source={x:Reference lstdetail}, Path=MinimumHeightRequest}"   
+                               Color="Blue" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

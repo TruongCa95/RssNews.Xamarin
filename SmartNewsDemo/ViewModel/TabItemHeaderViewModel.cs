@@ -9,7 +9,7 @@ namespace SmartNewsDemo.ViewModel
 {
     public class TabItemHeaderViewModel: BaseViewModel
     {
-        #region properties
+        #region Properties, Variable
         public string btnTitle { get; set; }
         public string btnColor { get; set; }
         public double Height { get; set; }
@@ -20,7 +20,7 @@ namespace SmartNewsDemo.ViewModel
         public TabItemHeaderViewModel(string title, string color)
         {
             btnTitle = title;
-            btnColor = color;  
+            btnColor = color;
         }
     }
 }

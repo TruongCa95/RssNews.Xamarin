@@ -20,5 +20,10 @@ namespace SmartNewsDemo.View
             InitializeComponent();
             this.BindingContext = viewModel;
         }
+
+        private void theTabView_TabItemTapped(object sender, TabItemTappedEventArgs e)
+        {
+            
+        }
     }
 }
