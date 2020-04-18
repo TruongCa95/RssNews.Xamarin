@@ -13,6 +13,7 @@ using SmartNewsDemo.View;
 using SmartNewsDemo.ViewModel;
 using System.Threading;
 using System;
+using System.Text.RegularExpressions;
 
 namespace SmartNewsDemo.Utilitis
 {
@@ -78,7 +79,19 @@ namespace SmartNewsDemo.Utilitis
                                 result.Description = element.Element(XName.Get("description")).Value;
                                 result.Link = element.Element(XName.Get("link")).Value;
                                 result.Updated = element.Element(XName.Get("pubDate")).Value;
-                                result.ThumbnailUrl = ImageSource.FromResource("SmartNewsDemo.Common.Data.Thumbnail.theWitcher.jpg"); 
+                                var pattern = @"(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)";
+                                var img = element.Element(XName.Get("description")).Value;
+                                if(Regex.IsMatch(img,pattern))
+                                {
+                                    foreach( Match m in Regex.Matches(img,pattern))
+                                    {
+                                        result.ThumbnailUrl = m.Value;
+                                    }
+                                }
+                                else
+                                {
+                                    result.ThumbnailUrl = "https://i.ibb.co/dc1xD7C/news-icon-30.jpg";
+                                }
                             }
                             return result;
                         }).ToList();

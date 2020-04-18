@@ -24,7 +24,7 @@ namespace SmartNewsDemo.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            new Syncfusion.XForms.iOS.TabView.SfTabViewRenderer();
             return base.FinishedLaunching(app, options);
         }
     }
