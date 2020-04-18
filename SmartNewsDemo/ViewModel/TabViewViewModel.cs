@@ -25,11 +25,11 @@ namespace SmartNewsDemo.ViewModel
         #region Data
         string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green","Red","Orange" };
         string[] RssItems = {
-            "https://tinhte.vn/rss",
             "https://cafebiz.vn/cong-nghe.rss",
             "https://gamek.vn/trang-chu.rss",
             "https://cafef.vn/trang-chu.rss",
-            "https://pcworld.com/index.rss",
+            "https://thanhnien.vn/rss/home.rss",
+            "https://tuoitre.vn/rss/tin-moi-nhat.rss",
             "https://tinhte.vn/rss"};
         #endregion
 
