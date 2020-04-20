@@ -16,6 +16,8 @@ namespace SmartNewsDemo.ViewModel
         public TabItemCollection Tabitems { get; set; }
         public SfTabView tabView;
         public SfTabItem tabItem;
+        public string colors;
+        public Color ColorSelectionIndicator { get; set; }
 
         public int TabItemIndex { get; set; }
         //public ObservableCollection<TabItem> TabItems { get; set; }
@@ -46,8 +48,8 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleTappedItem(object obj)
         {
-            var a = tabItem;
             var b = TabItemIndex;
+            var converter = new ColorTypeConverter();
 
             //Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
         }
@@ -60,7 +62,6 @@ namespace SmartNewsDemo.ViewModel
                 //Create Dictonary (color, url)
                 IDictionary<string[], string[]> RssSource = new Dictionary<string[], string[]>();
                 RssSource.Add(ColorItems, RssItems);
-
                 //Process Auto generate tabitem
                 if (RssSource.Count != 0)
                 {
@@ -73,21 +74,24 @@ namespace SmartNewsDemo.ViewModel
                         {
                             var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
                             TabItemContents content = new TabItemContents(itemRss);
-                            TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
+                            colors = ColorItems.GetValue(i).ToString();
+                            TabItemHeaders headers = new TabItemHeaders(pieces, colors);
                             tabItem = new SfTabItem
                             {
-
                                 HeaderContent = headers.Content,
                                 //HeaderText=pieces,
                                 Content = content.Content,
                                 FontIconFontFamily = "Arial",
-                                FontIconFontSize = 100
+                                FontIconFontSize = 100 
                             };
                             i += 1;
                             Tabitems.Add(tabItem);
                         }
                     }
                 }
+                HomeSetting homeContent = new HomeSetting();
+                TabItemHeaders homeHeader = new TabItemHeaders("Home", "Silver");
+                Tabitems.Add(new SfTabItem { Content = homeContent.Content, HeaderContent = homeHeader.Content});
             }
         }
     }

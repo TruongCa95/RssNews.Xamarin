@@ -7,22 +7,22 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="SmartNewsDemo.View.TabView">
     <ContentPage.Content>
-        
-        <!--<tabview:TabViewControl ItemSource="{Binding TabItems}" BackgroundColor="White"/>-->
+        <StackLayout>
         <SftabView:SfTabView x:Name="theTabView" 
-                             Margin="0,0,0,0"
-                             Grid.Row="0"
                              BackgroundColor="White"
                              IsScrollButtonEnabled="False"
                              OverflowMode="Scroll"
                              TabItemTapped="theTabView_TabItemTapped"
                              SelectedIndex="{Binding TabItemIndex}"
                              Items="{Binding Tabitems}">
+            <SftabView:SfTabView.SelectionIndicatorSettings>
+                <SftabView:SelectionIndicatorSettings Color="{Binding ColorSelectionIndicator}" Position="Fill"/>
+            </SftabView:SfTabView.SelectionIndicatorSettings>
             <SftabView:SfTabView.Behaviors>
-                <!--<behavior:EventToCommandBehavior EventName="TabItemTapped" Command="{Binding TappedCommand}"/>-->
+                <behavior:EventToCommandBehavior EventName="TabItemTapped" Command="{Binding TappedCommand}"/>
                 <behavior:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectionChangeCommand}"/>
             </SftabView:SfTabView.Behaviors>
         </SftabView:SfTabView>
-
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

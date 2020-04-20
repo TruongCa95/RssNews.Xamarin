@@ -19,8 +19,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout x:Name="content">
-            <SearchBar x:Name="searchBar"
+        <Grid>
+            <StackLayout x:Name="content">
+                <SearchBar x:Name="searchBar"
                        Text="{Binding SearchText, Mode=TwoWay}"
                        Margin="-5"
                        Placeholder="Enter key here"
@@ -28,12 +29,12 @@
                        PlaceholderColor="Orange"
                        FontSize="Medium"
                        SearchCommand="{Binding FilterCommand}">
-                <SearchBar.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="TextChanged" Command="{Binding ReloadCommand}"/>
-                </SearchBar.Behaviors>
-            </SearchBar>
-            <StackLayout x:Name="lst">
-                <ListView x:Name="lstdetail"
+                    <SearchBar.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="TextChanged" Command="{Binding ReloadCommand}"/>
+                    </SearchBar.Behaviors>
+                </SearchBar>
+                <StackLayout x:Name="lst">
+                    <ListView x:Name="lstdetail"
                           ItemsSource="{Binding Arctiles}" 
                           IsPullToRefreshEnabled="True"
                           RefreshCommand="{Binding RefreshCommand}"
@@ -41,58 +42,58 @@
                           MinimumHeightRequest="100"
                           SelectedItem="{Binding SelectedArctile, Mode=TwoWay}"  
                           CachingStrategy="RecycleElementAndDataTemplate">
-                    <ListView.Behaviors>
-                        <behavior:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectedCommand}"/>
-                    </ListView.Behaviors>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="2*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.RowSpan="2"
+                        <ListView.Behaviors>
+                            <behavior:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectedCommand}"/>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.RowSpan="2"
                                            Source="{Binding ThumbnailUrl}"
                                            Aspect="AspectFill"
                                            HeightRequest="60"
                                            WidthRequest="100" 
                                            BackgroundColor="Transparent"/>
-                                    <Label Grid.Column="1"
+                                        <Label Grid.Column="1"
                                            Text="{Binding Title}"
                                            LineBreakMode="WordWrap"
                                            FontAttributes="Bold"
                                            FontFamily="Lobster"
                                            TextColor="Green"/>
-                                    <Label Grid.Column="1"
+                                        <Label Grid.Column="1"
                                            Grid.Row="1"
                                            Text="{Binding Provider}"
                                            LineBreakMode="TailTruncation"
                                            HorizontalTextAlignment="Start"
                                            VerticalOptions="End"/>
-                                    <Label Grid.Row="1"
+                                        <Label Grid.Row="1"
                                            Grid.Column="1"
                                            Text="{Binding Updated, Converter={StaticResource DateTimeConverter}}"
                                            TextColor="Black"
                                            HorizontalTextAlignment="End"
                                            VerticalOptions="End"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ActivityIndicator x:Name="Loading" 
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+            <ActivityIndicator x:Name="Loading" 
                                IsRunning="{Binding IsLoading}"
                                IsVisible="{Binding IsLoading}" 
-                               VerticalOptions="Center" 
-                               HorizontalOptions="Center" 
-                               MinimumHeightRequest="{Binding Source={x:Reference lstdetail}, Path=MinimumHeightRequest}"   
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand" 
                                Color="Blue" />
-            </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
