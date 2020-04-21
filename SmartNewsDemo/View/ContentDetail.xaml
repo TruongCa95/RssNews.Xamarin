@@ -3,29 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:webview="clr-namespace:SmartNewsDemo.Common.Control"
              xmlns:local="clr-namespace:SmartNewsDemo.Utilitis"
              xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.ContentDetail">
     <ContentPage.Content>
         <StackLayout>
-            <WebView x:Name="webViewDetail"
-                     Grid.Row="0"
-                       Source="{Binding Link}"
-                       HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand"/>
+            <Label x:Name="labelLoading" Text="Loading..." IsVisible="false" />
+            <webview:WebViewControl x:Name="webViewDetail"
+                                    Grid.Row="0"
+                                    Navigated="webviewNavigated"
+                                    Navigating="webviewNavigating"
+                                    Source="{Binding Link}"  
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"/>
             <StackLayout Grid.Row="1" Orientation="Horizontal">
                 <!--<ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.back-button.png}" 
                          HorizontalOptions="Start"
                          HeightRequest="100"
                          VerticalOptions="CenterAndExpand"/>-->
-                <Button Text="Back"/>
-                <Button Text="Next"/>
-                <Button Text="Refresh" BackgroundColor="Blue">
-                    <Button.Behaviors>
-                        <behavior:EventToCommandBehavior EventName="Clicked" Command="RefreshWVcommand"/>
-                    </Button.Behaviors>
-                    </Button>
+                <Button Text="Back" Clicked="OnBack" BackgroundColor="Blue" HorizontalOptions="StartAndExpand"/>
+                <Button Text="Next" Clicked="OnNext" BackgroundColor="Green" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Refresh" Clicked="OnRefresh" BackgroundColor="Red" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
