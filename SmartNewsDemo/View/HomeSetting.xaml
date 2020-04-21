@@ -11,9 +11,13 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
+            <StackLayout Margin="0,10,0,0">
+                <Label Text="Font Size"
+                   TextColor="Black"/>
+            </StackLayout>
             <StackLayout Orientation="Vertical" 
                          Grid.Column="1" >
-                <Slider Maximum="360" Opacity="10" />
+            
             </StackLayout>
         </Grid>
     </ContentPage.Content>

@@ -4,25 +4,29 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:SmartNewsDemo.Utilitis"
+             xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.ContentDetail">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <StackLayout>
             <WebView x:Name="webViewDetail"
                      Grid.Row="0"
                        Source="{Binding Link}"
-                       HorizontalOptions="CenterAndExpand"
+                       HorizontalOptions="FillAndExpand"
                        VerticalOptions="FillAndExpand"/>
             <StackLayout Grid.Row="1" Orientation="Horizontal">
-                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.back-button.png}" 
+                <!--<ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.back-button.png}" 
                          HorizontalOptions="Start"
                          HeightRequest="100"
-                         VerticalOptions="CenterAndExpand"/>
+                         VerticalOptions="CenterAndExpand"/>-->
+                <Button Text="Back"/>
+                <Button Text="Next"/>
+                <Button Text="Refresh" BackgroundColor="Blue">
+                    <Button.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="Clicked" Command="RefreshWVcommand"/>
+                    </Button.Behaviors>
+                    </Button>
             </StackLayout>
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
