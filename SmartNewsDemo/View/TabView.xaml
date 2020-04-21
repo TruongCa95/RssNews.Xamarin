@@ -8,7 +8,13 @@
              x:Class="SmartNewsDemo.View.TabView">
     <ContentPage.Content>
         <StackLayout>
-        <SftabView:SfTabView x:Name="theTabView" 
+            <StackLayout.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android, UWP">0</On>
+                    <On Platform="iOS">0,30,0,0</On>
+                </OnPlatform>
+            </StackLayout.Margin>
+            <SftabView:SfTabView x:Name="theTabView" 
                              BackgroundColor="White"
                              IsScrollButtonEnabled="False"
                              OverflowMode="Scroll"
