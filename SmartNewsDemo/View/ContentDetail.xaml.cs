@@ -40,22 +40,10 @@ namespace SmartNewsDemo.View
                 webViewDetail.GoForward();
             }
         }
-
-        //load Page
-        void webviewNavigating(object sender, WebNavigatingEventArgs e)
-        {
-            labelLoading.IsVisible = true;
-        }
-
-        void webviewNavigated(object sender, WebNavigatedEventArgs e)
-        {
-            labelLoading.IsVisible = false;
-        }
         //Reload Page
         void OnRefresh(object sender, EventArgs args)
         {
             webViewDetail.Reload();
         }
-
     }
 }

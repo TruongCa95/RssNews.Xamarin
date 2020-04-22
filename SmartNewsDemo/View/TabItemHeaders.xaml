@@ -13,7 +13,7 @@
                 <StackLayout HorizontalOptions="FillAndExpand" Padding="3">
                     <Label x:Name="lbl" 
                        Margin="0,10,0,0"
-                           TextColor="White"
+                       TextColor="White"
                        Text="{Binding btnTitle}" 
                        BackgroundColor="{Binding btnColor}"
                        VerticalOptions="Center" 

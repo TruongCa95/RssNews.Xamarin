@@ -9,23 +9,41 @@
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.ContentDetail">
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="labelLoading" Text="Loading..." IsVisible="false" />
-            <webview:WebViewControl x:Name="webViewDetail"
-                                    Grid.Row="0"
-                                    Navigated="webviewNavigated"
-                                    Navigating="webviewNavigating"
-                                    Source="{Binding Link}"  
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand"/>
-            <StackLayout Grid.Row="1" Orientation="Horizontal">
-                <!--<ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.back-button.png}" 
-                         HorizontalOptions="Start"
-                         HeightRequest="100"
-                         VerticalOptions="CenterAndExpand"/>-->
-                <Button Text="Back" Clicked="OnBack" BackgroundColor="Blue" HorizontalOptions="StartAndExpand"/>
-                <Button Text="Next" Clicked="OnNext" BackgroundColor="Green" HorizontalOptions="CenterAndExpand"/>
-                <Button Text="Refresh" Clicked="OnRefresh" BackgroundColor="Red" HorizontalOptions="EndAndExpand"/>
+        <StackLayout x:Name="ContentWV">
+            <Label x:Name="labelLoading" Text="Loading..." IsVisible="{Binding lblVisiable}" />
+            <WebView x:Name="webViewDetail"
+                     Source="{Binding Link}"  
+                     HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                <WebView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="Navigated" Command="{Binding webviewNavigatedCommand}"/>
+                    <behavior:EventToCommandBehavior EventName="Navigating" Command="{Binding webviewNavigatingCommand}"/>
+                </WebView.Behaviors>
+            </WebView>
+            <StackLayout x:Name="btnLayoutWV"
+                         Orientation="Horizontal"
+                         HeightRequest="30">
+                <StackLayout.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="Android, UWP">0</On>
+                        <On Platform="iOS">0,0,0,20</On>
+                    </OnPlatform>
+                </StackLayout.Margin>
+                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.back-button.png}" 
+                         HorizontalOptions="StartAndExpand"
+                          Clicked="OnBack"
+                         WidthRequest="100"
+                                 BackgroundColor="Transparent"/>
+                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.next.png}" 
+                         HorizontalOptions="CenterAndExpand"
+                          Clicked="OnNext"
+                         WidthRequest="100"
+                                 BackgroundColor="Transparent"/>
+                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.reload.png}" 
+                         HorizontalOptions="EndAndExpand"
+                          Clicked="OnRefresh"
+                         WidthRequest="100"
+                                 BackgroundColor="Transparent"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
