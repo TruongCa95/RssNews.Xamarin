@@ -13,12 +13,10 @@ namespace SmartNewsDemo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContentDetail : ContentPage
     {
-        public string url;
         public ContentDetail(string link)
         {
             InitializeComponent();
             BindingContext = new ContentViewModel(link);
-            url = link;
         }
         //Back page
         async void OnBack(object sender, EventArgs args)
@@ -41,7 +39,7 @@ namespace SmartNewsDemo.View
             }
         }
         //Reload Page
-        void OnRefresh(object sender, EventArgs args)
+         void OnRefresh(object sender, EventArgs args)
         {
             webViewDetail.Reload();
         }

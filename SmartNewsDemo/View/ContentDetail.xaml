@@ -8,43 +8,105 @@
              xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.ContentDetail">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.more.png}" 
+                         HorizontalOptions="EndAndExpand"
+                         WidthRequest="30"
+                         BackgroundColor="Transparent">
+                <ImageButton.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding ShowMoreLayoutCommand}"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+            <AbsoluteLayout>
+                <StackLayout x:Name="moreLayout"
+                             BackgroundColor="White"
+                             Orientation="Vertical"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+                            IsVisible="{Binding MoreVisible}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.browser.png}"/>
+                        <Label Text="Open with broswer">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenBroserCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Column="1" Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.share.png}"/>
+                        <Label Grid.Column="1" Text="Share link">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShareLinkCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                </StackLayout>
+            </AbsoluteLayout>
+        </StackLayout>
+
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout x:Name="ContentWV">
-            <Label x:Name="labelLoading" Text="Loading..." IsVisible="{Binding lblVisiable}" />
+        <AbsoluteLayout Padding="0">
+            <ActivityIndicator IsRunning="{Binding Busy}"
+                               IsVisible="{Binding Busy}"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"/>
             <WebView x:Name="webViewDetail"
+                     AbsoluteLayout.LayoutFlags="All"
+                     AbsoluteLayout.LayoutBounds="0,1,1,1"
                      Source="{Binding Link}"  
                      HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand">
                 <WebView.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="Navigated" Command="{Binding webviewNavigatedCommand}"/>
-                    <behavior:EventToCommandBehavior EventName="Navigating" Command="{Binding webviewNavigatingCommand}"/>
+                    <behavior:EventToCommandBehavior EventName="Navigated" Command="{Binding WebviewNavigatedCommand}"/>
+                    <behavior:EventToCommandBehavior EventName="Navigating" Command="{Binding WebviewNavigatingCommand}"/>
                 </WebView.Behaviors>
             </WebView>
             <StackLayout x:Name="btnLayoutWV"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+                         VerticalOptions="EndAndExpand"
+                         HorizontalOptions="EndAndExpand"
                          Orientation="Horizontal"
                          HeightRequest="30">
                 <StackLayout.Margin>
                     <OnPlatform x:TypeArguments="Thickness">
-                        <On Platform="Android, UWP">0</On>
+                        <On Platform="Android">0</On>
                         <On Platform="iOS">0,0,0,20</On>
                     </OnPlatform>
                 </StackLayout.Margin>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.back-button.png}" 
-                         HorizontalOptions="StartAndExpand"
-                          Clicked="OnBack"
+                         HorizontalOptions="Start"
+                         IsVisible="{Binding btnVisable}"
+                         Clicked="OnBack"
                          WidthRequest="100"
-                                 BackgroundColor="Transparent"/>
+                         BackgroundColor="Transparent"/>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.next.png}" 
-                         HorizontalOptions="CenterAndExpand"
-                          Clicked="OnNext"
+                         HorizontalOptions="Center"
+                         IsVisible="{Binding btnVisable}"
+                         Clicked="OnNext"
                          WidthRequest="100"
-                                 BackgroundColor="Transparent"/>
+                         BackgroundColor="Transparent"/>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.reload.png}" 
-                         HorizontalOptions="EndAndExpand"
-                          Clicked="OnRefresh"
+                         HorizontalOptions="Center"
+                         IsVisible="{Binding btnVisable}"
+                         Clicked="OnRefresh"
                          WidthRequest="100"
-                                 BackgroundColor="Transparent"/>
+                         BackgroundColor="Transparent"/>
+                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.plus.png}"
+                         HorizontalOptions="EndAndExpand"
+                         WidthRequest="100"
+                         BackgroundColor="Transparent">
+                    <ImageButton.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding ShowHideCommand}"/>
+                    </ImageButton.Behaviors>
+                </ImageButton>
             </StackLayout>
-        </StackLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
