@@ -3,22 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.HomeSetting">
     <ContentPage.Content>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5*"/>
-            </Grid.ColumnDefinitions>
-            <StackLayout Margin="0,10,0,0">
-                <Label Text="Font Size"
-                   TextColor="Black"/>
-            </StackLayout>
-            <StackLayout Orientation="Vertical" 
-                         Grid.Column="1" >
-            
-            </StackLayout>
-        </Grid>
+        <TableView>
+            <TableRoot>
+                <TableSection Title="Setting">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                     BackgroundColor="WhiteSmoke">
+                            <Label Text="Font Size"
+                                   Margin="10,0,0,0"
+                                   TextColor="Black"
+                                   FontSize="Large"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="CenterAndExpand"/>
+                            <Slider x:Name="Value"
+                                    WidthRequest="300"
+                                    Grid.Column="1"
+                                    Maximum="50"
+                                    HorizontalOptions="EndAndExpand"
+                                    ValueChanged="OnSliderValueChanged">
+                                <Slider.Behaviors>
+                                    <behavior:EventToCommandBehavior EventName="ValueChanged" Command="{Binding SliderChangedCommand}"/>
+                                </Slider.Behaviors>
+                            </Slider>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Font"
+                               FontSize="Large"
+                               VerticalOptions="CenterAndExpand"
+                               Margin="10,0,0,0"/>
+                            <Frame x:Name="frm" CornerRadius="10" Padding="5" Margin="10" HorizontalOptions="EndAndExpand">
+                                <Label Text="Bold" FontAttributes="Bold">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LabelCLikCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                            <Frame x:Name="frm" CornerRadius="10" Padding="5" Margin="10" HorizontalOptions="EndAndExpand">
+                                <Label Text="Italic" FontAttributes="Italic">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LabelCLikCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                            <Frame x:Name="frm" CornerRadius="10" Padding="5" Margin="10" HorizontalOptions="EndAndExpand">
+                                <Label Text="None" FontAttributes="None">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FrameCLikCommand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
     </ContentPage.Content>
 </ContentPage>

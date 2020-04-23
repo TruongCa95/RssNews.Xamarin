@@ -16,5 +16,9 @@ namespace SmartNewsDemo.View
         {
             InitializeComponent();
         }
+        private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            Application.Current.Resources["labelStylesize"] = e.NewValue;
+        }
     }
 }

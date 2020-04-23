@@ -15,6 +15,7 @@ namespace SmartNewsDemo.ViewModel
         public bool Busy { get; set; }
         public bool btnVisable { get; set; }
         public bool MoreVisible { get; set; }
+        public bool imgbtnVisible { get; set; }
         public int CountClick = 1;
         #endregion
         #region command
@@ -24,6 +25,7 @@ namespace SmartNewsDemo.ViewModel
         public ICommand OpenBroserCommand { get; set; }
         public ICommand ShareLinkCommand { get; set; }
         public ICommand ShowMoreLayoutCommand { get; set; }
+        public ICommand FocusCommand { get; set; }
         #endregion
         public ContentViewModel(string link)
         {
@@ -35,8 +37,17 @@ namespace SmartNewsDemo.ViewModel
             ShowMoreLayoutCommand = new Command(HandleShowMoreLayout);
             OpenBroserCommand = new Command(HandleOpenBrowser);
             ShareLinkCommand = new Command(HandleShareLink);
+            FocusCommand = new Command(HandleFocused);
+            imgbtnVisible = true;
             MoreVisible = false;
             btnVisable = false;
+        }
+
+        #region event
+        private void HandleFocused(object obj)
+        {
+            MoreVisible = false;
+            imgbtnVisible = true;
         }
 
         private async void HandleShareLink(object obj)
@@ -46,29 +57,27 @@ namespace SmartNewsDemo.ViewModel
                 Uri = Link
             });
             MoreVisible = false;
+            imgbtnVisible = true;
         }
 
         private async void HandleOpenBrowser(object obj)
         {
             await Browser.OpenAsync(Link, BrowserLaunchMode.SystemPreferred);
             MoreVisible = false;
+            imgbtnVisible = true;
         }
 
         private void HandleShowMoreLayout(object obj)
         {
-            CountClick++;
-            if (CountClick % 2 == 0)
-            {
-                MoreVisible = true;
-            }
-            else
-                MoreVisible = false;
-            
+            imgbtnVisible = false;
+            MoreVisible = true;
         }
 
         private void HandleShowHideButton(object obj)
         {
             CountClick ++;
+            MoreVisible = false;
+            imgbtnVisible = true;
             if (CountClick % 2 == 0)
             {
                 btnVisable = true;
@@ -86,5 +95,6 @@ namespace SmartNewsDemo.ViewModel
         {
             Busy = false;
         }
+        #endregion
     }
 }

@@ -17,6 +17,7 @@ namespace SmartNewsDemo.ViewModel
         public SfTabView tabView;
         public SfTabItem tabItem;
         public string colors;
+        public static bool IsTapItem;
         public Color ColorSelectionIndicator { get; set; }
 
         public int TabItemIndex { get; set; }
@@ -50,7 +51,7 @@ namespace SmartNewsDemo.ViewModel
         {
             var b = TabItemIndex;
             var converter = new ColorTypeConverter();
-
+            IsTapItem = true;
             //Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
         }
 

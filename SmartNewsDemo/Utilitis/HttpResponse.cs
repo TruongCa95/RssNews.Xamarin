@@ -20,7 +20,7 @@ namespace SmartNewsDemo.Utilitis
     public class HttpResponse : BaseViewModel
     {
 
-        public static ObservableCollection<NewsArticles> listresult { get; set; }
+        public static List<NewsArticles> listresult { get; set; }
 
         /// <summary>
         /// check connect internet
@@ -96,7 +96,7 @@ namespace SmartNewsDemo.Utilitis
                                 }
                                 return result;
                             }).ToList();
-                            listresult = new ObservableCollection<NewsArticles>(articles);
+                            listresult = articles;
                         }
                     }
                     else

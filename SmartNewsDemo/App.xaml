@@ -6,6 +6,10 @@
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+           <Color x:Key="labelStyleColor">#229954</Color>
+           <x:Double x:Key="labelStylesize">15</x:Double>
+            <x:String x:Key="labelStyleFontAtribute">None</x:String>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

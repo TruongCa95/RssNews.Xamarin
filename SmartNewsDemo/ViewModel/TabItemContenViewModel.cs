@@ -48,7 +48,11 @@ namespace SmartNewsDemo.ViewModel
                 {
                     GetDataAsync(url);
                 }
-
+                else
+                {
+                    GetDataAsync(url);
+                    HandleFilterItems();
+                }
             });
             SelectedCommand = new Command(HandleSelectedItem);
             FilterCommand = new Command(() =>
@@ -68,11 +72,13 @@ namespace SmartNewsDemo.ViewModel
         }
         private void HandleFilterItems()
         {
+            var Results = Arctiles.ToList();
             if (!string.IsNullOrWhiteSpace(SearchText))
             {
-                Arctiles = new ObservableCollection<NewsArticles>(HttpResponse.listresult.ToList().Where(
-                    c => c.Title.ToLower().Contains(SearchText.ToLower())));
+                var SearchResult = Results.Where(c => c.Title.ToLower().Contains(SearchText.ToLower()));
+                Arctiles = new ObservableCollection<NewsArticles>(SearchResult);
             }
+
         }
 
         private async void GetDataAsync(string url)
@@ -81,7 +87,7 @@ namespace SmartNewsDemo.ViewModel
             var task = Task.Run(() =>
             {
                 HttpResponse.ReponseServer(url);
-                Arctiles = HttpResponse.listresult;
+                Arctiles = new ObservableCollection<NewsArticles>(HttpResponse.listresult);
             });
             await task;
             IsLoading = false;

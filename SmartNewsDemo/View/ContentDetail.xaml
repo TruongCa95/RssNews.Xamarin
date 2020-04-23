@@ -8,46 +8,51 @@
              xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.ContentDetail">
+    <!--Navigation bar-->
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.more.png}" 
+        <StackLayout Orientation="Horizontal" Spacing="0">
+            <ImageButton x:Name="btnMore" Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.more.png}" 
                          HorizontalOptions="EndAndExpand"
-                         WidthRequest="30"
+                         HeightRequest="30"
+                         WidthRequest="40"
+                         IsVisible="{Binding imgbtnVisible}"
                          BackgroundColor="Transparent">
                 <ImageButton.Behaviors>
                     <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding ShowMoreLayoutCommand}"/>
                 </ImageButton.Behaviors>
             </ImageButton>
-            <AbsoluteLayout>
-                <StackLayout x:Name="moreLayout"
-                             BackgroundColor="White"
-                             Orientation="Vertical"
-                            AbsoluteLayout.LayoutFlags="PositionProportional"
-                            AbsoluteLayout.LayoutBounds="1,1,-1,-1"
-                            IsVisible="{Binding MoreVisible}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.browser.png}"/>
-                        <Label Text="Open with broswer">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OpenBroserCommand}"/>
-                            </Label.GestureRecognizers>
-                        </Label>
-                        <Image Grid.Column="1" Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.share.png}"/>
-                        <Label Grid.Column="1" Text="Share link">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ShareLinkCommand}"/>
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </Grid>
-                </StackLayout>
-            </AbsoluteLayout>
+            <StackLayout x:Name="LayoutMore"
+                         IsVisible="{Binding MoreVisible}"
+                         HorizontalOptions="EndAndExpand"
+                         BackgroundColor="White"
+                         Margin="0,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.browser.png}"/>
+                    <Label Grid.Column="1" Text="Open with broswer">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenBroserCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Grid.Row="1" Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.share.png}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Share link">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShareLinkCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </StackLayout>
         </StackLayout>
-
     </NavigationPage.TitleView>
+
+    <!--Content Detail -->
     <ContentPage.Content>
         <AbsoluteLayout Padding="0">
             <ActivityIndicator IsRunning="{Binding Busy}"
@@ -59,17 +64,18 @@
             <WebView x:Name="webViewDetail"
                      AbsoluteLayout.LayoutFlags="All"
                      AbsoluteLayout.LayoutBounds="0,1,1,1"
-                     Source="{Binding Link}"  
+                     Source="{Binding Link}"
                      HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand">
                 <WebView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="Focused" Command="{Binding FocusCommand}"/>
                     <behavior:EventToCommandBehavior EventName="Navigated" Command="{Binding WebviewNavigatedCommand}"/>
                     <behavior:EventToCommandBehavior EventName="Navigating" Command="{Binding WebviewNavigatingCommand}"/>
                 </WebView.Behaviors>
             </WebView>
             <StackLayout x:Name="btnLayoutWV"
                          AbsoluteLayout.LayoutFlags="PositionProportional"
-                         AbsoluteLayout.LayoutBounds="1,1,-1,-1"
+                         AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize"
                          VerticalOptions="EndAndExpand"
                          HorizontalOptions="EndAndExpand"
                          Orientation="Horizontal"
@@ -92,7 +98,7 @@
                          Clicked="OnNext"
                          WidthRequest="100"
                          BackgroundColor="Transparent"/>
-                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.reload.png}" 
+                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.refresh.png}" 
                          HorizontalOptions="Center"
                          IsVisible="{Binding btnVisable}"
                          Clicked="OnRefresh"

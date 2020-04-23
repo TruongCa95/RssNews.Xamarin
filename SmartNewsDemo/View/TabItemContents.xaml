@@ -15,6 +15,10 @@
                 <Setter Property="SelectionMode" Value="Single"/>
                 <Setter Property="RowHeight" Value="100"/>
             </Style>
+            <!--<Style x:Key="LableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource labelStyleColor}"/>
+                <Setter Property="FontSize" Value="{DynamicResource labelStylesize}"/>
+            </Style>-->
             <converter:DateTimeConverter x:Key="DateTimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -67,8 +71,9 @@
                                            Text="{Binding Title}"
                                            LineBreakMode="WordWrap"
                                            FontAttributes="Bold"
-                                           FontFamily="Lobster"
-                                           TextColor="Green"/>
+                                           TextColor="{DynamicResource labelStyleColor}"
+                                           FontSize="{DynamicResource labelStylesize}"
+                                           FontFamily="Lobster"/>
                                         <Label Grid.Column="1"
                                            Grid.Row="1"
                                            Text="{Binding Provider}"
