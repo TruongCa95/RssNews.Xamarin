@@ -14,6 +14,7 @@ namespace SmartNewsDemo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabView : ContentPage
     {
+        public event EventHandler<string> TappedItemEvent;
         private TabViewViewModel viewModel = new TabViewViewModel();
         public TabView()
         {
@@ -23,7 +24,7 @@ namespace SmartNewsDemo.View
 
         private void theTabView_TabItemTapped(object sender, TabItemTappedEventArgs e)
         {
-            
+          
         }
     }
 }

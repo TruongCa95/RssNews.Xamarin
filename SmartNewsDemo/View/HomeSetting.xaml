@@ -15,22 +15,24 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <TableView>
+            <TableView BackgroundColor="{DynamicResource labelStyleColor}">
                 <TableSection Title="Setting">
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Font Size"
+                            <Label Text="FontSize"
                                    Margin="20,0,0,0"
-                                   TextColor="Black"
-                                   FontSize="Large"
-                                   HorizontalOptions="StartAndExpand"
-                                   VerticalOptions="CenterAndExpand"/>
+                                   FontSize="Default"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="Start"/>
                             <Slider x:Name="Value"
-                                    WidthRequest="300"
+                                    WidthRequest="200"
                                     Grid.Column="1"
+                                    ThumbColor="Gray"
+                                    MinimumTrackColor="Blue"
+                                    MaximumTrackColor="Blue"
+                                    Maximum="25"
+                                    Minimum="15"
                                     Value="{Binding Numbersize}"
-                                    Maximum="50"
                                     HorizontalOptions="EndAndExpand">
                                 <Slider.Behaviors>
                                     <behavior:EventToCommandBehavior EventName="ValueChanged" Command="{Binding SliderChangedCommand}"/>
@@ -41,7 +43,7 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Font"
-                               FontSize="Large"
+                               FontSize="Default"
                                VerticalOptions="CenterAndExpand"
                                Margin="20,0,0,0"/>
                             <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
@@ -67,18 +69,17 @@
                             </Frame>
                         </StackLayout>
                     </ViewCell>
-                    <SwitchCell Text="Dark Mode" 
-                                OnColor="WhiteSmoke"
+                    <SwitchCell Text="Dark Mode"
+                                OnColor="Green"
                                 OnChanged="SwitchCell_OnChanged">
                     </SwitchCell>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Font Family"
-                                   Margin="5"
-                                   Padding="15"
-                                   FontSize="Large"/>
-                            <Picker Title="----------Select--------"
-                                    Margin="0,5,10,5"
+                                   Margin="20,10,0,0"
+                                   FontSize="Default"/>
+                            <Picker Title="----------Select---------"
+                                    Margin="0,5,5,0"
                                     ItemsSource="{Binding ListFontFamily}"
                                     SelectedItem="{Binding ItemsFont}"
                                     HorizontalOptions="EndAndExpand">
@@ -90,7 +91,5 @@
                     </ViewCell>
                 </TableSection>
             </TableView>
-
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

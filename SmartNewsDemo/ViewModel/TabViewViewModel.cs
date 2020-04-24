@@ -42,16 +42,15 @@ namespace SmartNewsDemo.ViewModel
         public TabViewViewModel()
         {
             Tabitems = new TabItemCollection();
-            //TabItems = new ObservableCollection<TabItem>();
             SetContent();
             TappedCommand = new Command(HandleTappedItem);
         }
 
         private void HandleTappedItem(object obj)
         {
-            var b = TabItemIndex;
-            var converter = new ColorTypeConverter();
-            IsTapItem = true;
+            var a = TabItemIndex;
+           var b= tabItem.HeaderContent;
+
             //Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
         }
 

@@ -10,15 +10,6 @@
              x:Class="SmartNewsDemo.View.TabItemContents">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="ListView">
-                <Setter Property="BackgroundColor" Value="Azure"/>
-                <Setter Property="SelectionMode" Value="Single"/>
-                <Setter Property="RowHeight" Value="100"/>
-            </Style>
-            <!--<Style x:Key="LableStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{DynamicResource labelStyleColor}"/>
-                <Setter Property="FontSize" Value="{DynamicResource labelStylesize}"/>
-            </Style>-->
             <converter:DateTimeConverter x:Key="DateTimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -42,9 +33,10 @@
                     <ListView x:Name="lstdetail"
                           ItemsSource="{Binding Arctiles}" 
                           IsPullToRefreshEnabled="True"
+                          SelectionMode="None"
+                          RowHeight="100"
                           RefreshCommand="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}" 
-                          MinimumHeightRequest="100"
                           BackgroundColor="{DynamicResource labelStyleColor}"
                           SelectedItem="{Binding SelectedArctile, Mode=TwoWay}"  
                           CachingStrategy="RecycleElementAndDataTemplate">
@@ -56,7 +48,7 @@
                                 <ViewCell>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="2*" />
+                                            <RowDefinition Height="3*" />
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>

@@ -22,6 +22,7 @@
     <None Remove="Common\Data\Thumbnail\browser.png" />
     <None Remove="Common\Data\Thumbnail\share.png" />
     <None Remove="Common\Data\Thumbnail\refresh.png" />
+    <None Remove="Common\Data\Thumbnail\NewsThumb.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
     <EmbeddedResource Include="Common\Data\Thumbnail\browser.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\share.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\refresh.png" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\NewsThumb.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,9 +53,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="MasterPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="View\ContentDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

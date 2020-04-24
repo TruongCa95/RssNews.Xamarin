@@ -92,7 +92,7 @@ namespace SmartNewsDemo.Utilitis
                                     }
                                     else
                                     {
-                                        result.ThumbnailUrl = "https://i.ibb.co/dc1xD7C/news-icon-30.jpg";
+                                        result.ThumbnailUrl = "https://lh3.googleusercontent.com/qJ2JpLVLV7rbRuEUgNi8cwmOjZhBDC_Ka1pBPpyIxzr6Zs6A_fTLbN-ksIWFW_OddAbfnWniwlT_3vyzRFWytmmclkvsbTTcpeM5MUS1twYDxwryXILcySfA5Vl6Rr6SO8Ixqu6u=w2400";
                                     }
                                 }
                                 return result;

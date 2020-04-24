@@ -11,7 +11,7 @@ namespace SmartNewsDemo
             //Register Syncfusion license
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjQyNDcwQDMxMzgyZTMxMmUzMG5xNjQ4YVhXdEdPaG00U1NsdXZBcFlGZmlvUm1qeThQYVFoclhTV2FaN3c9");
             InitializeComponent();
-            MainPage = new NavigationPage(new SmartNewsDemo.View.HomeSetting());
+            MainPage = new NavigationPage(new SmartNewsDemo.View.TabView());
             //MainPage = new MasterPage();
         }
 

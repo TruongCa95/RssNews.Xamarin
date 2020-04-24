@@ -17,6 +17,14 @@ namespace SmartNewsDemo.View
         {
             InitializeComponent();
             BindingContext = new HomeSettingViewModel();
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                NavigationPage.SetHasNavigationBar(this, true);
+            }
+            else if (Device.RuntimePlatform == Device.Android)
+            {
+                NavigationPage.SetHasNavigationBar(this, false);
+            }
         }
 
         private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
