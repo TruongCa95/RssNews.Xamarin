@@ -27,6 +27,7 @@
             <StackLayout x:Name="content">
                 <SearchBar x:Name="searchBar"
                        Text="{Binding SearchText, Mode=TwoWay}"
+                       BackgroundColor="{DynamicResource labelStyleColor}"
                        Margin="-5"
                        Placeholder="Enter key here"
                        CancelButtonColor="Orange"
@@ -44,6 +45,7 @@
                           RefreshCommand="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}" 
                           MinimumHeightRequest="100"
+                          BackgroundColor="{DynamicResource labelStyleColor}"
                           SelectedItem="{Binding SelectedArctile, Mode=TwoWay}"  
                           CachingStrategy="RecycleElementAndDataTemplate">
                         <ListView.Behaviors>
@@ -70,10 +72,10 @@
                                         <Label Grid.Column="1"
                                            Text="{Binding Title}"
                                            LineBreakMode="WordWrap"
-                                           FontAttributes="Bold"
-                                           TextColor="{DynamicResource labelStyleColor}"
-                                           FontSize="{DynamicResource labelStylesize}"
-                                           FontFamily="Lobster"/>
+                                           FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                                           FontFamily="{DynamicResource labelStyleFont}"
+                                           TextColor="Green"
+                                           FontSize="{DynamicResource labelStylesize}"/>
                                         <Label Grid.Column="1"
                                            Grid.Row="1"
                                            Text="{Binding Provider}"
@@ -83,7 +85,10 @@
                                         <Label Grid.Row="1"
                                            Grid.Column="1"
                                            Text="{Binding Updated, Converter={StaticResource DateTimeConverter}}"
+                                           FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                                           FontFamily="{DynamicResource labelStyleFont}"
                                            TextColor="Black"
+                                           FontSize="{DynamicResource labelStylesize}"
                                            HorizontalTextAlignment="End"
                                            VerticalOptions="End"/>
                                     </Grid>

@@ -7,9 +7,10 @@
              x:Class="SmartNewsDemo.App">
     <Application.Resources>
         <ResourceDictionary>
-           <Color x:Key="labelStyleColor">#229954</Color>
-           <x:Double x:Key="labelStylesize">15</x:Double>
-            <x:String x:Key="labelStyleFontAtribute">None</x:String>
+            <Color x:Key="labelStyleColor"/>
+            <x:Double x:Key="labelStylesize">15</x:Double>
+            <x:Object x:Key="labelStyleFontAtribute"/>
+            <x:String x:Key="labelStyleFont">serif</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

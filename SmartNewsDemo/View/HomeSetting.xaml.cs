@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartNewsDemo.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,12 @@ namespace SmartNewsDemo.View
         public HomeSetting()
         {
             InitializeComponent();
+            BindingContext = new HomeSettingViewModel();
         }
-        private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
+
+        private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
         {
-            Application.Current.Resources["labelStylesize"] = e.NewValue;
+            Application.Current.Resources["labelStyleColor"] =(e.Value) ? "#232323" : "#FFFFFF";
         }
     }
 }

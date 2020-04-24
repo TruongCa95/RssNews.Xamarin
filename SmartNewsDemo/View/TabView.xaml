@@ -15,7 +15,7 @@
                 </OnPlatform>
             </StackLayout.Margin>
             <SftabView:SfTabView x:Name="theTabView" 
-                             BackgroundColor="White"
+                             BackgroundColor="{DynamicResource labelStyleColor}"
                              IsScrollButtonEnabled="False"
                              OverflowMode="Scroll"
                              TabItemTapped="theTabView_TabItemTapped"

@@ -6,15 +6,22 @@
              xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.HomeSetting">
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="9"/>
+            <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <TableView>
-            <TableRoot>
+        <StackLayout>
+            <TableView>
                 <TableSection Title="Setting">
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal"
-                                     BackgroundColor="WhiteSmoke">
+                        <StackLayout Orientation="Horizontal">
                             <Label Text="Font Size"
-                                   Margin="10,0,0,0"
+                                   Margin="20,0,0,0"
                                    TextColor="Black"
                                    FontSize="Large"
                                    HorizontalOptions="StartAndExpand"
@@ -22,9 +29,9 @@
                             <Slider x:Name="Value"
                                     WidthRequest="300"
                                     Grid.Column="1"
+                                    Value="{Binding Numbersize}"
                                     Maximum="50"
-                                    HorizontalOptions="EndAndExpand"
-                                    ValueChanged="OnSliderValueChanged">
+                                    HorizontalOptions="EndAndExpand">
                                 <Slider.Behaviors>
                                     <behavior:EventToCommandBehavior EventName="ValueChanged" Command="{Binding SliderChangedCommand}"/>
                                 </Slider.Behaviors>
@@ -36,32 +43,42 @@
                             <Label Text="Font"
                                FontSize="Large"
                                VerticalOptions="CenterAndExpand"
-                               Margin="10,0,0,0"/>
-                            <Frame x:Name="frm" CornerRadius="10" Padding="5" Margin="10" HorizontalOptions="EndAndExpand">
-                                <Label Text="Bold" FontAttributes="Bold">
+                               Margin="20,0,0,0"/>
+                            <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
+                                <Label x:Name="lblB" Text="Bold" FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding LabelCLikCommand}"/>
+                                        <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="Bold"/>
                                     </Label.GestureRecognizers>
                                 </Label>
                             </Frame>
-                            <Frame x:Name="frm" CornerRadius="10" Padding="5" Margin="10" HorizontalOptions="EndAndExpand">
-                                <Label Text="Italic" FontAttributes="Italic">
+                            <Frame BackgroundColor="{Binding Source={x:Reference lblI}, Path=BackgroundColor}">
+                                <Label x:Name="lblI" Text="Italic" FontAttributes="Italic" BackgroundColor="{Binding ItalicClick}">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding LabelCLikCommand}"/>
+                                        <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="Italic"/>
                                     </Label.GestureRecognizers>
                                 </Label>
                             </Frame>
-                            <Frame x:Name="frm" CornerRadius="10" Padding="5" Margin="10" HorizontalOptions="EndAndExpand">
-                                <Label Text="None" FontAttributes="None">
+                            <Frame BackgroundColor="{Binding Source={x:Reference lblN}, Path=BackgroundColor}">
+                                <Label x:Name="lblN" Text="None" FontAttributes="None" BackgroundColor="{Binding NoneClick}">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding FrameCLikCommand}"/>
+                                        <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="None"/>
                                     </Label.GestureRecognizers>
                                 </Label>
                             </Frame>
                         </StackLayout>
                     </ViewCell>
+                    <SwitchCell Text="Dark Mode" 
+                                OnColor="WhiteSmoke"
+                                OnChanged="SwitchCell_OnChanged">
+                    </SwitchCell>
                 </TableSection>
-            </TableRoot>
-        </TableView>
+            </TableView>
+            <StackLayout>
+                <Label Text="Please Chose Font"/>
+                <Picker Title="---Select----" 
+                                ItemsSource="{Binding ListFontFamily}">
+                </Picker>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
