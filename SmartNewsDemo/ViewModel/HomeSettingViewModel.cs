@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,16 +16,31 @@ namespace SmartNewsDemo.ViewModel
         public Color BoldClick { get; set; }
         public Color ItalicClick { get; set; }
         public Color NoneClick { get; set; }
+        public object ItemsFont { get; set; }
+        public List<string> ListFontFamily { get; set; } = new List<string>();
+        string[] lstfont = { "Lobster-Regular", "serif", "Times New Roman", "Arial" };
         #endregion
         #region command
         public ICommand LabelCLickCommand { get; set; }
         public ICommand SliderChangedCommand { get; set; }
+        public ICommand SeletedFontCommand { get; set; }
         #endregion
         public HomeSettingViewModel()
         {
+            
             Numbersize = 15;
             LabelCLickCommand = new Command<string>(HandleLabelCLik);
             SliderChangedCommand = new Command(HandleSliderChanged);
+            SeletedFontCommand = new Command(HandleSelectedFont);
+            ListFontFamily.AddRange(lstfont);
+        }
+
+        private void HandleSelectedFont(object obj)
+        {
+            if(ItemsFont!= null)
+            {
+                Application.Current.Resources["labelStyleFont"] = ItemsFont;
+            }
         }
         #region event
         private void HandleSliderChanged(object obj)

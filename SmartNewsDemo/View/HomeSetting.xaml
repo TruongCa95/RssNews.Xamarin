@@ -15,7 +15,7 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical">
             <TableView>
                 <TableSection Title="Setting">
                     <ViewCell>
@@ -76,7 +76,11 @@
             <StackLayout>
                 <Label Text="Please Chose Font"/>
                 <Picker Title="---Select----" 
-                                ItemsSource="{Binding ListFontFamily}">
+                        ItemsSource="{Binding ListFontFamily}"
+                        SelectedItem="{Binding ItemsFont}">
+                    <Picker.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SeletedFontCommand}"/>
+                    </Picker.Behaviors>
                 </Picker>
             </StackLayout>
         </StackLayout>
