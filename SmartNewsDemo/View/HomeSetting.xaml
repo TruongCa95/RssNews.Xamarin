@@ -71,18 +71,26 @@
                                 OnColor="WhiteSmoke"
                                 OnChanged="SwitchCell_OnChanged">
                     </SwitchCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Font Family"
+                                   Margin="5"
+                                   Padding="15"
+                                   FontSize="Large"/>
+                            <Picker Title="----------Select--------"
+                                    Margin="0,5,10,5"
+                                    ItemsSource="{Binding ListFontFamily}"
+                                    SelectedItem="{Binding ItemsFont}"
+                                    HorizontalOptions="EndAndExpand">
+                                <Picker.Behaviors>
+                                    <behavior:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SeletedFontCommand}"/>
+                                </Picker.Behaviors>
+                            </Picker>
+                        </StackLayout>
+                    </ViewCell>
                 </TableSection>
             </TableView>
-            <StackLayout>
-                <Label Text="Please Chose Font"/>
-                <Picker Title="---Select----" 
-                        ItemsSource="{Binding ListFontFamily}"
-                        SelectedItem="{Binding ItemsFont}">
-                    <Picker.Behaviors>
-                        <behavior:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SeletedFontCommand}"/>
-                    </Picker.Behaviors>
-                </Picker>
-            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

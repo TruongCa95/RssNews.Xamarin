@@ -49,6 +49,7 @@ namespace SmartNewsDemo.Utilitis
                 if (url != string.Empty)
                 {
                     Uri ourUri = new Uri(url);
+                    Task.Delay(1000);
                     //Create a WebRequest
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                     // Set credentials to use for this request
