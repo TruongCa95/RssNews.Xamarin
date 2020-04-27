@@ -80,7 +80,6 @@ namespace SmartNewsDemo.ViewModel
             }
 
         }
-
         private async void GetDataAsync(string url)
         {
             IsLoading = true;

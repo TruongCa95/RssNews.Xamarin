@@ -18,7 +18,7 @@ namespace SmartNewsDemo.ViewModel
         public Color NoneClick { get; set; }
         public object ItemsFont { get; set; }
         public List<string> ListFontFamily { get; set; } = new List<string>();
-        string[] lstfont = { "Lobster-Regular", "serif", "Times New Roman", "Arial" };
+        string[] lstfont = { "Lobster-Regular", "serif", "Times New Roman", "Arial", "Calligraphy" };
         #endregion
         #region command
         public ICommand LabelCLickCommand { get; set; }
@@ -29,7 +29,7 @@ namespace SmartNewsDemo.ViewModel
         {
             
             Numbersize = 15;
-            LabelCLickCommand = new Command<string>(HandleLabelCLik);
+            LabelCLickCommand = new Command<string>(HandleLabelCLick);
             SliderChangedCommand = new Command(HandleSliderChanged);
             SeletedFontCommand = new Command(HandleSelectedFont);
             ListFontFamily.AddRange(lstfont);
@@ -40,20 +40,23 @@ namespace SmartNewsDemo.ViewModel
             if(ItemsFont!= null)
             {
                 Application.Current.Resources["labelStyleFont"] = ItemsFont;
+                //Application.Current.Properties["labelStyleFont"] = ItemsFont;
             }
         }
         #region event
         private void HandleSliderChanged(object obj)
         {
             Application.Current.Resources["labelStylesize"] = Numbersize;
+            //Application.Current.Properties["labelStylesize"] = Numbersize;
         }
 
-        private async void HandleLabelCLik(string font)
+        private async void HandleLabelCLick(string font)
         {
             if (font == "Bold")
             {
                 BoldClick = Color.FromHex("#E7E0E4");
                 Application.Current.Resources["labelStyleFontAtribute"] = FontAttributes.Bold;
+                //Application.Current.Properties["labelStyleFontAtribute"] = FontAttributes.Bold;
                 await Task.Delay(100);
                 BoldClick = Color.White;
             }
@@ -61,6 +64,7 @@ namespace SmartNewsDemo.ViewModel
             {
                 ItalicClick = Color.FromHex("#E7E0E4");
                 Application.Current.Resources["labelStyleFontAtribute"] = FontAttributes.Italic;
+                //Application.Current.Properties["labelStyleFontAtribute"] = FontAttributes.Italic;
                 await Task.Delay(100);
                 ItalicClick = Color.White;
             }

@@ -33,12 +33,12 @@
                     <ListView x:Name="lstdetail"
                           ItemsSource="{Binding Arctiles}" 
                           IsPullToRefreshEnabled="True"
-                          SelectionMode="None"
+                          SelectionMode="Single"
                           RowHeight="100"
                           RefreshCommand="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}" 
                           BackgroundColor="{DynamicResource labelStyleColor}"
-                          SelectedItem="{Binding SelectedArctile, Mode=TwoWay}"  
+                          SelectedItem="{Binding SelectedArctile, Mode=TwoWay}" 
                           CachingStrategy="RecycleElementAndDataTemplate">
                         <ListView.Behaviors>
                             <behavior:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectedCommand}"/>

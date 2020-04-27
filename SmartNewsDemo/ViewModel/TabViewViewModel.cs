@@ -16,20 +16,21 @@ namespace SmartNewsDemo.ViewModel
         public TabItemCollection Tabitems { get; set; }
         public SfTabView tabView;
         public SfTabItem tabItem;
-        public string colors;
         public static bool IsTapItem;
+        public int countClick = 1;
         public Color ColorSelectionIndicator { get; set; }
 
         public int TabItemIndex { get; set; }
-        //public ObservableCollection<TabItem> TabItems { get; set; }
+
         #endregion
 
         #region Command
+        public static event EventHandler<string> TappedItemEvent;
         public ICommand TappedCommand { get; private set; }
         public ICommand SelectionChangeCommand { get; set; }
         #endregion
         #region Data
-        string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green","Red","Orange" };
+        string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green", "Red", "Orange", "Silver" };
         string[] RssItems = {
             "https://cafebiz.vn/cong-nghe.rss",
             "https://gamek.vn/trang-chu.rss",
@@ -48,10 +49,13 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleTappedItem(object obj)
         {
-            var a = TabItemIndex;
-           var b= tabItem.HeaderContent;
-
-            //Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
+            if(countClick%2 != 0)
+            {      
+                var colors = ColorItems.GetValue(TabItemIndex).ToString();
+                EventHandler<string> handler = TappedItemEvent;
+                handler?.Invoke(this, colors);
+            }
+            countClick++; 
         }
 
         public void SetContent()
@@ -74,24 +78,23 @@ namespace SmartNewsDemo.ViewModel
                         {
                             var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
                             TabItemContents content = new TabItemContents(itemRss);
-                            colors = ColorItems.GetValue(i).ToString();
-                            TabItemHeaders headers = new TabItemHeaders(pieces, colors);
+                            TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
                             tabItem = new SfTabItem
                             {
                                 HeaderContent = headers.Content,
                                 //HeaderText=pieces,
                                 Content = content.Content,
                                 FontIconFontFamily = "Arial",
-                                FontIconFontSize = 100 
+                                FontIconFontSize = 100
                             };
                             i += 1;
                             Tabitems.Add(tabItem);
                         }
                     }
                 }
-                HomeSetting homeContent = new HomeSetting();
-                TabItemHeaders homeHeader = new TabItemHeaders("Home", "Silver");
-                Tabitems.Add(new SfTabItem { Content = homeContent.Content, HeaderContent = homeHeader.Content});
+                //HomeSetting homeContent = new HomeSetting();
+                //TabItemHeaders homeHeader = new TabItemHeaders("Home", "Silver");
+                //Tabitems.Add(new SfTabItem { Content = homeContent.Content, HeaderContent = homeHeader.Content });
             }
         }
     }

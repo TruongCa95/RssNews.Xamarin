@@ -18,7 +18,6 @@
                              BackgroundColor="{DynamicResource labelStyleColor}"
                              IsScrollButtonEnabled="False"
                              OverflowMode="Scroll"
-                             TabItemTapped="theTabView_TabItemTapped"
                              SelectedIndex="{Binding TabItemIndex}"
                              Items="{Binding Tabitems}">
             <SftabView:SfTabView.SelectionIndicatorSettings>
