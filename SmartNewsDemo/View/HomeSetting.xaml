@@ -28,22 +28,22 @@
             </Grid>
             <StackLayout Orientation="Horizontal">
                 <Label Text="FontSize"
-                                   Margin="20,0,0,0"
-                                   FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                                   FontFamily="{DynamicResource labelStyleFont}"
-                                   FontSize="{DynamicResource labelStylesize}"
-                                   VerticalOptions="CenterAndExpand"
-                                   HorizontalOptions="Start"/>
+                       Margin="20,0,0,0"
+                       FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                       FontFamily="{DynamicResource labelStyleFont}"
+                       FontSize="{DynamicResource labelStylesize}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="Start"/>
                 <Slider x:Name="Value"
-                                    WidthRequest="200"
-                                    Grid.Column="1"
-                                    MinimumTrackColor="Blue"
-                                    MaximumTrackColor="BlueViolet"
-                                    ThumbColor="Red"
-                                    Maximum="25"
-                                    Minimum="15"
-                                    Value="{Binding Numbersize}"
-                                    HorizontalOptions="EndAndExpand">
+                        WidthRequest="200"
+                        Grid.Column="1"
+                        MinimumTrackColor="Blue"
+                        MaximumTrackColor="BlueViolet"
+                        ThumbColor="Red"
+                        Maximum="25"
+                        Minimum="15"
+                        Value="{Binding Numbersize}"
+                        HorizontalOptions="EndAndExpand">
                     <Slider.Behaviors>
                         <behavior:EventToCommandBehavior EventName="ValueChanged" Command="{Binding SliderChangedCommand}"/>
                     </Slider.Behaviors>
@@ -97,39 +97,39 @@
                        FontSize="{DynamicResource labelStylesize}"
                        Margin="20,10,0,0"/>
                 <Picker Title="----------Select---------"
-                                    Margin="0,5,5,0"
-                                    ItemsSource="{Binding ListFontFamily}"
-                                    SelectedItem="{Binding ItemsFont}"
-                                    HorizontalOptions="EndAndExpand">
+                        WidthRequest="200"
+                        Margin="0,5,5,0"
+                        ItemsSource="{Binding ListFontFamily}"
+                        SelectedItem="{Binding ItemsFont}"
+                        HorizontalOptions="EndAndExpand">
                     <Picker.Behaviors>
                         <behavior:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SeletedFontCommand}"/>
                     </Picker.Behaviors>
                 </Picker>
             </StackLayout>
-            <StackLayout Grid.Row="4" HorizontalOptions="FillAndExpand" Orientation="Horizontal">      
-                    <Label Text="Notifications ON/OFF"
+            <StackLayout Grid.Row="4" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Label Text="Notifications ON/OFF"
                            FontAttributes="{DynamicResource labelStyleFontAtribute}"
                            FontFamily="{DynamicResource labelStyleFont}"
                            FontSize="{DynamicResource labelStylesize}"
                            Margin="20,10,0,0"
-                           HorizontalOptions="StartAndExpand"/>      
-                    <Switch IsToggled="{Binding NotificationONOFF}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
-            </StackLayout> 
+                           HorizontalOptions="StartAndExpand"/>
+                <Switch IsToggled="{Binding NotificationONOFF}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+            </StackLayout>
             <StackLayout Orientation="Vertical" Grid.Row="5">
-                 <Label Text="Enter Message"
+                <Label Text="Enter Message"
                         FontAttributes="{DynamicResource labelStyleFontAtribute}"
                         FontFamily="{DynamicResource labelStyleFont}"
                         FontSize="{DynamicResource labelStylesize}"
                         Margin="20,10,0,0"
-                        HorizontalOptions="StartAndExpand"/>      
-                 <Editor HeightRequest="120" Text=" {Binding MessageText}" TextColor="Purple" BackgroundColor="White" HorizontalOptions="FillAndExpand"/>
+                        HorizontalOptions="StartAndExpand"/>
+                <Editor HeightRequest="120" Text=" {Binding MessageText}" TextColor="Purple" BackgroundColor="WhiteSmoke" HorizontalOptions="Fill"/>
                 <StackLayout Orientation="Horizontal">
-                    <Button Text="Push local" TextColor="Black" BackgroundColor="Red" HorizontalOptions="StartAndExpand">
+                    <Button Text="Push local" TextColor="Black" BackgroundColor="Red" HorizontalOptions="Fill" WidthRequest="100">
                         <Button.Behaviors>
                             <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
                         </Button.Behaviors>
                     </Button>
-                    <Button Text="Push API" TextColor="Black" BackgroundColor="Blue" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

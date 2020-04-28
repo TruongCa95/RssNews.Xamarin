@@ -21,7 +21,7 @@ namespace SmartNewsDemo.ViewModel
         public string MessageText { get; set; }
         public bool NotificationONOFF { get; set; }
         public List<string> ListFontFamily { get; set; } = new List<string>();
-        string[] lstfont = { "Lobster-Regular", "serif", "Times New Roman", "Arial", "MarkerFelt-Thin"};
+        string[] lstfont = { "Lobster-Regular", "serif", "Times New Roman", "Arial", "MarkerFelt-Thin" };
         #endregion
         #region command
         public ICommand LabelCLickCommand { get; set; }
@@ -64,7 +64,7 @@ namespace SmartNewsDemo.ViewModel
         {
             try
             {
-                if(Numbersize!= null|| !ModeONOFF|| ItemsFont!=null)
+                if(Numbersize!= null || ItemsFont!=null)
                 {
                     Numbersize = Application.Current.Properties["FontSize"].ToString();
                     ItemsFont = Application.Current.Properties["Font"].ToString();
@@ -73,15 +73,12 @@ namespace SmartNewsDemo.ViewModel
                 else
                 {
                     Numbersize = "15";
-                    ItemsFont = "MarkerFelt-Thin";
-                    ModeONOFF = true;
+                    ItemsFont = "serif";
+                    ModeONOFF = false;
                 }
             }
             catch (Exception)
             {
-                Numbersize = "15";
-                ItemsFont = "MarkerFelt-Thin";
-                ModeONOFF = false;
             }
         }
         #region events
@@ -102,13 +99,14 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleSliderChanged(object obj)
         {
-            var newStep = Math.Round(Convert.ToDouble(Numbersize),0);
-            if(newStep>1000)
+            double number;
+            System.Globalization.CultureInfo EnglishCulture = new System.Globalization.CultureInfo("en-GB");
+            if( double.TryParse(Numbersize,System.Globalization.NumberStyles.Number, EnglishCulture, out number))
             {
-                newStep= Math.Round( (newStep / 100),0);
+                var newStep = Math.Round(number, 0);
+                Application.Current.Resources["labelStylesize"] = newStep;
+                Application.Current.Properties["FontSize"] = newStep;
             }
-            Application.Current.Resources["labelStylesize"] = newStep;
-            Application.Current.Properties["FontSize"] = newStep;
         }
 
         private async void HandleLabelCLick(string font)

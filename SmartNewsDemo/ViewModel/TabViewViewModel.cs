@@ -46,8 +46,8 @@ namespace SmartNewsDemo.ViewModel
             Tabitems = new TabItemCollection();
             SetContent();
             SelectionChangeCommand = new Command(HandleSelected);
-            //var setting = new HomeSettingViewModel();
-            //setting.UpdateStateStorage();
+            var setting = new HomeSettingViewModel();
+            setting.UpdateStateStorage();
         }
 
         private void HandleSelected(object obj)
