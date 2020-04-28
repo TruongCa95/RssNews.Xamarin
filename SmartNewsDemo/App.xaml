@@ -10,7 +10,7 @@
             <Color x:Key="labelStyleColor"/>
             <x:Double x:Key="labelStylesize">15</x:Double>
             <FontAttributes x:Key="labelStyleFontAtribute">Bold</FontAttributes>
-            <x:String x:Key="labelStyleFont"/>
+            <x:String x:Key="labelStyleFont">MarkerFelt-Thin</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

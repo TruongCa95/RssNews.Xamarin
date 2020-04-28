@@ -102,8 +102,13 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleSliderChanged(object obj)
         {
-            Application.Current.Resources["labelStylesize"] = Convert.ToDouble(Numbersize);
-            Application.Current.Properties["FontSize"] = Convert.ToDouble(Numbersize);
+            var newStep = Math.Round(Convert.ToDouble(Numbersize),0);
+            if(newStep>1000)
+            {
+                newStep= Math.Round( (newStep / 100),0);
+            }
+            Application.Current.Resources["labelStylesize"] = newStep;
+            Application.Current.Properties["FontSize"] = newStep;
         }
 
         private async void HandleLabelCLick(string font)

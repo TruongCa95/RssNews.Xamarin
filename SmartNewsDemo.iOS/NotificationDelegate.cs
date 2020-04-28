@@ -6,10 +6,7 @@ namespace SmartNewsDemo.iOS
 {
     class NotificationDelegate : UNUserNotificationCenterDelegate
     {
-        public NotificationDelegate()
-        {
-
-        }
+       
         public override void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler)
         {
             // Do something with the notification

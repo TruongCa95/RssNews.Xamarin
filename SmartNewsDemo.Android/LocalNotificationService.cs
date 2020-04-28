@@ -1,6 +1,7 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Media;
 using Android.Support.V4.App;
 using SmartNewsDemo.Common.Services.Interface;
 using SmartNewsDemo.Droid;
@@ -32,6 +33,16 @@ namespace SmartNewsDemo.Droid
         {
             try
             {
+                var intent = new Intent(_context, typeof(MainActivity));
+                intent.AddFlags(ActivityFlags.ClearTop);
+                intent.PutExtra(title, body);
+                var pendingIntent = PendingIntent.GetActivity(_context, 0, intent, PendingIntentFlags.OneShot);
+
+                // Creating an Audio Attribute
+                var alarmAttributes = new AudioAttributes.Builder()
+                    .SetContentType(AudioContentType.Sonification)
+                    .SetUsage(AudioUsageKind.Notification).Build();
+
                 _builder = new NotificationCompat.Builder(_context);
                 _builder.SetSmallIcon(Resource.Drawable.theWitcher);
                 _builder.SetContentTitle(title)
