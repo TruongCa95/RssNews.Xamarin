@@ -15,18 +15,26 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <TableView BackgroundColor="{DynamicResource labelStyleColor}">
-            <TableSection Title="Setting">
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="FontSize"
+        <StackLayout BackgroundColor="{DynamicResource labelStyleColor}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="FontSize"
                                    Margin="20,0,0,0"
                                    FontAttributes="{DynamicResource labelStyleFontAtribute}"
                                    FontFamily="{DynamicResource labelStyleFont}"
                                    FontSize="{DynamicResource labelStylesize}"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="Start"/>
-                        <Slider x:Name="Value"
+                <Slider x:Name="Value"
                                     WidthRequest="200"
                                     Grid.Column="1"
                                     ThumbColor="Gray"
@@ -36,66 +44,98 @@
                                     Minimum="15"
                                     Value="{Binding Numbersize}"
                                     HorizontalOptions="EndAndExpand">
-                            <Slider.Behaviors>
-                                <behavior:EventToCommandBehavior EventName="ValueChanged" Command="{Binding SliderChangedCommand}"/>
-                            </Slider.Behaviors>
-                        </Slider>
-                    </StackLayout>
-                </ViewCell>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Font"
+                    <Slider.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="ValueChanged" Command="{Binding SliderChangedCommand}"/>
+                    </Slider.Behaviors>
+                </Slider>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="1">
+                <Label Text="Font"
                                FontAttributes="{DynamicResource labelStyleFontAtribute}"
                                FontFamily="{DynamicResource labelStyleFont}"
                                FontSize="{DynamicResource labelStylesize}"
                                VerticalOptions="CenterAndExpand"
                                Margin="20,0,0,0"/>
-                        <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
-                            <Label x:Name="lblB" Text="Bold" FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="Bold"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </Frame>
-                        <Frame BackgroundColor="{Binding Source={x:Reference lblI}, Path=BackgroundColor}">
-                            <Label x:Name="lblI" Text="Italic" FontAttributes="Italic" BackgroundColor="{Binding ItalicClick}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="Italic"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </Frame>
-                        <Frame BackgroundColor="{Binding Source={x:Reference lblN}, Path=BackgroundColor}">
-                            <Label x:Name="lblN" Text="None" FontAttributes="None" BackgroundColor="{Binding NoneClick}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="None"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </Frame>
-                    </StackLayout>
-                </ViewCell>
-                <SwitchCell Text="Dark Mode"
-                                OnColor="Green"
-                                OnChanged="SwitchCell_OnChanged">
-                </SwitchCell>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Font Family"
-                                FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                                FontFamily="{DynamicResource labelStyleFont}"
-                                FontSize="{DynamicResource labelStylesize}"
-                                Margin="20,10,0,0"/>
-                        <Picker Title="----------Select---------"
+                <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
+                    <Label x:Name="lblB" Text="Bold" FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="Bold"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+                <Frame BackgroundColor="{Binding Source={x:Reference lblI}, Path=BackgroundColor}">
+                    <Label x:Name="lblI" Text="Italic" FontAttributes="Italic" BackgroundColor="{Binding ItalicClick}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="Italic"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+                <Frame BackgroundColor="{Binding Source={x:Reference lblN}, Path=BackgroundColor}">
+                    <Label x:Name="lblN" Text="None" FontAttributes="None" BackgroundColor="{Binding NoneClick}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="None"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="2">
+                <Label Text="Dark Mode"
+                       Margin="20,10,0,0"
+                       FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                       FontFamily="{DynamicResource labelStyleFont}"
+                       FontSize="{DynamicResource labelStylesize}"/>
+                <Switch IsToggled="{Binding ModeONOFF}" HorizontalOptions="EndAndExpand">
+                    <Switch.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledModeCommand}"/>
+                    </Switch.Behaviors>
+                </Switch>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Grid.Row="3">
+                <Label Text="Font Family"
+                       FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                       FontFamily="{DynamicResource labelStyleFont}"
+                       FontSize="{DynamicResource labelStylesize}"
+                       Margin="20,10,0,0"/>
+                <Picker Title="----------Select---------"
                                     Margin="0,5,5,0"
                                     ItemsSource="{Binding ListFontFamily}"
                                     SelectedItem="{Binding ItemsFont}"
                                     HorizontalOptions="EndAndExpand">
-                            <Picker.Behaviors>
-                                <behavior:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SeletedFontCommand}"/>
-                            </Picker.Behaviors>
-                        </Picker>
-                    </StackLayout>
-                </ViewCell>
-            </TableSection>
-        </TableView>
+                    <Picker.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SeletedFontCommand}"/>
+                    </Picker.Behaviors>
+                </Picker>
+            </StackLayout>
+            <StackLayout Grid.Row="4" HorizontalOptions="FillAndExpand" Orientation="Horizontal">      
+                    <Label Text="Notifications ON/OFF"
+                           FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                           FontFamily="{DynamicResource labelStyleFont}"
+                           FontSize="{DynamicResource labelStylesize}"
+                           Margin="20,10,0,0"
+                           HorizontalOptions="StartAndExpand"/>      
+                    <Switch IsToggled="{Binding NotificationONOFF}" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                        <Switch.Behaviors>
+                             <behavior:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledNotificationCommand}"/>
+                        </Switch.Behaviors>
+                    </Switch>   
+                </StackLayout> 
+            <StackLayout Orientation="Vertical" Grid.Row="5">
+                 <Label Text="Enter Message"
+                        FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                        FontFamily="{DynamicResource labelStyleFont}"
+                        FontSize="{DynamicResource labelStylesize}"
+                        Margin="20,10,0,0"
+                        HorizontalOptions="StartAndExpand"/>      
+                 <Editor HeightRequest="120" Text=" {Binding MessageText}" TextColor="Purple" BackgroundColor="White" HorizontalOptions="FillAndExpand"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Push local" TextColor="Black" BackgroundColor="Red" HorizontalOptions="StartAndExpand">
+                        <Button.Behaviors>
+                            <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
+                        </Button.Behaviors>
+                    </Button>
+                    <Button Text="Push API" TextColor="Black" BackgroundColor="Blue" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

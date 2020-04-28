@@ -24,7 +24,6 @@
                 <SftabView:SelectionIndicatorSettings Color="{Binding ColorSelectionIndicator}" Position="Fill"/>
             </SftabView:SfTabView.SelectionIndicatorSettings>
             <SftabView:SfTabView.Behaviors>
-                <behavior:EventToCommandBehavior EventName="TabItemTapped" Command="{Binding TappedCommand}"/>
                 <behavior:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectionChangeCommand}"/>
             </SftabView:SfTabView.Behaviors>
         </SftabView:SfTabView>

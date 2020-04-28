@@ -26,11 +26,10 @@ namespace SmartNewsDemo.ViewModel
 
         #region Command
         public static event EventHandler<string> TappedItemEvent;
-        public ICommand TappedCommand { get; private set; }
         public ICommand SelectionChangeCommand { get; set; }
         #endregion
         #region Data
-        string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green", "Red", "Orange", "Silver" };
+        string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green", "Silver" };
         string[] RssItems = {
             "https://cafebiz.vn/cong-nghe.rss",
             "https://gamek.vn/trang-chu.rss",
@@ -44,18 +43,18 @@ namespace SmartNewsDemo.ViewModel
         {
             Tabitems = new TabItemCollection();
             SetContent();
-            TappedCommand = new Command(HandleTappedItem);
+            SelectionChangeCommand = new Command(HandleSelected);
+            var setting = new HomeSettingViewModel();
+            setting.UpdateStateStorage();
         }
 
-        private void HandleTappedItem(object obj)
+        private void HandleSelected(object obj)
         {
-            if(countClick%2 != 0)
-            {      
-                var colors = ColorItems.GetValue(TabItemIndex).ToString();
-                EventHandler<string> handler = TappedItemEvent;
-                handler?.Invoke(this, colors);
-            }
-            countClick++; 
+            var index = TabItemIndex;
+            var colors = ColorItems.GetValue(index).ToString();
+            EventHandler<string> handler = TappedItemEvent;
+            handler?.Invoke(this, colors);
+
         }
 
         public void SetContent()
@@ -92,9 +91,6 @@ namespace SmartNewsDemo.ViewModel
                         }
                     }
                 }
-                //HomeSetting homeContent = new HomeSetting();
-                //TabItemHeaders homeHeader = new TabItemHeaders("Home", "Silver");
-                //Tabitems.Add(new SfTabItem { Content = homeContent.Content, HeaderContent = homeHeader.Content });
             }
         }
     }

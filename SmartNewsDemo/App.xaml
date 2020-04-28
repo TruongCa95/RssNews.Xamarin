@@ -9,7 +9,7 @@
         <ResourceDictionary>
             <Color x:Key="labelStyleColor"/>
             <x:Double x:Key="labelStylesize">15</x:Double>
-            <FontAttributes x:Key="labelStyleFontAtribute"/>
+            <FontAttributes x:Key="labelStyleFontAtribute">Bold</FontAttributes>
             <x:String x:Key="labelStyleFont"/>
         </ResourceDictionary>
     </Application.Resources>

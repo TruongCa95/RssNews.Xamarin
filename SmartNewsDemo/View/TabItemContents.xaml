@@ -35,6 +35,7 @@
                           IsPullToRefreshEnabled="True"
                           SelectionMode="Single"
                           RowHeight="100"
+                          HasUnevenRows="True"
                           RefreshCommand="{Binding RefreshCommand}"
                           IsRefreshing="{Binding IsRefreshing}" 
                           BackgroundColor="{DynamicResource labelStyleColor}"

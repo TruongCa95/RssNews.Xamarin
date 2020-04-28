@@ -19,6 +19,8 @@ namespace SmartNewsDemo.View
         {
             InitializeComponent();
             this.BindingContext = viewModel;
+            var setting = new HomeSettingViewModel();
+            setting.UpdateStateStorage();
         }
     }
 }
