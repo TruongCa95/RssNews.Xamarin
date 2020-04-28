@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Common\Data\Fonts\Samantha.ttf" />
     <None Remove="Common\Data\Thumbnail\back-button.png" />
     <None Remove="Common\Data\Thumbnail\Back_Page.png" />
     <None Remove="Common\Data\Thumbnail\next.png" />
@@ -26,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Common\Data\Fonts\Samantha.ttf" />
     <EmbeddedResource Include="Common\Data\Thumbnail\back-button.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\next.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\theWitcher.jpg" />
@@ -76,11 +78,5 @@
     <Folder Include="Common\Converter\" />
     <Folder Include="Common\Control\" />
     <Folder Include="Common\Services\" />
-    <Folder Include="Common\Services\Interface\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Xamarin.iOS">
-      <HintPath>..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\13.6.0.12\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>

@@ -67,7 +67,7 @@
                                            LineBreakMode="WordWrap"
                                            FontAttributes="{DynamicResource labelStyleFontAtribute}"
                                            FontFamily="{DynamicResource labelStyleFont}"
-                                           TextColor="Green"
+                                           TextColor="{DynamicResource labelTextColor}"
                                            FontSize="{DynamicResource labelStylesize}"/>
                                         <Label Grid.Column="1"
                                            Grid.Row="1"
@@ -80,7 +80,7 @@
                                            Text="{Binding Updated, Converter={StaticResource DateTimeConverter}}"
                                            FontAttributes="{DynamicResource labelStyleFontAtribute}"
                                            FontFamily="{DynamicResource labelStyleFont}"
-                                           TextColor="Black"
+                                           TextColor="#b6b6b6"
                                            FontSize="{DynamicResource labelStylesize}"
                                            HorizontalTextAlignment="End"
                                            VerticalOptions="End"/>

@@ -29,6 +29,7 @@
             <StackLayout Orientation="Horizontal">
                 <Label Text="FontSize"
                        Margin="20,0,0,0"
+                       TextColor="{DynamicResource labelTextColor}"
                        FontAttributes="{DynamicResource labelStyleFontAtribute}"
                        FontFamily="{DynamicResource labelStyleFont}"
                        FontSize="{DynamicResource labelStylesize}"
@@ -51,11 +52,12 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal" Grid.Row="1">
                 <Label Text="Font"
-                               FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                               FontFamily="{DynamicResource labelStyleFont}"
-                               FontSize="{DynamicResource labelStylesize}"
-                               VerticalOptions="CenterAndExpand"
-                               Margin="20,0,0,0"/>
+                       TextColor="{DynamicResource labelTextColor}"
+                       FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                       FontFamily="{DynamicResource labelStyleFont}"
+                       FontSize="{DynamicResource labelStylesize}"
+                       VerticalOptions="CenterAndExpand"
+                       Margin="20,0,0,0"/>
                 <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
                     <Label x:Name="lblB" Text="Bold" FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
                         <Label.GestureRecognizers>
@@ -81,6 +83,7 @@
             <StackLayout Orientation="Horizontal" Grid.Row="2">
                 <Label Text="Dark Mode"
                        Margin="20,10,0,0"
+                       TextColor="{DynamicResource labelTextColor}"
                        FontAttributes="{DynamicResource labelStyleFontAtribute}"
                        FontFamily="{DynamicResource labelStyleFont}"
                        FontSize="{DynamicResource labelStylesize}"/>
@@ -92,11 +95,12 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal" Grid.Row="3">
                 <Label Text="Font Family"
+                       TextColor="{DynamicResource labelTextColor}"
                        FontAttributes="{DynamicResource labelStyleFontAtribute}"
                        FontFamily="{DynamicResource labelStyleFont}"
                        FontSize="{DynamicResource labelStylesize}"
                        Margin="20,10,0,0"/>
-                <Picker Title="----------Select---------"
+                <Picker Title="Please chose Font"
                         WidthRequest="200"
                         Margin="0,5,5,0"
                         ItemsSource="{Binding ListFontFamily}"
@@ -109,6 +113,7 @@
             </StackLayout>
             <StackLayout Grid.Row="4" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
                 <Label Text="Notifications ON/OFF"
+                       TextColor="{DynamicResource labelTextColor}"
                            FontAttributes="{DynamicResource labelStyleFontAtribute}"
                            FontFamily="{DynamicResource labelStyleFont}"
                            FontSize="{DynamicResource labelStylesize}"
@@ -116,22 +121,29 @@
                            HorizontalOptions="StartAndExpand"/>
                 <Switch IsToggled="{Binding NotificationONOFF}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
             </StackLayout>
+            <Frame HorizontalOptions="FillAndExpand" BorderColor="DimGray" HasShadow="True" BackgroundColor="{DynamicResource labelStyleColor}">
             <StackLayout Orientation="Vertical" Grid.Row="5">
                 <Label Text="Enter Message"
+                       TextColor="{DynamicResource labelTextColor}"
                         FontAttributes="{DynamicResource labelStyleFontAtribute}"
                         FontFamily="{DynamicResource labelStyleFont}"
                         FontSize="{DynamicResource labelStylesize}"
                         Margin="20,10,0,0"
                         HorizontalOptions="StartAndExpand"/>
-                <Editor HeightRequest="120" Text=" {Binding MessageText}" TextColor="Purple" BackgroundColor="WhiteSmoke" HorizontalOptions="Fill"/>
+                <Editor HeightRequest="120" 
+                        Text=" {Binding MessageText}" 
+                        TextColor="Blue" 
+                        BackgroundColor="{DynamicResource labelStyleColor}" 
+                        HorizontalOptions="Fill"/>
                 <StackLayout Orientation="Horizontal">
-                    <Button Text="Push local" TextColor="Black" BackgroundColor="Red" HorizontalOptions="Fill" WidthRequest="100">
+                    <Button Text="Push local" TextColor="Black" BackgroundColor="Red" HorizontalOptions="FillAndExpand" WidthRequest="100">
                         <Button.Behaviors>
                             <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
                         </Button.Behaviors>
                     </Button>
                 </StackLayout>
             </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

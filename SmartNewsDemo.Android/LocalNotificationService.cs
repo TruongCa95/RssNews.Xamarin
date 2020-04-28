@@ -44,7 +44,7 @@ namespace SmartNewsDemo.Droid
                     .SetUsage(AudioUsageKind.Notification).Build();
 
                 _builder = new NotificationCompat.Builder(_context);
-                _builder.SetSmallIcon(Resource.Drawable.theWitcher);
+                _builder.SetSmallIcon(Resource.Drawable.app_logo);
                 _builder.SetContentTitle(title)
                         .SetAutoCancel(true)
                         .SetContentTitle(title)

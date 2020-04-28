@@ -9,10 +9,12 @@
              x:Class="SmartNewsDemo.View.TabItemHeaders">
     <ContentPage.Content>
         <StackLayout>
-            <yummy:PancakeView CornerRadius="6,6,0,0" BackgroundColor="{Binding Source={x:Reference lbl}, Path=BackgroundColor}"
-                               Margin="{Binding MarginPancake}">
+            <yummy:PancakeView CornerRadius="4,4,0,0" BackgroundColor="{Binding Source={x:Reference lbl}, Path=BackgroundColor}"
+                               Margin="{Binding MarginPancake}"
+                               Padding="0,0,0,10">
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Label x:Name="lbl" 
+                        Margin="0,5,0,0"
                        TextColor="White"
                        FontFamily="{DynamicResource labelStyleFont}"
                        Text="{Binding btnTitle}" 
@@ -20,7 +22,7 @@
                        VerticalOptions="Center" 
                        HorizontalOptions="Center" >
                     </Label>
-                    <StackLayout Padding="{Binding PaddingStack}" BackgroundColor="{Binding StackColor}"/>
+                    <StackLayout Padding="{Binding PaddingStack}"  BackgroundColor="{Binding StackColor}"/>
                 </StackLayout>
             </yummy:PancakeView>
         </StackLayout>

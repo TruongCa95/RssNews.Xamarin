@@ -5,7 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:view="clr-namespace:SmartNewsDemo.View"
              mc:Ignorable="d"
-            NavigationPage.HasNavigationBar="False"
+             BarBackgroundColor="Azure"
+             BarTextColor="Black"
+             NavigationPage.HasNavigationBar="False"
              x:Class="SmartNewsDemo.MasterPage">
     <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
@@ -16,6 +18,7 @@
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png" />
+                    <On Platform="Android" Value="ic_home.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
         </NavigationPage>
@@ -26,6 +29,7 @@
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="icon-setting.png" />
+                    <On Platform="Android" Value="ic_settings.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
         </NavigationPage>

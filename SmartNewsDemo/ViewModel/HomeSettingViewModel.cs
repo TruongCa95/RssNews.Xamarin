@@ -21,7 +21,7 @@ namespace SmartNewsDemo.ViewModel
         public string MessageText { get; set; }
         public bool NotificationONOFF { get; set; }
         public List<string> ListFontFamily { get; set; } = new List<string>();
-        string[] lstfont = { "Lobster-Regular", "serif", "Times New Roman", "Arial", "MarkerFelt-Thin" };
+        string[] lstfont = { "FontAwesome", "serif", "Roboto", "Arial", "Samantha", "MarkerFelt-Thin" };
         #endregion
         #region command
         public ICommand LabelCLickCommand { get; set; }
@@ -48,6 +48,7 @@ namespace SmartNewsDemo.ViewModel
                 {
                     //DependencyService.Get<ILocalNotificationService>().Cancel(0);
                     DependencyService.Get<ILocalNotificationService>().LocalNotification("Local Notification", MessageText);
+                    MessageText = string.Empty;
                 }
                 else
                 {
@@ -85,8 +86,20 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleToggledMode(object obj)
         {
-            Application.Current.Resources["labelStyleColor"] = (ModeONOFF) ? "#232323" : "#FFFFFF";
-            Application.Current.Properties["Mode"] = (ModeONOFF) ? "#232323" : "#FFFFFF";
+            if(ModeONOFF)
+            {
+                Application.Current.Resources["labelStyleColor"] = "#232323";
+                Application.Current.Resources["labelTextColor"] = "#FFFFFF";
+                Application.Current.Properties["ModeBackGround"] = "#232323";
+                Application.Current.Properties["ModeTextColor"] = "#FFFFFF";
+            }
+            else
+            {
+                Application.Current.Resources["labelStyleColor"] = "#FFFFFF";
+                Application.Current.Resources["labelTextColor"] = "#000000";
+                Application.Current.Properties["ModeBackGround"] = "#FFFFFF";
+                Application.Current.Properties["ModeTextColor"] = "#000000";
+            }
         }
         private void HandleSelectedFont(object obj)
         {

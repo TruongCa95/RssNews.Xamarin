@@ -24,8 +24,8 @@ namespace SmartNewsDemo.ViewModel
         {
             btnTitle = title;
             btnColor = color;
-            MarginPancake = new Thickness(0, 10, 0, 10);
-            PaddingStack = new Thickness(0, 5, 0, 0);
+            MarginPancake = new Thickness(0, 10, 0, 0);
+            PaddingStack = new Thickness(0, 0, 0, 8);
             TabViewViewModel.TappedItemEvent += TabViewViewModel_TappedItemEvent;
         }
 
@@ -33,7 +33,8 @@ namespace SmartNewsDemo.ViewModel
         {
             StackColor = e;
             //MarginPancake = new Thickness(0, 5, 0, 0);
-            //PaddingStack = new Thickness(0, 5, 0, 2);
+            //PaddingStack = new Thickness(0, 0, 0, 1);
+            
         }
     }
 }
