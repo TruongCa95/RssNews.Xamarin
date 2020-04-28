@@ -28,7 +28,6 @@ namespace SmartNewsDemo.ViewModel
         public ICommand SliderChangedCommand { get; set; }
         public ICommand SeletedFontCommand { get; set; }
         public ICommand ToggledModeCommand { get; set; }
-        public ICommand ToggledNotificationCommand { get; set; }
         public ICommand PushLocalCommand { get; set; }
         #endregion
         public HomeSettingViewModel()
@@ -37,7 +36,6 @@ namespace SmartNewsDemo.ViewModel
             SliderChangedCommand = new Command(HandleSliderChanged);
             SeletedFontCommand = new Command(HandleSelectedFont);
             ToggledModeCommand = new Command(HandleToggledMode);
-            ToggledNotificationCommand = new Command(HandleToggledNoti);
             PushLocalCommand = new Command(HandlePushLocal);
             ListFontFamily.AddRange(lstfont);
         }
@@ -50,7 +48,6 @@ namespace SmartNewsDemo.ViewModel
                 {
                     //DependencyService.Get<ILocalNotificationService>().Cancel(0);
                     DependencyService.Get<ILocalNotificationService>().LocalNotification("Local Notification", MessageText);
-                    Application.Current.MainPage.DisplayAlert("Notification", "Notification details saved successfully ", "Ok");
                 }
                 else
                 {
@@ -88,14 +85,6 @@ namespace SmartNewsDemo.ViewModel
             }
         }
         #region events
-        private void HandleToggledNoti(object obj)
-        {
-            if(!NotificationONOFF)
-            {
-                MessageText = string.Empty;
-                DependencyService.Get<ILocalNotificationService>().Cancel(0);
-            }
-        }
 
         private void HandleToggledMode(object obj)
         {

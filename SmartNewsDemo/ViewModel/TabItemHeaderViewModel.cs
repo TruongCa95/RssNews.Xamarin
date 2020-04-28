@@ -13,6 +13,7 @@ namespace SmartNewsDemo.ViewModel
         public string btnTitle { get; set; }
         public string btnColor { get; set; }
         public Thickness MarginPancake { get; set; }
+        public Thickness PaddingStack { get; set; }
         public string StackColor { get; set; }
         #endregion
 
@@ -23,14 +24,16 @@ namespace SmartNewsDemo.ViewModel
         {
             btnTitle = title;
             btnColor = color;
-            MarginPancake = new Thickness(0, 10, 0, 0);
+            MarginPancake = new Thickness(0, 10, 0, 10);
+            PaddingStack = new Thickness(0, 5, 0, 0);
             TabViewViewModel.TappedItemEvent += TabViewViewModel_TappedItemEvent;
         }
 
         private void TabViewViewModel_TappedItemEvent(object sender, string e)
         {
             StackColor = e;
-            MarginPancake = new Thickness(0, 0, -10, 0);
+            //MarginPancake = new Thickness(0, 5, 0, 0);
+            //PaddingStack = new Thickness(0, 5, 0, 2);
         }
     }
 }

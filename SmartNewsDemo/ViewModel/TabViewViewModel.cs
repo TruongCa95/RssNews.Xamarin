@@ -25,9 +25,11 @@ namespace SmartNewsDemo.ViewModel
         #endregion
 
         #region Command
+        //Raise event when select item header
         public static event EventHandler<string> TappedItemEvent;
         public ICommand SelectionChangeCommand { get; set; }
         #endregion
+
         #region Data
         string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green", "Silver" };
         string[] RssItems = {
@@ -54,7 +56,6 @@ namespace SmartNewsDemo.ViewModel
             var colors = ColorItems.GetValue(index).ToString();
             EventHandler<string> handler = TappedItemEvent;
             handler?.Invoke(this, colors);
-
         }
 
         public void SetContent()

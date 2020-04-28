@@ -20,11 +20,14 @@ namespace SmartNewsDemo.Droid
         {
             _context = global::Android.App.Application.Context;
         }
-        public void Cancel(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Cancel(int id)
+        //{
+        //    var notificationManager = NotificationManagerCompat.From(_context);
+        //    notificationManager.CancelAll();
+        //    notificationManager.Cancel(id);
+        //}
 
+        [Obsolete]
         public void LocalNotification(string title, string body)
         {
             try
@@ -69,17 +72,6 @@ namespace SmartNewsDemo.Droid
             {
 
             }
-            //var intent = CreateIntent(id);
-            //var localNotification = new LocalNotification();
-            //localNotification.Title = title;
-            //localNotification.Body = body;
-            //localNotification.Id = id;
         }
-
-        //private Intent CreateIntent(int id)
-        //{
-        //    return new Intent(Application.Context, typeof(ScheduledAlarmHandler))
-        //        .SetAction("LocalNotifierIntent" + id);
-        //}
     }
 }

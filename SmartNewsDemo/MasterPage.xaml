@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:view="clr-namespace:SmartNewsDemo.View"
              mc:Ignorable="d"
+            NavigationPage.HasNavigationBar="False"
              x:Class="SmartNewsDemo.MasterPage">
     <!--Pages can be added as references or inline-->
     <TabbedPage.Children>

@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SmartNewsDemo.iOS
 {
@@ -24,6 +25,11 @@ namespace SmartNewsDemo.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            //First, iOS 8 requires applications to ask for the user's permission to display notifications
+            var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+            UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+            app.RegisterUserNotificationSettings(notificationSettings);
+            //render Sftabview
             new Syncfusion.XForms.iOS.TabView.SfTabViewRenderer();
             return base.FinishedLaunching(app, options);
         }

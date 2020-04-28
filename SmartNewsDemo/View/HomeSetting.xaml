@@ -113,12 +113,8 @@
                            FontSize="{DynamicResource labelStylesize}"
                            Margin="20,10,0,0"
                            HorizontalOptions="StartAndExpand"/>      
-                    <Switch IsToggled="{Binding NotificationONOFF}" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
-                        <Switch.Behaviors>
-                             <behavior:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledNotificationCommand}"/>
-                        </Switch.Behaviors>
-                    </Switch>   
-                </StackLayout> 
+                    <Switch IsToggled="{Binding NotificationONOFF}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+            </StackLayout> 
             <StackLayout Orientation="Vertical" Grid.Row="5">
                  <Label Text="Enter Message"
                         FontAttributes="{DynamicResource labelStyleFontAtribute}"
