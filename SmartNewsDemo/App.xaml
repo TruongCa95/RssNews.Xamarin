@@ -8,7 +8,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="labelStyleColor"/>
-            <Color x:Key="labelTextColor"/>
+            <Color x:Key="labelTextColor">#000000</Color>
             <x:Double x:Key="labelStylesize">15</x:Double>
             <FontAttributes x:Key="labelStyleFontAtribute"/>
             <x:String x:Key="labelStyleFont">Arial</x:String>
