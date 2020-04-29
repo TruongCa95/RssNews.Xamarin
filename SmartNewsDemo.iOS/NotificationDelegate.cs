@@ -40,7 +40,7 @@ namespace SmartNewsDemo.iOS
             // Inform caller it has been handled
             completionHandler();
         }
-        public void RegisterNotification(string title, string body)
+        public void RegisterNotification(string title, string body, DateTime time)
         {
             UNUserNotificationCenter center = UNUserNotificationCenter.Current;
 
@@ -49,7 +49,7 @@ namespace SmartNewsDemo.iOS
 
             notificationContent.Title = title;
             notificationContent.Body = body;
-
+            
             notificationContent.Sound = UNNotificationSound.Default;
 
             UNTimeIntervalNotificationTrigger trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(1, false);

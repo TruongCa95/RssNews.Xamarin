@@ -6,6 +6,7 @@
              xmlns:webview="clr-namespace:SmartNewsDemo.Common.Control"
              xmlns:local="clr-namespace:SmartNewsDemo.Utilitis"
              xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
+             NavigationPage.HasBackButton="True"
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.ContentDetail">
     <!--Navigation bar-->

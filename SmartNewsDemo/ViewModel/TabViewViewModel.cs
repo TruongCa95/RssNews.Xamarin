@@ -33,12 +33,12 @@ namespace SmartNewsDemo.ViewModel
         #region Data
         string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green", "Silver" };
         string[] RssItems = {
-            "https://cafebiz.vn/cong-nghe.rss",
             "https://gamek.vn/trang-chu.rss",
             "https://cafef.vn/trang-chu.rss",
             "https://thanhnien.vn/rss/home.rss",
             "https://tuoitre.vn/rss/tin-moi-nhat.rss",
-            "https://tinhte.vn/rss"};
+            "https://tinhte.vn/rss",
+            "https://cafebiz.vn/cong-nghe.rss"};
         #endregion
 
         public TabViewViewModel()

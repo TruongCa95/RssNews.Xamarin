@@ -11,7 +11,7 @@
         <StackLayout>
             <yummy:PancakeView CornerRadius="4,4,0,0" BackgroundColor="{Binding Source={x:Reference lbl}, Path=BackgroundColor}"
                                Margin="{Binding MarginPancake}"
-                               Padding="0,0,0,10">
+                               Padding="0,0,0,-5">
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Label x:Name="lbl" 
                         Margin="0,5,0,0"

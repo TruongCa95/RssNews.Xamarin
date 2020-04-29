@@ -8,9 +8,9 @@ namespace SmartNewsDemo.iOS
 {
     public class NotificationHelper: ILocalNotificationService
     {
-        public void LocalNotification(string title, string body)
+        public void LocalNotification(string title, string body, DateTime time)
         {
-            new NotificationDelegate().RegisterNotification(title, body);
+            new NotificationDelegate().RegisterNotification(title, body, time);
         }
     }
 }

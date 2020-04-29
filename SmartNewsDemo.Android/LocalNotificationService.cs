@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Media;
 using Android.Support.V4.App;
+using Java.Lang;
 using SmartNewsDemo.Common.Services.Interface;
 using SmartNewsDemo.Droid;
 using SmartNewsDemo.Model;
@@ -16,6 +17,7 @@ namespace SmartNewsDemo.Droid
         private NotificationManager _notificationManager;
         private NotificationCompat.Builder _builder;
         public static string NOTIFICATION_CHANNEL_ID = "10023";
+        readonly DateTime _jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public LocalNotificationService()
         {
@@ -27,12 +29,17 @@ namespace SmartNewsDemo.Droid
         //    notificationManager.CancelAll();
         //    notificationManager.Cancel(id);
         //}
-
-        [Obsolete]
-        public void LocalNotification(string title, string body)
+        public void LocalNotification(string title, string body, DateTime time)
         {
             try
             {
+                //long repeateDay = 1000 * 60 * 60 * 24;      
+                long repeateForMinute = 60000; // In milliseconds     
+                long totalMilliSeconds = (long)(time.ToUniversalTime() - _jan1st1970).TotalMilliseconds;
+                if (totalMilliSeconds < JavaSystem.CurrentTimeMillis())
+                {
+                    totalMilliSeconds = totalMilliSeconds + repeateForMinute;
+                }
                 var intent = new Intent(_context, typeof(MainActivity));
                 intent.AddFlags(ActivityFlags.ClearTop);
                 intent.PutExtra(title, body);
@@ -79,7 +86,7 @@ namespace SmartNewsDemo.Droid
                 notificationManager.Notify(0, _builder.Build());
 
             }
-            catch (Exception ex)
+            catch (Java.Lang.Exception ex)
             {
 
             }

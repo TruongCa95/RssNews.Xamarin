@@ -24,13 +24,20 @@ namespace SmartNewsDemo.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-        
             //render Sftabview
-            new SfTabViewRenderer();
+            SfTabViewRenderer.Init();
+
             //First, iOS 8 requires applications to ask for the user's permission to display notifications
-            var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
-            UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
-            app.RegisterUserNotificationSettings(notificationSettings);
+            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                UIUserNotificationType notificationTypes = UIUserNotificationType.Alert |
+                            UIUserNotificationType.Badge |
+                            UIUserNotificationType.Sound;
+
+                var userNoticationSettings = UIUserNotificationSettings.GetSettingsForTypes(notificationTypes, new NSSet(new string[] { }));
+
+                UIApplication.SharedApplication.RegisterUserNotificationSettings(userNoticationSettings);
+            }
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
 

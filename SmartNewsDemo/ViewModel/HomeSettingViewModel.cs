@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -46,8 +47,11 @@ namespace SmartNewsDemo.ViewModel
             {
                 if (!string.IsNullOrEmpty(MessageText))
                 {
-                    //DependencyService.Get<ILocalNotificationService>().Cancel(0);
-                    DependencyService.Get<ILocalNotificationService>().LocalNotification("Local Notification", MessageText);
+                    var date = (DateTime.Today.Date.Month.ToString("00") + "-" + DateTime.Today.Date.Day.ToString("00") + "-" + DateTime.Today.Date.Year.ToString());
+                    var time = Convert.ToDateTime(DateTime.Now.TimeOfDay.ToString()).ToString("HH:mm");
+                    var dateTime = date + " " + time;
+                    var selectedDateTime = DateTime.ParseExact(dateTime, "MM-dd-yyyy HH:mm", CultureInfo.InvariantCulture);
+                    DependencyService.Get<ILocalNotificationService>().LocalNotification("Notification", MessageText, selectedDateTime);
                     MessageText = string.Empty;
                 }
                 else
@@ -65,7 +69,7 @@ namespace SmartNewsDemo.ViewModel
         {
             try
             {
-                if(Numbersize!= null || ItemsFont!=null)
+                if (Numbersize != null || ItemsFont != null)
                 {
                     Numbersize = Application.Current.Properties["FontSize"].ToString();
                     ItemsFont = Application.Current.Properties["Font"].ToString();

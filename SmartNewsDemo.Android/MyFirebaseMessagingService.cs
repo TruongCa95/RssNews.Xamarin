@@ -15,7 +15,7 @@ namespace SmartNewsDemo.Droid
         public override void OnMessageReceived(RemoteMessage message)
         {
             base.OnMessageReceived(message);
-            new LocalNotificationService().LocalNotification(message.GetNotification().Title, message.GetNotification().Body);
+            new LocalNotificationService().LocalNotification(message.GetNotification().Title, message.GetNotification().Body, DateTime.Now);
         }
     }
 }
