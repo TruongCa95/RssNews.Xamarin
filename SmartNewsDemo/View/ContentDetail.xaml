@@ -87,27 +87,36 @@
                         <On Platform="iOS">0,0,0,20</On>
                     </OnPlatform>
                 </StackLayout.Margin>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.back-button.png}" 
                          HorizontalOptions="Start"
+                             WidthRequest="90"
                          IsVisible="{Binding btnVisable}"
                          Clicked="OnBack"
-                         WidthRequest="100"
                          BackgroundColor="Transparent"/>
-                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.next.png}" 
-                         HorizontalOptions="Center"
+                <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.next.png}"
+                             Grid.Column="1"
+                         WidthRequest="90"
                          IsVisible="{Binding btnVisable}"
                          Clicked="OnNext"
-                         WidthRequest="100"
                          BackgroundColor="Transparent"/>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.refresh.png}" 
-                         HorizontalOptions="Center"
+                             WidthRequest="90"
+                             Grid.Column="2"
                          IsVisible="{Binding btnVisable}"
                          Clicked="OnRefresh"
-                         WidthRequest="100"
                          BackgroundColor="Transparent"/>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.plus.png}"
                          HorizontalOptions="EndAndExpand"
-                         WidthRequest="100"
+                             Grid.Column="3"
+                             WidthRequest="90"
                          BackgroundColor="Transparent">
                     <ImageButton.Behaviors>
                         <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding ShowHideCommand}"/>

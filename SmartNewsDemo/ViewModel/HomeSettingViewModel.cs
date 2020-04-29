@@ -69,7 +69,7 @@ namespace SmartNewsDemo.ViewModel
         {
             try
             {
-                if (Numbersize != null || ItemsFont != null)
+                if (Application.Current.Properties.ContainsKey("Mode"))
                 {
                     Numbersize = Application.Current.Properties["FontSize"].ToString();
                     ItemsFont = Application.Current.Properties["Font"].ToString();
@@ -90,7 +90,8 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleToggledMode(object obj)
         {
-            if(ModeONOFF)
+            Application.Current.Properties["Mode"] = ModeONOFF;
+            if (ModeONOFF)
             {
                 Application.Current.Resources["labelStyleColor"] = "#232323";
                 Application.Current.Resources["labelTextColor"] = "#FFFFFF";
@@ -104,6 +105,7 @@ namespace SmartNewsDemo.ViewModel
                 Application.Current.Properties["ModeBackGround"] = "#FFFFFF";
                 Application.Current.Properties["ModeTextColor"] = "#000000";
             }
+            
         }
         private void HandleSelectedFont(object obj)
         {
@@ -125,7 +127,7 @@ namespace SmartNewsDemo.ViewModel
                 Application.Current.Properties["FontSize"] = newStep;
             }
         }
-
+        
         private async void HandleLabelCLick(string font)
         {
             if (font == "Bold")

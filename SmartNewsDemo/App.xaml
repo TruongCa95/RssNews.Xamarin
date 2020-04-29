@@ -12,6 +12,13 @@
             <x:Double x:Key="labelStylesize">15</x:Double>
             <FontAttributes x:Key="labelStyleFontAtribute"/>
             <x:String x:Key="labelStyleFont">Arial</x:String>
+            <!--<Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="{DynamicResource labelStyleFontAtribute}"/>
+                <Setter Property="FontFamily" Value="{DynamicResource labelStyleFont}"/>
+                <Setter Property="FontSize" Value="{DynamicResource labelStylesize}"/>
+                <Setter Property="TextColor" Value="{DynamicResource labelTextColor}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource labelStyleColor}"/>
+            </Style>-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

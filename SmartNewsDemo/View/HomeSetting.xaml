@@ -128,7 +128,7 @@
                 <StackLayout Spacing="-6" Orientation="Horizontal">
                     <Image Source="notification_bell.png"/>
                     <Label Text="Notifications ON/OFF"
-                       TextColor="{DynamicResource labelTextColor}"
+                           TextColor="{DynamicResource labelTextColor}"
                            FontAttributes="{DynamicResource labelStyleFontAtribute}"
                            FontFamily="{DynamicResource labelStyleFont}"
                            FontSize="{DynamicResource labelStylesize}"

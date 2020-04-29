@@ -4,7 +4,7 @@ using System.Linq;
 using Syncfusion.XForms.iOS.TabView;
 using Foundation;
 using UIKit;
-using static System.Net.Mime.MediaTypeNames;
+using UserNotifications;
 
 namespace SmartNewsDemo.iOS
 {
@@ -30,14 +30,14 @@ namespace SmartNewsDemo.iOS
             //First, iOS 8 requires applications to ask for the user's permission to display notifications
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
-                UIUserNotificationType notificationTypes = UIUserNotificationType.Alert |
-                            UIUserNotificationType.Badge |
-                            UIUserNotificationType.Sound;
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+                );
 
-                var userNoticationSettings = UIUserNotificationSettings.GetSettingsForTypes(notificationTypes, new NSSet(new string[] { }));
-
-                UIApplication.SharedApplication.RegisterUserNotificationSettings(userNoticationSettings);
+                app.RegisterUserNotificationSettings(notificationSettings);
             }
+            //set the Delegate to handle
+            UNUserNotificationCenter.Current.Delegate = new NotificationDelegate();
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
 
