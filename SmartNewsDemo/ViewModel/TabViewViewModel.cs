@@ -129,7 +129,7 @@ namespace SmartNewsDemo.ViewModel
                             tabItem = new SfTabItem
                             {
                                 HeaderContent = headers.Content,
-                                Content = content.Content
+                                Content = content.Content,
                                 FontIconFontFamily = "Arial",
                                 FontIconFontSize = 100
                             };
