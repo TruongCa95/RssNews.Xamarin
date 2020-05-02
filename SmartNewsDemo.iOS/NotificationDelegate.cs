@@ -40,7 +40,7 @@ namespace SmartNewsDemo.iOS
             // Inform caller it has been handled
             completionHandler();
         }
-        public void RegisterNotification(string title, string body, DateTime time)
+        public void RegisterNotification(string title, string body)
         {
             UNUserNotificationCenter center = UNUserNotificationCenter.Current;
 

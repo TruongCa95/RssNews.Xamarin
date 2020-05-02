@@ -23,23 +23,11 @@ namespace SmartNewsDemo.Droid
         {
             _context = global::Android.App.Application.Context;
         }
-        //public void Cancel(int id)
-        //{
-        //    var notificationManager = NotificationManagerCompat.From(_context);
-        //    notificationManager.CancelAll();
-        //    notificationManager.Cancel(id);
-        //}
-        public void LocalNotification(string title, string body, DateTime time)
+
+        public void LocalNotification(string title, string body)
         {
             try
-            {
-                //long repeateDay = 1000 * 60 * 60 * 24;      
-                long repeateForMinute = 60000; // In milliseconds     
-                long totalMilliSeconds = (long)(time.ToUniversalTime() - _jan1st1970).TotalMilliseconds;
-                if (totalMilliSeconds < JavaSystem.CurrentTimeMillis())
-                {
-                    totalMilliSeconds = totalMilliSeconds + repeateForMinute;
-                }
+            {              
                 var intent = new Intent(_context, typeof(MainActivity));
                 intent.AddFlags(ActivityFlags.ClearTop);
                 intent.PutExtra(title, body);

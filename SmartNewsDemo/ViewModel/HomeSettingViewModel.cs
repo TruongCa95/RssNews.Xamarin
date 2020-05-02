@@ -21,6 +21,7 @@ namespace SmartNewsDemo.ViewModel
         public object ItemsFont { get; set; }
         public string MessageText { get; set; }
         public bool NotificationONOFF { get; set; }
+        public string VersionApp { get; set; }
         public List<string> ListFontFamily { get; set; } = new List<string>();
         string[] lstfont = { "FontAwesome", "serif", "Roboto", "Arial", "Samantha", "MarkerFelt-Thin" };
         #endregion
@@ -39,6 +40,8 @@ namespace SmartNewsDemo.ViewModel
             ToggledModeCommand = new Command(HandleToggledMode);
             PushLocalCommand = new Command(HandlePushLocal);
             ListFontFamily.AddRange(lstfont);
+            VersionApp= DependencyService.Get<IAppVersionAndBuild>().GetVersionNumber();
+           //DependencyService.Get<IAppVersionAndBuild>().GetBuildNumber();
         }
 
         private void HandlePushLocal(object obj)
@@ -47,11 +50,7 @@ namespace SmartNewsDemo.ViewModel
             {
                 if (!string.IsNullOrEmpty(MessageText))
                 {
-                    var date = (DateTime.Today.Date.Month.ToString("00") + "-" + DateTime.Today.Date.Day.ToString("00") + "-" + DateTime.Today.Date.Year.ToString());
-                    var time = Convert.ToDateTime(DateTime.Now.TimeOfDay.ToString()).ToString("HH:mm");
-                    var dateTime = date + " " + time;
-                    var selectedDateTime = DateTime.ParseExact(dateTime, "MM-dd-yyyy HH:mm", CultureInfo.InvariantCulture);
-                    DependencyService.Get<ILocalNotificationService>().LocalNotification("Notification", MessageText, selectedDateTime);
+                    DependencyService.Get<ILocalNotificationService>().LocalNotification("Notification", MessageText);
                     MessageText = string.Empty;
                 }
                 else

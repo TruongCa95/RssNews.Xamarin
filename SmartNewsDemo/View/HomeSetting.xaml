@@ -7,38 +7,30 @@
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.HomeSetting">
     <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource labelTextColor}"/>
+            <Setter Property="FontAttributes" Value="{DynamicResource labelStyleFontAtribute}"/>
+            <Setter Property="FontFamily" Value="{DynamicResource labelStyleFont}"/>
+            <Setter Property="FontSize" Value="{DynamicResource labelStylesize}"/>
+        </Style>
         <Style TargetType="Frame">
             <Setter Property="CornerRadius" Value="15"/>
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Padding" Value="9"/>
             <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
         </Style>
+        <Style x:Key="StackStyle" TargetType="StackLayout">
+            <Setter Property="Spacing" Value="3"/>
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource labelStyleColor}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-            </Grid>
-            <StackLayout Orientation="Horizontal">
-                <StackLayout Spacing="-6" Orientation="Horizontal">
-                    <Image Source="font_size.png"/>
-                    <Label Text="FontSize"
-                       Margin="20,0,0,0"
-                       TextColor="{DynamicResource labelTextColor}"
-                       FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                       FontFamily="{DynamicResource labelStyleFont}"
-                       FontSize="{DynamicResource labelStylesize}"
+            <StackLayout Margin="0,10,0,0" Style="{StaticResource StackStyle}">
+                <Image Source="font_size.png"/>
+                <Label Text="FontSize"
                        VerticalOptions="CenterAndExpand"
                        HorizontalOptions="Start"/>
-                </StackLayout>
-
                 <Slider x:Name="Value"
                         WidthRequest="200"
                         Grid.Column="1"
@@ -54,17 +46,11 @@
                     </Slider.Behaviors>
                 </Slider>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="1">
-                <StackLayout Spacing="-6" Orientation="Horizontal">
-                    <Image Source="font_style.png"/>
-                    <Label Text="Font"
-                       TextColor="{DynamicResource labelTextColor}"
-                       FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                       FontFamily="{DynamicResource labelStyleFont}"
-                       FontSize="{DynamicResource labelStylesize}"
-                       VerticalOptions="CenterAndExpand"
-                       Margin="20,0,0,0"/>
-                </StackLayout>
+            <StackLayout Style="{StaticResource StackStyle}">
+                <Image Source="font_style.png"/>
+                <Label Text="Font"
+                       VerticalOptions="CenterAndExpand"/>
+                
                 <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
                     <Label x:Name="lblB" Text="Bold" FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
                         <Label.GestureRecognizers>
@@ -87,32 +73,20 @@
                     </Label>
                 </Frame>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="2">
-                <StackLayout Spacing="-6" Orientation="Horizontal">
-                    <Image Source="dark_mode.png"/>
-                    <Label Text="Dark Mode"
-                       Margin="20,10,0,0"
-                       TextColor="{DynamicResource labelTextColor}"
-                       FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                       FontFamily="{DynamicResource labelStyleFont}"
-                       FontSize="{DynamicResource labelStylesize}"/>
-                </StackLayout>
-                <Switch IsToggled="{Binding ModeONOFF}" HorizontalOptions="EndAndExpand">
+            <StackLayout Style="{StaticResource StackStyle}">
+                <Image Source="dark_mode.png"/>
+                <Label Text="Dark Mode"/>
+                <Switch IsToggled="{Binding ModeONOFF}" 
+                        HorizontalOptions="EndAndExpand">
                     <Switch.Behaviors>
                         <behavior:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledModeCommand}"/>
                     </Switch.Behaviors>
                 </Switch>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Grid.Row="3">
-                <StackLayout Spacing="-6" Orientation="Horizontal">
-                    <Image Source="font_family.png"/>
-                    <Label Text="Font Family"
-                       TextColor="{DynamicResource labelTextColor}"
-                       FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                       FontFamily="{DynamicResource labelStyleFont}"
-                       FontSize="{DynamicResource labelStylesize}"
-                       Margin="20,10,0,0"/>
-                </StackLayout>
+            <StackLayout Style="{StaticResource StackStyle}">
+                <Image Source="font_family.png"/>
+                <Label Text="Font Family"
+                       VerticalOptions="CenterAndExpand"/>
                 <Picker Title="Please chose Font"
                         WidthRequest="200"
                         Margin="0,5,5,0"
@@ -124,35 +98,31 @@
                     </Picker.Behaviors>
                 </Picker>
             </StackLayout>
-            <StackLayout Grid.Row="4" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                <StackLayout Spacing="-6" Orientation="Horizontal">
-                    <Image Source="notification_bell.png"/>
-                    <Label Text="Notifications ON/OFF"
-                           TextColor="{DynamicResource labelTextColor}"
-                           FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                           FontFamily="{DynamicResource labelStyleFont}"
-                           FontSize="{DynamicResource labelStylesize}"
-                           Margin="20,10,0,0"
-                           HorizontalOptions="StartAndExpand"/>
-                </StackLayout>
-                <Switch IsToggled="{Binding NotificationONOFF}" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+            <StackLayout Style="{StaticResource StackStyle}">
+                <Image Source="notification_bell.png"/>
+                <Label Text="Notifications ON/OFF"/>
+                <Switch IsToggled="{Binding NotificationONOFF}" 
+                        HorizontalOptions="EndAndExpand"/>
             </StackLayout>
-            <Frame HorizontalOptions="FillAndExpand" BorderColor="DimGray" HasShadow="True" BackgroundColor="{DynamicResource labelStyleColor}">
-                <StackLayout Orientation="Vertical" Grid.Row="5">
+            <Frame HorizontalOptions="FillAndExpand" 
+                   BorderColor="DimGray" 
+                   HasShadow="True" 
+                   BackgroundColor="{DynamicResource labelStyleColor}">
+                <StackLayout Orientation="Vertical">
                     <Label Text="Enter Message"
-                       TextColor="{DynamicResource labelTextColor}"
-                        FontAttributes="{DynamicResource labelStyleFontAtribute}"
-                        FontFamily="{DynamicResource labelStyleFont}"
-                        FontSize="{DynamicResource labelStylesize}"
                         Margin="20,10,0,0"
                         HorizontalOptions="StartAndExpand"/>
-                    <Editor HeightRequest="120" 
-                        Text=" {Binding MessageText}" 
+                    <Editor HeightRequest="100" 
+                        Text="{Binding MessageText}" 
                         TextColor="Blue" 
                         BackgroundColor="{DynamicResource labelStyleColor}" 
                         HorizontalOptions="Fill"/>
                     <StackLayout Orientation="Horizontal">
-                        <Button Text="Push local" TextColor="Black" BackgroundColor="Red" HorizontalOptions="FillAndExpand" WidthRequest="100">
+                        <Button Text="Push local" 
+                                TextColor="Black" 
+                                BackgroundColor="Red" 
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="100">
                             <Button.Behaviors>
                                 <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
                             </Button.Behaviors>
@@ -160,6 +130,13 @@
                     </StackLayout>
                 </StackLayout>
             </Frame>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="signaling.png"/>
+                <Label Text="Version:"
+                       HorizontalOptions="StartAndExpand"/>
+                <Label Text="{Binding VersionApp}"
+                       HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

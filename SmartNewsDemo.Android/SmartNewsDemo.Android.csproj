@@ -79,6 +79,7 @@
     <Compile Include="MyFirebaseIIDService.cs" />
     <Compile Include="MyFirebaseMessagingService.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="VersionAndBuild_AndroidServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -258,6 +259,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-ldpi\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\signaling.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
