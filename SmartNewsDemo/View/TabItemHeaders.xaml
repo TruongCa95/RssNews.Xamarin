@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout>
             <yummy:PancakeView CornerRadius="4,4,0,0" BackgroundColor="{Binding Source={x:Reference lbl}, Path=BackgroundColor}"
-                               Margin="{Binding MarginPancake}"
+                               Margin="0,10,0,0"
                                Padding="0,0,0,-5">
                 <StackLayout HorizontalOptions="FillAndExpand">
                     <Label x:Name="lbl" 
@@ -22,7 +22,7 @@
                        VerticalOptions="Center" 
                        HorizontalOptions="Center" >
                     </Label>
-                    <StackLayout Padding="{Binding PaddingStack}"  BackgroundColor="{Binding StackColor}"/>
+                    <StackLayout Padding="0,0,0,8"  BackgroundColor="{Binding StackColor}"/>
                 </StackLayout>
             </yummy:PancakeView>
         </StackLayout>

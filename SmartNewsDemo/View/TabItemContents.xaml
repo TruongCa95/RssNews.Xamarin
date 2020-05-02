@@ -19,6 +19,7 @@
                 <SearchBar x:Name="searchBar"
                        Text="{Binding SearchText, Mode=TwoWay}"
                        BackgroundColor="{DynamicResource labelStyleColor}"
+                       TextColor="{DynamicResource labelTextColor}"
                        Margin="-5"
                        Placeholder="Enter key here"
                        CancelButtonColor="Orange"
@@ -58,9 +59,8 @@
                                         </Grid.ColumnDefinitions>
                                         <Image Grid.RowSpan="2"
                                            Source="{Binding ThumbnailUrl}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="60"
-                                           WidthRequest="100" 
+                                               Aspect="AspectFill"
+                                               WidthRequest="100"
                                            BackgroundColor="Transparent"/>
                                         <Label Grid.Column="1"
                                            Text="{Binding Title}"

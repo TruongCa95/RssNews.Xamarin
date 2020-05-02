@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:view="clr-namespace:SmartNewsDemo.View"
+             xmlns:local="clr-namespace:SmartNewsDemo.Utilitis"
              mc:Ignorable="d"
              BarBackgroundColor="Azure"
              BarTextColor="Black"

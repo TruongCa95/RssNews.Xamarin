@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Syncfusion.XForms.TabView;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace SmartNewsDemo.ViewModel
 {
@@ -24,17 +26,12 @@ namespace SmartNewsDemo.ViewModel
         {
             btnTitle = title;
             btnColor = color;
-            MarginPancake = new Thickness(0, 10, 0, 10);
-            PaddingStack = new Thickness(0, 0, 0, 8);
-            TabViewViewModel.TappedItemEvent += TabViewViewModel_TappedItemEvent;
+            TabViewViewModel.SelectedItemEvent += TabViewViewModel_SelectedItemEvent;
         }
 
-        private void TabViewViewModel_TappedItemEvent(object sender, string e)
+        private void TabViewViewModel_SelectedItemEvent(object sender, string e)
         {
             StackColor = e;
-            //MarginPancake = new Thickness(0, 5, 0, 5);
-            //PaddingStack = new Thickness(0, 0, 0, 1);
-            
         }
     }
 }

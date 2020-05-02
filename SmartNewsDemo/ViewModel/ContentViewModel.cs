@@ -44,13 +44,13 @@ namespace SmartNewsDemo.ViewModel
         }
 
         #region event
-        private void HandleFocused(object obj)
+        private void HandleFocused()
         {
             MoreVisible = false;
             imgbtnVisible = true;
         }
 
-        private async void HandleShareLink(object obj)
+        private async void HandleShareLink()
         {
             await Share.RequestAsync(new ShareTextRequest
             {
@@ -60,20 +60,20 @@ namespace SmartNewsDemo.ViewModel
             imgbtnVisible = true;
         }
 
-        private async void HandleOpenBrowser(object obj)
+        private async void HandleOpenBrowser()
         {
             await Browser.OpenAsync(Link, BrowserLaunchMode.SystemPreferred);
             MoreVisible = false;
             imgbtnVisible = true;
         }
 
-        private void HandleShowMoreLayout(object obj)
+        private void HandleShowMoreLayout()
         {
             imgbtnVisible = false;
             MoreVisible = true;
         }
 
-        private void HandleShowHideButton(object obj)
+        private void HandleShowHideButton()
         {
             CountClick ++;
             MoreVisible = false;
@@ -86,12 +86,12 @@ namespace SmartNewsDemo.ViewModel
                 btnVisable = false;
         }
 
-        private void HandleNavigating(object obj)
+        private void HandleNavigating()
         {
             Busy = true;
         }
 
-        private void HandleNavigated(object obj)
+        private void HandleNavigated()
         {
             Busy = false;
         }

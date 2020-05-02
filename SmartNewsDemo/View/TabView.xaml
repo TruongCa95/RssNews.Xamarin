@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"   
              xmlns:SftabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
-             xmlns:tabview="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
              xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              NavigationPage.HasNavigationBar="False"
              x:Class="SmartNewsDemo.View.TabView">
@@ -20,13 +19,14 @@
                              OverflowMode="Scroll"
                              SelectedIndex="{Binding TabItemIndex}"
                              Items="{Binding Tabitems}">
-            <SftabView:SfTabView.SelectionIndicatorSettings>
-                <SftabView:SelectionIndicatorSettings Color="{Binding ColorSelectionIndicator}" Position="Fill"/>
-            </SftabView:SfTabView.SelectionIndicatorSettings>
-            <SftabView:SfTabView.Behaviors>
-                <behavior:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding SelectionChangeCommand}"/>
-            </SftabView:SfTabView.Behaviors>
-        </SftabView:SfTabView>
+                <SftabView:SfTabView.SelectionIndicatorSettings>
+                    <SftabView:SelectionIndicatorSettings Color="{Binding ColorSelectionIndicator}" Position="Fill"/>
+                </SftabView:SfTabView.SelectionIndicatorSettings>
+                <SftabView:SfTabView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="SelectionChanged" 
+                                                     Command="{Binding SelectionChangeCommand}"/>
+                </SftabView:SfTabView.Behaviors>
+            </SftabView:SfTabView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

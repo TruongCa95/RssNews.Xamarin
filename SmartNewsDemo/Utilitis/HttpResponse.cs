@@ -1,5 +1,4 @@
-﻿using Plugin.Connectivity;
-using SmartNewsDemo.Model;
+﻿using SmartNewsDemo.Model;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.IO;
@@ -21,23 +20,6 @@ namespace SmartNewsDemo.Utilitis
     {
 
         public static List<NewsArticles> listresult { get; set; }
-
-        /// <summary>
-        /// check connect internet
-        /// </summary>
-        public static bool CheckNetwork()
-        {
-            if (!CrossConnectivity.Current.IsConnected)
-            {
-                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
-                {
-                    Application.Current.MainPage.DisplayAlert("No Internet Connection", "Please connect to Internet", "OK");
-                });
-                return false;
-            }
-            else
-                return true;
-        }
 
         /// <summary>
         /// Convert rss to data
