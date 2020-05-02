@@ -10,79 +10,93 @@
              x:Class="SmartNewsDemo.View.TabItemContents">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="ListView">
-                <Setter Property="BackgroundColor" Value="Azure"/>
-                <Setter Property="SelectionMode" Value="Single"/>
-                <Setter Property="RowHeight" Value="100"/>
-            </Style>
             <converter:DateTimeConverter x:Key="DateTimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout x:Name="content">
-            <SearchBar x:Name="searchBar"
+        <Grid>
+            <StackLayout x:Name="content">
+                <SearchBar x:Name="searchBar"
                        Text="{Binding SearchText, Mode=TwoWay}"
+                       BackgroundColor="{DynamicResource labelStyleColor}"
+                       TextColor="{DynamicResource labelTextColor}"
                        Margin="-5"
                        Placeholder="Enter key here"
                        CancelButtonColor="Orange"
                        PlaceholderColor="Orange"
                        FontSize="Medium"
                        SearchCommand="{Binding FilterCommand}">
-            </SearchBar>
-            <StackLayout x:Name="lst">
-                <ListView x:Name="lstdetail"
-                      ItemsSource="{Binding Arctiles}" 
-                      IsPullToRefreshEnabled="True"
-                      RefreshCommand="{Binding RefreshCommand}"
-                      IsRefreshing="{Binding IsRefreshing}" 
-                      SelectedItem="{Binding SelectedArctile, Mode=TwoWay}"  
-                      CachingStrategy="RecycleElementAndDataTemplate">
-                    <ListView.Behaviors>
-                        <behavior:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectedCommand}"/>
-                    </ListView.Behaviors>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="2*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.RowSpan="2"
+                    <SearchBar.Behaviors>
+                        <behavior:EventToCommandBehavior EventName="TextChanged" Command="{Binding ReloadCommand}"/>
+                    </SearchBar.Behaviors>
+                </SearchBar>
+                <StackLayout x:Name="lst">
+                    <ListView x:Name="lstdetail"
+                          ItemsSource="{Binding Arctiles}" 
+                          IsPullToRefreshEnabled="True"
+                          SelectionMode="Single"
+                          RowHeight="100"
+                          HasUnevenRows="True"
+                          RefreshCommand="{Binding RefreshCommand}"
+                          IsRefreshing="{Binding IsRefreshing}" 
+                          BackgroundColor="{DynamicResource labelStyleColor}"
+                          SelectedItem="{Binding SelectedArctile, Mode=TwoWay}" 
+                          CachingStrategy="RecycleElementAndDataTemplate">
+                        <ListView.Behaviors>
+                            <behavior:EventToCommandBehavior EventName="ItemSelected" Command="{Binding SelectedCommand}"/>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="3*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.RowSpan="2"
                                            Source="{Binding ThumbnailUrl}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="60"
-                                           WidthRequest="100" 
+                                               Aspect="AspectFill"
+                                               WidthRequest="100"
                                            BackgroundColor="Transparent"/>
-                                    <Label Grid.Column="1"
+                                        <Label Grid.Column="1"
                                            Text="{Binding Title}"
                                            LineBreakMode="WordWrap"
-                                           FontAttributes="Bold"
-                                           FontFamily="Lobster"
-                                           TextColor="Green"/>
-                                    <Label Grid.Column="1"
+                                           FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                                           FontFamily="{DynamicResource labelStyleFont}"
+                                           TextColor="{DynamicResource labelTextColor}"
+                                           FontSize="{DynamicResource labelStylesize}"/>
+                                        <Label Grid.Column="1"
                                            Grid.Row="1"
                                            Text="{Binding Provider}"
                                            LineBreakMode="TailTruncation"
                                            HorizontalTextAlignment="Start"
                                            VerticalOptions="End"/>
-                                    <Label Grid.Row="1"
+                                        <Label Grid.Row="1"
                                            Grid.Column="1"
                                            Text="{Binding Updated, Converter={StaticResource DateTimeConverter}}"
-                                           TextColor="Black"
+                                           FontAttributes="{DynamicResource labelStyleFontAtribute}"
+                                           FontFamily="{DynamicResource labelStyleFont}"
+                                           TextColor="#b6b6b6"
+                                           FontSize="{DynamicResource labelStylesize}"
                                            HorizontalTextAlignment="End"
                                            VerticalOptions="End"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <!--<ActivityIndicator x:Name="Loading" IsRunning="True" IsVisible="{Binding IsLoading}" VerticalOptions="Center" HorizontalOptions="Center" Color="Blue"/>-->
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+            <ActivityIndicator x:Name="Loading" 
+                               IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}" 
+                               VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand" 
+                               Color="Blue" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

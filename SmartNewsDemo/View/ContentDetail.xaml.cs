@@ -18,5 +18,30 @@ namespace SmartNewsDemo.View
             InitializeComponent();
             BindingContext = new ContentViewModel(link);
         }
+        //Back page
+        async void OnBack(object sender, EventArgs args)
+        {
+            if (webViewDetail.CanGoBack)
+            {
+                webViewDetail.GoBack();
+            }
+            else
+            {
+                await Navigation.PopAsync();
+            }
+        }
+        //Next Page
+        void OnNext(object sender, EventArgs args)
+        {
+            if (webViewDetail.CanGoForward)
+            {
+                webViewDetail.GoForward();
+            }
+        }
+        //Reload Page
+         void OnRefresh(object sender, EventArgs args)
+        {
+            webViewDetail.Reload();
+        }
     }
 }

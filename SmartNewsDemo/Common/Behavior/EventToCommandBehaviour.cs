@@ -109,13 +109,13 @@ namespace SmartNewsDemo.Common.Behavior
         void OnEvent(object sender, object eventArgs)
         {
             if (Command == null) return;
-
+            object resolvedSender;
             object resolvedParameter;
-
+            resolvedSender = sender;
             resolvedParameter = eventArgs;
 
-            if (Command.CanExecute(resolvedParameter))
-                Command.Execute(resolvedParameter);
+            if (Command.CanExecute(resolvedSender))
+                Command.Execute(resolvedSender);
         }
 
     }

@@ -12,7 +12,7 @@ namespace SmartNewsDemo.Model
         public string Description { get; set; }
         public string Link { get; set; }
         public string Updated { get; set; }
-        public ImageSource ThumbnailUrl { get; set; }
+        public string ThumbnailUrl { get; set; }
         public string Provider { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;

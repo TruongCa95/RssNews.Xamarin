@@ -11,11 +11,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Common\Data\Fonts\Samantha.ttf" />
+    <None Remove="Common\Data\Thumbnail\back-button.png" />
+    <None Remove="Common\Data\Thumbnail\Back_Page.png" />
+    <None Remove="Common\Data\Thumbnail\next.png" />
+    <None Remove="Common\Data\Thumbnail\Next_Page.png" />
+    <None Remove="Common\Data\Thumbnail\Refresh_Page.png" />
     <None Remove="Common\Data\Thumbnail\theWitcher.jpg" />
+    <None Remove="Common\Data\Thumbnail\plus.png" />
+    <None Remove="Common\Data\Thumbnail\more.png" />
+    <None Remove="Common\Data\Thumbnail\browser.png" />
+    <None Remove="Common\Data\Thumbnail\share.png" />
+    <None Remove="Common\Data\Thumbnail\refresh.png" />
+    <None Remove="Common\Data\Thumbnail\NewsThumb.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Common\Data\Fonts\Samantha.ttf" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\back-button.png" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\next.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\theWitcher.jpg" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\plus.png" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\more.png" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\browser.png" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\share.png" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\refresh.png" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\NewsThumb.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,14 +47,21 @@
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
-    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.1.0.44" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.657" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.1.0.46" />
     <PackageReference Include="Xam.Plugin.TabView" Version="1.0.4" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="MasterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\ContentDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\HomeSetting.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\TabItemContents.xaml">

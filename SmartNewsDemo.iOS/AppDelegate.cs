@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Syncfusion.XForms.iOS.TabView;
 using Foundation;
 using UIKit;
+using UserNotifications;
 
 namespace SmartNewsDemo.iOS
 {
@@ -23,9 +24,23 @@ namespace SmartNewsDemo.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            //render Sftabview
+            SfTabViewRenderer.Init();
 
+            //First, iOS 8 requires applications to ask for the user's permission to display notifications
+            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+                );
+
+                app.RegisterUserNotificationSettings(notificationSettings);
+            }
+            //set the Delegate to handle
+            UNUserNotificationCenter.Current.Delegate = new NotificationDelegate();
+            LoadApplication(new App());
             return base.FinishedLaunching(app, options);
+
         }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using SmartNewsDemo.Utilitis;
+﻿using SmartNewsDemo.Utilitis;
 using SmartNewsDemo.View;
 using Syncfusion.XForms.TabView;
+using System;
+using Plugin.Connectivity;
+using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
-using TabItem = Xam.Plugin.TabView.TabItem;
+using System.Threading.Tasks;
+using Xamarin.Forms.PancakeView;
 
 namespace SmartNewsDemo.ViewModel
 {
@@ -16,45 +17,102 @@ namespace SmartNewsDemo.ViewModel
         public TabItemCollection Tabitems { get; set; }
         public SfTabView tabView;
         public SfTabItem tabItem;
-        //public ObservableCollection<TabItem> TabItems { get; set; }
+        public bool isConnected;
+        public int countClick = 1;
+        public Color ColorSelectionIndicator { get; set; }
+
+        public int TabItemIndex { get; set; }
         #endregion
 
         #region Command
-        public ICommand TappedCommand { get; private set; }
+        //Raise event when select item header
+        public static event EventHandler<string> SelectedItemEvent;
+        public ICommand SelectionChangeCommand { get; set; }
         #endregion
+
         #region Data
-        string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green","Red","Orange" };
+        string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green", "Silver" };
         string[] RssItems = {
-            "https://tinhte.vn/rss",
-            "https://cafebiz.vn/cong-nghe.rss",
             "https://gamek.vn/trang-chu.rss",
             "https://cafef.vn/trang-chu.rss",
-            "https://pcworld.com/index.rss",
-            "https://tinhte.vn/rss"};
+            "https://thanhnien.vn/rss/home.rss",
+            "https://tuoitre.vn/rss/tin-moi-nhat.rss",
+            "https://tinhte.vn/rss",
+            "https://cafebiz.vn/cong-nghe.rss"};
         #endregion
 
         public TabViewViewModel()
         {
             Tabitems = new TabItemCollection();
-            //TabItems = new ObservableCollection<TabItem>();
-            SetContent();
-            TappedCommand = new Command(HandleTappedItem);
+            CheckConnected();
+            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+            SelectionChangeCommand = new Command(HandleSelected);
+            var setting = new HomeSettingViewModel();
+            setting.UpdateStateStorage();
         }
 
-        private void HandleTappedItem(object obj)
+        private void HandleSelected(object obj)
         {
-            Application.Current.MainPage.DisplayAlert("MessageBox", "Test", "OK");
-        }
+            //Raise event selected and pass color to TabHeader
+            var index = TabItemIndex;
+            var colors = ColorItems.GetValue(index).ToString();
+            EventHandler<string> handler = SelectedItemEvent;
+            handler?.Invoke(this, colors);
 
+            //get property element in list header
+            TabItemCollection tabItems = (obj as SfTabView).Items;
+            foreach (var item in tabItems)
+            {
+                int selectedIndex = tabItems.IndexOf(item);
+
+                if (selectedIndex == index)
+                {
+                    var converter = new ColorTypeConverter();
+                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Margin = new Thickness(0,5,0,0);
+                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Padding = new Thickness(0,0,0,-1);
+                }
+                else
+                {
+                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Margin = new Thickness(0,10,0,0);
+                   ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Padding = new Thickness(0,0,0,-6);
+                }
+            }
+        }
+        //Capture network status change
+        private void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
+        {
+            if(e.IsConnected)
+            {
+                SetContent();
+            }
+            else
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage.DisplayAlert("No Internet Connection", "Please connect to Internet", "OK");
+                });
+            }
+        }
+        public void CheckConnected()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                SetContent();
+            }
+            else
+            {
+                Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage.DisplayAlert("No Internet Connection", "Please connect to Internet", "OK");
+                });
+            }
+        }
         public void SetContent()
         {
-            var isConnected = HttpResponse.CheckNetwork();
-            if (isConnected)
+            //Create Dictonary (color, url)
+            IDictionary<string[], string[]> RssSource = new Dictionary<string[], string[]>();
+            RssSource.Add(ColorItems, RssItems);
             {
-                //Create Dictonary (color, url)
-                IDictionary<string[], string[]> RssSource = new Dictionary<string[], string[]>();
-                RssSource.Add(ColorItems, RssItems);
-
                 //Process Auto generate tabitem
                 if (RssSource.Count != 0)
                 {
@@ -70,10 +128,8 @@ namespace SmartNewsDemo.ViewModel
                             TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
                             tabItem = new SfTabItem
                             {
-
                                 HeaderContent = headers.Content,
-                                //HeaderText=pieces,
-                                Content = content.Content,
+                                Content = content.Content
                                 FontIconFontFamily = "Arial",
                                 FontIconFontSize = 100
                             };

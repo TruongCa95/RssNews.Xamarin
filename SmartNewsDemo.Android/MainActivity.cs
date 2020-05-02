@@ -7,10 +7,11 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.Net;
+using Firebase.Iid;
 
 namespace SmartNewsDemo.Droid
 {
-    [Activity(Label = "SmartNewsDemo", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "SmartNews", Icon = "@drawable/theWitcher", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -20,6 +21,9 @@ namespace SmartNewsDemo.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            //Get token device
+            var refreshedToken = FirebaseInstanceId.Instance.Token;
+            System.Diagnostics.Debug.WriteLine($"FCM Token: {refreshedToken}");
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
