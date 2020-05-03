@@ -14,7 +14,7 @@ namespace SmartNewsDemo.Droid
     public class LocalNotificationService: ILocalNotificationService
     {
         private Context _context;
-        private NotificationManager _notificationManager;
+        //private NotificationManager _notificationManager;
         private NotificationCompat.Builder _builder;
         public static string NOTIFICATION_CHANNEL_ID = "10023";
         readonly DateTime _jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -76,7 +76,7 @@ namespace SmartNewsDemo.Droid
             }
             catch (Java.Lang.Exception ex)
             {
-
+                throw ex;
             }
         }
     }
