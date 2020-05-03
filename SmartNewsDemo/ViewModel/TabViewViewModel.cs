@@ -15,7 +15,6 @@ namespace SmartNewsDemo.ViewModel
     {
         #region properties,variable
         public TabItemCollection Tabitems { get; set; }
-        public SfTabView tabView;
         public SfTabItem tabItem;
         public bool isConnected;
         public int countClick = 1;
@@ -51,6 +50,11 @@ namespace SmartNewsDemo.ViewModel
             setting.UpdateStateStorage();
         }
 
+
+        private Xamarin.Forms.View GetItemContent(int index)
+        {
+            return new TabItemContents(RssItems.GetValue(index).ToString()).Content;
+        }
         private void HandleSelected(object obj)
         {
             //Raise event selected and pass color to TabHeader
@@ -67,22 +71,26 @@ namespace SmartNewsDemo.ViewModel
 
                 if (selectedIndex == index)
                 {
-                    var converter = new ColorTypeConverter();
-                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Margin = new Thickness(0,5,0,0);
-                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Padding = new Thickness(0,0,0,-1);
+                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Margin = new Thickness(0, 5, 0, 0);
+                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Padding = new Thickness(0, 0, 0, -1);
+                    //if (item.Content == null)
+                    //{
+                    //    item.Content = GetItemContent(selectedIndex);
+                    //}
                 }
                 else
                 {
-                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Margin = new Thickness(0,10,0,0);
-                   ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Padding = new Thickness(0,0,0,-6);
+                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Margin = new Thickness(0, 10, 0, 0);
+                    ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Padding = new Thickness(0, 0, 0, -6);
                 }
             }
         }
         //Capture network status change
         private void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
         {
-            if(e.IsConnected)
+            if (e.IsConnected)
             {
+                Tabitems = new TabItemCollection();
                 SetContent();
             }
             else
@@ -93,6 +101,7 @@ namespace SmartNewsDemo.ViewModel
                 });
             }
         }
+        //Check Network
         public void CheckConnected()
         {
             if (CrossConnectivity.Current.IsConnected)
@@ -109,33 +118,28 @@ namespace SmartNewsDemo.ViewModel
         }
         public void SetContent()
         {
-            //Create Dictonary (color, url)
-            IDictionary<string[], string[]> RssSource = new Dictionary<string[], string[]>();
-            RssSource.Add(ColorItems, RssItems);
+            //Process Auto generate tabitem
+            if (RssItems.Length != 0)
             {
-                //Process Auto generate tabitem
-                if (RssSource.Count != 0)
+                int i = 0;
+                foreach (var itemRss in RssItems)
                 {
-                    int i = 0;
-                    foreach (var itemRss in RssItems)
+                    var NamePath = itemRss.Substring(8);
+                    int index = NamePath.IndexOf('.');
+                    if (index > 0)
                     {
-                        var NamePath = itemRss.Substring(8);
-                        int index = NamePath.IndexOf('.');
-                        if (index > 0)
+                        var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
+                        TabItemContents content = new TabItemContents(itemRss);
+                        TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
+                        tabItem = new SfTabItem
                         {
-                            var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
-                            TabItemContents content = new TabItemContents(itemRss);
-                            TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
-                            tabItem = new SfTabItem
-                            {
-                                HeaderContent = headers.Content,
-                                Content = content.Content,
-                                FontIconFontFamily = "Arial",
-                                FontIconFontSize = 100
-                            };
-                            i += 1;
-                            Tabitems.Add(tabItem);
-                        }
+                            HeaderContent = headers.Content,
+                            Content = content.Content,
+                            FontIconFontFamily = "Arial",
+                            FontIconFontSize = 100
+                        };
+                        i += 1;
+                        Tabitems.Add(tabItem);
                     }
                 }
             }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SmartNewsDemo.Common.Services.Interface;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SmartNewsDemo.ViewModel
@@ -16,12 +17,14 @@ namespace SmartNewsDemo.ViewModel
         public string Numbersize { get; set; }
         public Color BoldClick { get; set; }
         public Color ItalicClick { get; set; }
+        public Color BadgeColor { get; set; }
         public Color NoneClick { get; set; }
         public bool ModeONOFF{ get; set; }
         public object ItemsFont { get; set; }
         public string MessageText { get; set; }
         public bool NotificationONOFF { get; set; }
         public string VersionApp { get; set; }
+        public string BadgeNumber { get; set; }
         public List<string> ListFontFamily { get; set; } = new List<string>();
         string[] lstfont = { "FontAwesome", "serif", "Roboto", "Arial", "Samantha", "MarkerFelt-Thin" };
         #endregion
@@ -40,8 +43,7 @@ namespace SmartNewsDemo.ViewModel
             ToggledModeCommand = new Command(HandleToggledMode);
             PushLocalCommand = new Command(HandlePushLocal);
             ListFontFamily.AddRange(lstfont);
-            VersionApp= DependencyService.Get<IAppVersionAndBuild>().GetVersionNumber();
-           //DependencyService.Get<IAppVersionAndBuild>().GetBuildNumber();
+            VersionApp = $"{VersionTracking.CurrentVersion}";
         }
 
         private void HandlePushLocal(object obj)
@@ -51,6 +53,8 @@ namespace SmartNewsDemo.ViewModel
                 if (!string.IsNullOrEmpty(MessageText))
                 {
                     DependencyService.Get<ILocalNotificationService>().LocalNotification("Notification", MessageText);
+                    BadgeNumber = "1";
+                    BadgeColor = Color.Red;
                     MessageText = string.Empty;
                 }
                 else
@@ -83,6 +87,9 @@ namespace SmartNewsDemo.ViewModel
             }
             catch (Exception)
             {
+                Numbersize = "15";
+                ItemsFont = "serif";
+                ModeONOFF = false;
             }
         }
         #region events

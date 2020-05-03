@@ -79,7 +79,6 @@
     <Compile Include="MyFirebaseIIDService.cs" />
     <Compile Include="MyFirebaseMessagingService.cs" />
     <Compile Include="SplashActivity.cs" />
-    <Compile Include="VersionAndBuild_AndroidServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

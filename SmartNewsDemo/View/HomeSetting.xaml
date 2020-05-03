@@ -54,21 +54,21 @@
                 <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
                     <Label x:Name="lblB" Text="Bold" FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="Bold"/>
+                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblB}, Path=Text}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
                 <Frame BackgroundColor="{Binding Source={x:Reference lblI}, Path=BackgroundColor}">
                     <Label x:Name="lblI" Text="Italic" FontAttributes="Italic" BackgroundColor="{Binding ItalicClick}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="Italic"/>
+                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblI}, Path=Text}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
                 <Frame BackgroundColor="{Binding Source={x:Reference lblN}, Path=BackgroundColor}">
                     <Label x:Name="lblN" Text="None" FontAttributes="None" BackgroundColor="{Binding NoneClick}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="None"/>
+                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblN}, Path=Text}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
@@ -99,8 +99,11 @@
                 </Picker>
             </StackLayout>
             <StackLayout Style="{StaticResource StackStyle}">
-                <Image Source="notification_bell.png"/>
-                <Label Text="Notifications ON/OFF"/>
+                <Image Source="notification_bell.png" 
+                           HorizontalOptions="Center" 
+                           VerticalOptions="Center"/>
+
+                    <Label Text="Notifications ON/OFF"/>
                 <Switch IsToggled="{Binding NotificationONOFF}" 
                         HorizontalOptions="EndAndExpand"/>
             </StackLayout>
