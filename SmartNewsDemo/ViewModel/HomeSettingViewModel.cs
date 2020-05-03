@@ -72,6 +72,8 @@ namespace SmartNewsDemo.ViewModel
         {
             try
             {
+                
+                
                 if (Application.Current.Properties.ContainsKey("Mode"))
                 {
                     Numbersize = Application.Current.Properties["FontSize"].ToString();
