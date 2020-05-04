@@ -52,21 +52,21 @@
                        VerticalOptions="CenterAndExpand"/>
                 
                 <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
-                    <Label x:Name="lblB" Text="Bold" FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
+                    <Label x:Name="lblB" Text="Bold" TextColor="Black"  FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblB}, Path=Text}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
                 <Frame BackgroundColor="{Binding Source={x:Reference lblI}, Path=BackgroundColor}">
-                    <Label x:Name="lblI" Text="Italic" FontAttributes="Italic" BackgroundColor="{Binding ItalicClick}">
+                    <Label x:Name="lblI" Text="Italic" TextColor="Black" FontAttributes="Italic" BackgroundColor="{Binding ItalicClick}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblI}, Path=Text}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
                 <Frame BackgroundColor="{Binding Source={x:Reference lblN}, Path=BackgroundColor}">
-                    <Label x:Name="lblN" Text="None" FontAttributes="None" BackgroundColor="{Binding NoneClick}">
+                    <Label x:Name="lblN" Text="None" TextColor="Black" FontAttributes="None" BackgroundColor="{Binding NoneClick}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblN}, Path=Text}"/>
                         </Label.GestureRecognizers>
@@ -138,6 +138,7 @@
                 <Label Text="Version:"
                        HorizontalOptions="StartAndExpand"/>
                 <Label Text="{Binding VersionApp}"
+                       Margin="0,0,5,0"
                        HorizontalOptions="EndAndExpand"/>
             </StackLayout>
         </StackLayout>
