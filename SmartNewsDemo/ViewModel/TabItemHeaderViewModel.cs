@@ -14,8 +14,6 @@ namespace SmartNewsDemo.ViewModel
         #region Properties, Variable
         public string btnTitle { get; set; }
         public string btnColor { get; set; }
-        public Thickness MarginPancake { get; set; }
-        public Thickness PaddingStack { get; set; }
         public string StackColor { get; set; }
         #endregion
 

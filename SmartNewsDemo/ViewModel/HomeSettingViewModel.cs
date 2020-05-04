@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SmartNewsDemo.Common.Services.Interface;
@@ -44,6 +41,7 @@ namespace SmartNewsDemo.ViewModel
             PushLocalCommand = new Command(HandlePushLocal);
             ListFontFamily.AddRange(lstfont);
             VersionApp = $"{VersionTracking.CurrentVersion}";
+            UpdateStateStorage();
         }
 
         private void HandlePushLocal(object obj)
@@ -53,9 +51,6 @@ namespace SmartNewsDemo.ViewModel
                 if (!string.IsNullOrEmpty(MessageText))
                 {
                     DependencyService.Get<ILocalNotificationService>().LocalNotification("Notification", MessageText);
-                    BadgeNumber = "1";
-                    BadgeColor = Color.Red;
-                    MessageText = string.Empty;
                 }
                 else
                 {
@@ -70,28 +65,18 @@ namespace SmartNewsDemo.ViewModel
 
         public void UpdateStateStorage()
         {
-            try
+            if (Application.Current.Properties.ContainsKey("Mode"))
             {
-                
-                
-                if (Application.Current.Properties.ContainsKey("Mode"))
-                {
-                    Numbersize = Application.Current.Properties["FontSize"].ToString();
-                    ItemsFont = Application.Current.Properties["Font"].ToString();
-                    ModeONOFF = Convert.ToBoolean(Application.Current.Properties["Mode"]);
-                }
-                else
-                {
-                    Numbersize = "15";
-                    ItemsFont = "serif";
-                    ModeONOFF = false;
-                }
+                Numbersize = Application.Current.Properties["FontSize"].ToString();
+                ItemsFont = Application.Current.Properties["Font"].ToString();
+                ModeONOFF = Convert.ToBoolean(Application.Current.Properties["Mode"]);
             }
-            catch (Exception)
+            else
             {
-                Numbersize = "15";
-                ItemsFont = "serif";
-                ModeONOFF = false;
+                //Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+                //{
+                //    Application.Current.MainPage.DisplayAlert("Storage Status", "empty", "OK");
+                //});
             }
         }
         #region events
@@ -103,24 +88,25 @@ namespace SmartNewsDemo.ViewModel
             {
                 Application.Current.Resources["labelStyleColor"] = "#232323";
                 Application.Current.Resources["labelTextColor"] = "#FFFFFF";
-                Application.Current.Properties["ModeBackGround"] = "#232323";
-                Application.Current.Properties["ModeTextColor"] = "#FFFFFF";
+                Application.Current.Properties["labelStyleColor"] = "#232323";
+                Application.Current.Properties["labelTextColor"] = "#FFFFFF";
             }
             else
             {
                 Application.Current.Resources["labelStyleColor"] = "#FFFFFF";
                 Application.Current.Resources["labelTextColor"] = "#000000";
-                Application.Current.Properties["ModeBackGround"] = "#FFFFFF";
-                Application.Current.Properties["ModeTextColor"] = "#000000";
+                Application.Current.Properties["labelStyleColor"] = "#FFFFFF";
+                Application.Current.Properties["labelTextColor"] = "#000000";
             }
-            
+            Application.Current.SavePropertiesAsync();
         }
-        private void HandleSelectedFont(object obj)
+        private  void HandleSelectedFont(object obj)
         {
             if(ItemsFont!= null)
             {
                 Application.Current.Resources["labelStyleFont"] = ItemsFont;
                 Application.Current.Properties["Font"] = ItemsFont;
+                Application.Current.SavePropertiesAsync();
             }
         }
 
@@ -134,6 +120,7 @@ namespace SmartNewsDemo.ViewModel
                 Application.Current.Resources["labelStylesize"] = newStep;
                 Application.Current.Properties["FontSize"] = newStep;
             }
+            Application.Current.SavePropertiesAsync();
         }
         
         private async void HandleLabelCLick(string font)
@@ -162,6 +149,7 @@ namespace SmartNewsDemo.ViewModel
                 await Task.Delay(100);
                 NoneClick = Color.White;
             }
+           await Application.Current.SavePropertiesAsync();
         }
         #endregion
     }

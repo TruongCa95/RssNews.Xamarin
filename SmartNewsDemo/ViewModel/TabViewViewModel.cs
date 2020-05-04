@@ -51,10 +51,10 @@ namespace SmartNewsDemo.ViewModel
         }
 
 
-        private Xamarin.Forms.View GetItemContent(int index)
-        {
-            return new TabItemContents(RssItems.GetValue(index).ToString()).Content;
-        }
+        //private Xamarin.Forms.View GetItemContent(int index)
+        //{
+        //    return new TabItemContents(RssItems.GetValue(index).ToString()).Content;
+        //}
         private void HandleSelected(object obj)
         {
             //Raise event selected and pass color to TabHeader

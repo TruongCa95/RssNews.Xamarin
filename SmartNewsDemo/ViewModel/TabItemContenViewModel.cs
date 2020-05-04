@@ -1,16 +1,10 @@
 ﻿using SmartNewsDemo.Model;
 using SmartNewsDemo.Utilitis;
 using SmartNewsDemo.View;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Xml.Linq;
 using Xamarin.Forms;
 
 namespace SmartNewsDemo.ViewModel
