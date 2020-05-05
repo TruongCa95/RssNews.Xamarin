@@ -21,10 +21,6 @@ namespace SmartNewsDemo.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            //Get token device
-            var refreshedToken = FirebaseInstanceId.Instance.Token;
-            System.Diagnostics.Debug.WriteLine($"FCM Token: {refreshedToken}");
-
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
