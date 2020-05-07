@@ -5,6 +5,7 @@ using Syncfusion.XForms.iOS.TabView;
 using Foundation;
 using UIKit;
 using UserNotifications;
+using ImageCircle.Forms.Plugin.iOS;
 
 namespace SmartNewsDemo.iOS
 {
@@ -26,7 +27,6 @@ namespace SmartNewsDemo.iOS
             global::Xamarin.Forms.Forms.Init();
             //render Sftabview
             SfTabViewRenderer.Init();
-
             //First, iOS 8 requires applications to ask for the user's permission to display notifications
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
@@ -38,6 +38,7 @@ namespace SmartNewsDemo.iOS
             }
             //set the Delegate to handle
             UNUserNotificationCenter.Current.Delegate = new NotificationDelegate();
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
 

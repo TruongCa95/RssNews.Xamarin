@@ -131,6 +131,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>18.1.0.46</Version>
     </PackageReference>
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
+      <Version>3.0.0.5</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -150,6 +153,7 @@
     <BundleResource Include="Resources\font_style.png" />
     <BundleResource Include="Resources\font_family.png" />
     <BundleResource Include="Resources\newspaper.png" />
+    <BundleResource Include="Resources\Android_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_about.png" />

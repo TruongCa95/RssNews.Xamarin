@@ -22,6 +22,8 @@ namespace SmartNewsDemo.ViewModel
         public bool NotificationONOFF { get; set; }
         public string VersionApp { get; set; }
         public string BadgeNumber { get; set; }
+        public double Height { get; set; }
+        public double Width { get; set; }
         public List<string> ListFontFamily { get; set; } = new List<string>();
         string[] lstfont = { "FontAwesome", "serif", "Roboto", "Arial", "Samantha", "MarkerFelt-Thin" };
         #endregion
@@ -31,6 +33,7 @@ namespace SmartNewsDemo.ViewModel
         public ICommand SeletedFontCommand { get; set; }
         public ICommand ToggledModeCommand { get; set; }
         public ICommand PushLocalCommand { get; set; }
+        public ICommand ScrollChangedCommand { get; set; }
         #endregion
         public HomeSettingViewModel()
         {
@@ -39,9 +42,15 @@ namespace SmartNewsDemo.ViewModel
             SeletedFontCommand = new Command(HandleSelectedFont);
             ToggledModeCommand = new Command(HandleToggledMode);
             PushLocalCommand = new Command(HandlePushLocal);
+            ScrollChangedCommand = new Command(HandelScrollChanged);
             ListFontFamily.AddRange(lstfont);
             VersionApp = $"{VersionTracking.CurrentVersion}";
-            UpdateStateStorage();
+            //UpdateStateStorage();
+        }
+
+        private void HandelScrollChanged(object obj)
+        {
+            
         }
 
         private void HandlePushLocal(object obj)
@@ -68,7 +77,7 @@ namespace SmartNewsDemo.ViewModel
             if (Application.Current.Properties.ContainsKey("Mode"))
             {
                 Numbersize = Application.Current.Properties["FontSize"].ToString();
-                ItemsFont = Application.Current.Properties["Font"].ToString();
+                //ItemsFont = Application.Current.Properties["Font"].ToString();
                 ModeONOFF = Convert.ToBoolean(Application.Current.Properties["Mode"]);
             }
             else

@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
+             xmlns:custom="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" 
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.HomeSetting">
     <ContentPage.Resources>
@@ -21,17 +22,33 @@
         </Style>
         <Style x:Key="StackStyle" TargetType="StackLayout">
             <Setter Property="Spacing" Value="3"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
             <Setter Property="Orientation" Value="Horizontal" />
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{DynamicResource labelStyleColor}">
-            <StackLayout Margin="0,10,0,0" Style="{StaticResource StackStyle}">
-                <Image Source="font_size.png"/>
-                <Label Text="FontSize"
+        <StackLayout BackgroundColor="{DynamicResource labelStyleColor}" Padding="10,0,0,0" Spacing="1">
+            <StackLayout x:Name="HeaderViewer" Orientation="Vertical" MinimumHeightRequest="{Binding Height}">
+                <custom:CircleImage
+                    x:Name="CircleImage"
+                    Source="Android_icon.png"
+                    BackgroundColor="Red"
+                    MinimumHeightRequest="100"
+                    MinimumWidthRequest="100"
+                    WidthRequest="{Binding Height}"
+                    HeightRequest="{Binding Width}"
+                    Aspect="AspectFill"
+                    VerticalOptions="Start"
+                    HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <ScrollView x:Name="ScrollViewer" HeightRequest="1000" Scrolled="Handle_ScrollChanged">
+                <StackLayout>
+                    <StackLayout Margin="0,10,0,0" Style="{StaticResource StackStyle}">
+                        <Image Source="font_size.png"/>
+                        <Label Text="FontSize"
                        VerticalOptions="CenterAndExpand"
                        HorizontalOptions="Start"/>
-                <Slider x:Name="Value"
+                        <Slider x:Name="Value"
                         WidthRequest="200"
                         Grid.Column="1"
                         MinimumTrackColor="Blue"
@@ -41,106 +58,140 @@
                         Minimum="15"
                         Value="{Binding Numbersize}"
                         HorizontalOptions="EndAndExpand">
-                    <Slider.Behaviors>
-                        <behavior:EventToCommandBehavior EventName="ValueChanged" Command="{Binding SliderChangedCommand}"/>
-                    </Slider.Behaviors>
-                </Slider>
-            </StackLayout>
-            <StackLayout Style="{StaticResource StackStyle}">
-                <Image Source="font_style.png"/>
-                <Label Text="Font"
+                            <Slider.Behaviors>
+                                <behavior:EventToCommandBehavior EventName="ValueChanged" Command="{Binding SliderChangedCommand}"/>
+                            </Slider.Behaviors>
+                        </Slider>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource StackStyle}">
+                        <Image Source="font_style.png"/>
+                        <Label Text="Font"
                        VerticalOptions="CenterAndExpand"/>
-                
-                <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
-                    <Label x:Name="lblB" Text="Bold" TextColor="Black"  FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblB}, Path=Text}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Frame>
-                <Frame BackgroundColor="{Binding Source={x:Reference lblI}, Path=BackgroundColor}">
-                    <Label x:Name="lblI" Text="Italic" TextColor="Black" FontAttributes="Italic" BackgroundColor="{Binding ItalicClick}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblI}, Path=Text}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Frame>
-                <Frame BackgroundColor="{Binding Source={x:Reference lblN}, Path=BackgroundColor}">
-                    <Label x:Name="lblN" Text="None" TextColor="Black" FontAttributes="None" BackgroundColor="{Binding NoneClick}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblN}, Path=Text}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Frame>
-            </StackLayout>
-            <StackLayout Style="{StaticResource StackStyle}">
-                <Image Source="dark_mode.png"/>
-                <Label Text="Dark Mode"/>
-                <Switch IsToggled="{Binding ModeONOFF}" 
+
+                        <Frame BackgroundColor="{Binding Source={x:Reference lblB}, Path=BackgroundColor}">
+                            <Label x:Name="lblB" Text="Bold" TextColor="Black"  FontAttributes="Bold" BackgroundColor="{Binding BoldClick}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblB}, Path=Text}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+                        <Frame BackgroundColor="{Binding Source={x:Reference lblI}, Path=BackgroundColor}">
+                            <Label x:Name="lblI" Text="Italic" TextColor="Black" FontAttributes="Italic" BackgroundColor="{Binding ItalicClick}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblI}, Path=Text}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+                        <Frame BackgroundColor="{Binding Source={x:Reference lblN}, Path=BackgroundColor}">
+                            <Label x:Name="lblN" Text="None" TextColor="Black" FontAttributes="None" BackgroundColor="{Binding NoneClick}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LabelCLickCommand}" CommandParameter="{Binding Source={x:Reference lblN}, Path=Text}"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource StackStyle}">
+                        <Image Source="dark_mode.png"/>
+                        <Label Text="Dark Mode"/>
+                        <Switch IsToggled="{Binding ModeONOFF}" 
                         HorizontalOptions="EndAndExpand">
-                    <Switch.Behaviors>
-                        <behavior:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledModeCommand}"/>
-                    </Switch.Behaviors>
-                </Switch>
-            </StackLayout>
-            <StackLayout Style="{StaticResource StackStyle}">
-                <Image Source="font_family.png"/>
-                <Label Text="Font Family"
+                            <Switch.Behaviors>
+                                <behavior:EventToCommandBehavior EventName="Toggled" Command="{Binding ToggledModeCommand}"/>
+                            </Switch.Behaviors>
+                        </Switch>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource StackStyle}">
+                        <Image Source="font_family.png"/>
+                        <Label Text="Font Family"
                        VerticalOptions="CenterAndExpand"/>
-                <Picker Title="Please chose Font"
+                        <Picker Title="Please chose Font"
                         WidthRequest="200"
                         Margin="0,5,5,0"
                         ItemsSource="{Binding ListFontFamily}"
                         SelectedItem="{Binding ItemsFont}"
                         HorizontalOptions="EndAndExpand">
-                    <Picker.Behaviors>
-                        <behavior:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SeletedFontCommand}"/>
-                    </Picker.Behaviors>
-                </Picker>
-            </StackLayout>
-            <StackLayout Style="{StaticResource StackStyle}">
-                <Image Source="notification_bell.png" 
+                            <Picker.Behaviors>
+                                <behavior:EventToCommandBehavior EventName="SelectedIndexChanged" Command="{Binding SeletedFontCommand}"/>
+                            </Picker.Behaviors>
+                        </Picker>
+                    </StackLayout>
+                    <StackLayout Style="{StaticResource StackStyle}">
+                        <Image Source="notification_bell.png" 
                            HorizontalOptions="Center" 
                            VerticalOptions="Center"/>
 
-                    <Label Text="Notifications ON/OFF"/>
-                <Switch IsToggled="{Binding NotificationONOFF}" 
+                        <Label Text="Notifications ON/OFF"/>
+                        <Switch IsToggled="{Binding NotificationONOFF}" 
                         HorizontalOptions="EndAndExpand"/>
-            </StackLayout>
-            <Frame HorizontalOptions="FillAndExpand" 
+                    </StackLayout>
+                    <Frame HorizontalOptions="FillAndExpand" 
                    BorderColor="DimGray" 
                    HasShadow="True" 
                    BackgroundColor="{DynamicResource labelStyleColor}">
-                <StackLayout Orientation="Vertical">
-                    <Label Text="Enter Message"
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Enter Message"
                         Margin="20,10,0,0"
                         HorizontalOptions="StartAndExpand"/>
-                    <Editor HeightRequest="100" 
+                            <Editor HeightRequest="100" 
                         Text="{Binding MessageText}" 
                         TextColor="Blue" 
                         BackgroundColor="{DynamicResource labelStyleColor}" 
                         HorizontalOptions="Fill"/>
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="Push local" 
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Push local" 
                                 TextColor="Black" 
                                 BackgroundColor="Red" 
                                 HorizontalOptions="FillAndExpand"
                                 WidthRequest="100">
-                            <Button.Behaviors>
-                                <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
-                            </Button.Behaviors>
-                        </Button>
-                    </StackLayout>
-                </StackLayout>
-            </Frame>
-            <StackLayout Orientation="Horizontal">
-                <Image Source="signaling.png"/>
-                <Label Text="Version:"
+                                    <Button.Behaviors>
+                                        <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
+                                    </Button.Behaviors>
+                                </Button>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="signaling.png"/>
+                        <Label Text="Version:"
                        HorizontalOptions="StartAndExpand"/>
-                <Label Text="{Binding VersionApp}"
+                        <Label Text="{Binding VersionApp}"
                        Margin="0,0,5,0"
                        HorizontalOptions="EndAndExpand"/>
-            </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="signaling.png"/>
+                        <Label Text="Version:"
+                       HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding VersionApp}"
+                       Margin="0,0,5,0"
+                       HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="signaling.png"/>
+                        <Label Text="Version:"
+                       HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding VersionApp}"
+                       Margin="0,0,5,0"
+                       HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="signaling.png"/>
+                        <Label Text="Version:"
+                       HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding VersionApp}"
+                       Margin="0,0,5,0"
+                       HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="signaling.png"/>
+                        <Label Text="Version:"
+                       HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding VersionApp}"
+                       Margin="0,0,5,0"
+                       HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+                </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

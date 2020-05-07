@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using System.Net;
 using Firebase.Iid;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace SmartNewsDemo.Droid
 {
@@ -24,7 +25,7 @@ namespace SmartNewsDemo.Droid
             //Get token device
             var refreshedToken = FirebaseInstanceId.Instance.Token;
             System.Diagnostics.Debug.WriteLine($"FCM Token: {refreshedToken}");
-
+            ImageCircleRenderer.Init();
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
