@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace SmartNewsDemo.Converter
+namespace SmartNewsDemo.Common.Converter
 {
-    public class DateTimeConverter:IValueConverter
+    public class DatetimeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -29,12 +28,12 @@ namespace SmartNewsDemo.Converter
                 return date.Seconds.ToString() + " Seconds ago";
             }
             return string.Empty;
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
-       
     }
 }

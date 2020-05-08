@@ -27,12 +27,15 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{DynamicResource labelStyleColor}" Padding="10,0,0,0" Spacing="1">
-            <StackLayout x:Name="HeaderViewer" Orientation="Vertical" MinimumHeightRequest="{Binding Height}">
+        <Grid BackgroundColor="{DynamicResource labelStyleColor}" Padding="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="HeaderViewer">
                 <custom:CircleImage
                     x:Name="CircleImage"
-                    Source="Android_icon.png"
-                    BackgroundColor="Red"
+                    Source="android.png"
                     MinimumHeightRequest="100"
                     MinimumWidthRequest="100"
                     WidthRequest="{Binding Height}"
@@ -40,8 +43,8 @@
                     Aspect="AspectFill"
                     VerticalOptions="Start"
                     HorizontalOptions="CenterAndExpand" />
-            </StackLayout>
-            <ScrollView x:Name="ScrollViewer" HeightRequest="1000" Scrolled="Handle_ScrollChanged">
+            </Grid>
+            <ScrollView Grid.Row="1" HeightRequest="800" x:Name="ScrollViewer" Scrolled="Handle_ScrollChanged">
                 <StackLayout>
                     <StackLayout Margin="0,10,0,0" Style="{StaticResource StackStyle}">
                         <Image Source="font_size.png"/>
@@ -158,40 +161,60 @@
                        Margin="0,0,5,0"
                        HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="signaling.png"/>
-                        <Label Text="Version:"
-                       HorizontalOptions="StartAndExpand"/>
-                        <Label Text="{Binding VersionApp}"
-                       Margin="0,0,5,0"
-                       HorizontalOptions="EndAndExpand"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="signaling.png"/>
-                        <Label Text="Version:"
-                       HorizontalOptions="StartAndExpand"/>
-                        <Label Text="{Binding VersionApp}"
-                       Margin="0,0,5,0"
-                       HorizontalOptions="EndAndExpand"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="signaling.png"/>
-                        <Label Text="Version:"
-                       HorizontalOptions="StartAndExpand"/>
-                        <Label Text="{Binding VersionApp}"
-                       Margin="0,0,5,0"
-                       HorizontalOptions="EndAndExpand"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Image Source="signaling.png"/>
-                        <Label Text="Version:"
-                       HorizontalOptions="StartAndExpand"/>
-                        <Label Text="{Binding VersionApp}"
-                       Margin="0,0,5,0"
-                       HorizontalOptions="EndAndExpand"/>
-                    </StackLayout>
+                     <Frame HorizontalOptions="FillAndExpand" 
+                   BorderColor="DimGray" 
+                   HasShadow="True" 
+                   BackgroundColor="{DynamicResource labelStyleColor}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Enter Message"
+                        Margin="20,10,0,0"
+                        HorizontalOptions="StartAndExpand"/>
+                            <Editor HeightRequest="100" 
+                        Text="{Binding MessageText}" 
+                        TextColor="Blue" 
+                        BackgroundColor="{DynamicResource labelStyleColor}" 
+                        HorizontalOptions="Fill"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Push local" 
+                                TextColor="Black" 
+                                BackgroundColor="Red" 
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="100">
+                                    <Button.Behaviors>
+                                        <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
+                                    </Button.Behaviors>
+                                </Button>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                       <Frame HorizontalOptions="FillAndExpand" 
+                   BorderColor="DimGray" 
+                   HasShadow="True" 
+                   BackgroundColor="{DynamicResource labelStyleColor}">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Enter Message"
+                        Margin="20,10,0,0"
+                        HorizontalOptions="StartAndExpand"/>
+                            <Editor HeightRequest="100" 
+                        Text="{Binding MessageText}" 
+                        TextColor="Blue" 
+                        BackgroundColor="{DynamicResource labelStyleColor}" 
+                        HorizontalOptions="Fill"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Push local" 
+                                TextColor="Black" 
+                                BackgroundColor="Red" 
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="100">
+                                    <Button.Behaviors>
+                                        <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
+                                    </Button.Behaviors>
+                                </Button>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
                 </StackLayout>
                 </ScrollView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

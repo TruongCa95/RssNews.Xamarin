@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter="clr-namespace:SmartNewsDemo.Converter"
              xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
+             xmlns:converter="clr-namespace:SmartNewsDemo.Common.Converter"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="SmartNewsDemo.View.TabItemContents">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converter:DateTimeConverter x:Key="DateTimeConverter"/>
+            <converter:DatetimeConverter x:Key="DateTimeConverter"/>
+            <converter:AlternatingHighlightColorConverter x:Key="AlternatingHighlightColorConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -48,7 +49,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid>
+                                    <Grid BackgroundColor="{Binding .,Converter={StaticResource AlternatingHighlightColorConverter}, ConverterParameter={x:Reference lstdetail}}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="3*" />
                                             <RowDefinition Height="*" />

@@ -1,11 +1,5 @@
 ﻿using SmartNewsDemo.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,8 +13,8 @@ namespace SmartNewsDemo.View
         {
             InitializeComponent();
             BindingContext = home;
-            home.Height = 150;
-            home.Width = 150;
+            home.Height = 100;
+            home.Width = 100;
 
             if (Device.RuntimePlatform == Device.iOS)
             {
@@ -33,17 +27,29 @@ namespace SmartNewsDemo.View
         }
         private void Handle_ScrollChanged(object sender, ScrolledEventArgs e)
         {
+            ScrollView scrollView = sender as ScrollView;
             var y = e.ScrollY;
-            if (y > 0)
+            try
             {
-                home.Height = 150 - y;
-                home.Width = 150 - y;
+                var size = scrollView.ContentSize.Height;
+               
             }
-            else if (y < 0)
+            catch (Exception ex)
             {
-                home.Height = 150 - y;
-                home.Width = 150 - y;
+
             }
+            //if (size - y < 600)
+            //{
+            //    home.Height = 100;
+            //    home.Width = 100;
+            //    //Application.Current.MainPage.DisplayAlert("Notification", "End page", "OK");
+            //}
+            //else if(size-y >600)
+            //{
+
+            //    home.Height = 150;
+            //    home.Width = 150;
+            //}
         }
     }
 }

@@ -14,6 +14,7 @@ namespace SmartNewsDemo.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabItemContents : ContentPage
     {
+        private bool isRowEven;
         public TabItemContents(string url)
         {
             InitializeComponent();
