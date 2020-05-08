@@ -44,7 +44,7 @@
                     VerticalOptions="Start"
                     HorizontalOptions="CenterAndExpand" />
             </Grid>
-            <ScrollView Grid.Row="1" HeightRequest="800" x:Name="ScrollViewer" Scrolled="Handle_ScrollChanged">
+            <ScrollView Grid.Row="1" x:Name="ScrollViewer" Scrolled="Handle_ScrollChanged">
                 <StackLayout>
                     <StackLayout Margin="0,10,0,0" Style="{StaticResource StackStyle}">
                         <Image Source="font_size.png"/>

@@ -29,15 +29,21 @@ namespace SmartNewsDemo.View
         {
             ScrollView scrollView = sender as ScrollView;
             var y = e.ScrollY;
-            try
+            var contentSize = scrollView.ContentSize.Height;
+            var size = scrollView.Height;
+            double scrollingSpace = contentSize - size;
+            if(scrollingSpace <= y)
             {
-                var size = scrollView.ContentSize.Height;
-               
+                home.Height = 100;
+                home.Width = 100;
             }
-            catch (Exception ex)
+            else
             {
+                home.Height = 150;
+                home.Width = 150;
+            }
+           
 
-            }
             //if (size - y < 600)
             //{
             //    home.Height = 100;
