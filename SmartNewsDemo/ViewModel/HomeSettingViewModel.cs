@@ -54,7 +54,7 @@ namespace SmartNewsDemo.ViewModel
             ScrollView sender = obj as ScrollView;
             var minHeight = 100;
             var maxHeight = 200;
-            var buffer = 20;
+            var buffer = 10;
             var y = sender.ScrollY;
             {
                 var NewY = ToDoubleExtension.ConvertToDouble(y,0);
@@ -71,7 +71,7 @@ namespace SmartNewsDemo.ViewModel
                 {
                     if (ImageSize - NewY >= minHeight && ImageSize - NewY < maxHeight)
                     {
-                        ImageSize -= NewY;
+                        ImageSize -= (NewY/ buffer);
                     }
                 }
                 else return;

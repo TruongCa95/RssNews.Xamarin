@@ -42,7 +42,7 @@
                     VerticalOptions="Start"
                     HorizontalOptions="CenterAndExpand" />
             </Grid>
-            <ScrollView Grid.Row="1" x:Name="ScrollViewer">
+            <ScrollView Grid.Row="1" x:Name="ScrollViewer" Margin="0,10,0,0">
                 <ScrollView.Behaviors>
                     <behavior:EventToCommandBehavior EventName="Scrolled" Command="{Binding ScrollVerticalCommand}"/>
                 </ScrollView.Behaviors>
