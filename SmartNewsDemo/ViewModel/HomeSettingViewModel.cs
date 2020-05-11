@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SmartNewsDemo.Common.Services.Interface;
+using SmartNewsDemo.Utilitis.ExtensionMethod;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -16,14 +17,13 @@ namespace SmartNewsDemo.ViewModel
         public Color ItalicClick { get; set; }
         public Color BadgeColor { get; set; }
         public Color NoneClick { get; set; }
-        public bool ModeONOFF{ get; set; }
+        public bool ModeONOFF { get; set; }
         public object ItemsFont { get; set; }
         public string MessageText { get; set; }
         public bool NotificationONOFF { get; set; }
         public string VersionApp { get; set; }
         public string BadgeNumber { get; set; }
-        public double Height { get; set; }
-        public double Width { get; set; }
+        public double ImageSize { get; set; }
         public List<string> ListFontFamily { get; set; } = new List<string>();
         string[] lstfont = { "FontAwesome", "serif", "Roboto", "Arial", "Samantha", "MarkerFelt-Thin" };
         #endregion
@@ -33,7 +33,7 @@ namespace SmartNewsDemo.ViewModel
         public ICommand SeletedFontCommand { get; set; }
         public ICommand ToggledModeCommand { get; set; }
         public ICommand PushLocalCommand { get; set; }
-        public ICommand ScrollChangedCommand { get; set; }
+        public ICommand ScrollVerticalCommand { get; set; }
         #endregion
         public HomeSettingViewModel()
         {
@@ -42,20 +42,46 @@ namespace SmartNewsDemo.ViewModel
             SeletedFontCommand = new Command(HandleSelectedFont);
             ToggledModeCommand = new Command(HandleToggledMode);
             PushLocalCommand = new Command(HandlePushLocal);
-            ScrollChangedCommand = new Command(HandelScrollChanged);
+            ScrollVerticalCommand = new Command(HandelScrollChanged);
             ListFontFamily.AddRange(lstfont);
             VersionApp = $"{VersionTracking.CurrentVersion}";
+            ImageSize = 200;
             //UpdateStateStorage();
         }
 
         private void HandelScrollChanged(object obj)
         {
-            
+            ScrollView sender = obj as ScrollView;
+            var minHeight = 100;
+            var maxHeight = 200;
+            var buffer = 20;
+            var y = sender.ScrollY;
+            {
+                var NewY = ToDoubleExtension.ConvertToDouble(y,0);
+                //scroll down
+                if (NewY < 0)
+                {
+                    if (ImageSize - NewY >= minHeight && ImageSize - NewY < maxHeight)
+                    {
+                        ImageSize -= NewY;
+                    }
+                }
+                //scroll up
+                else if (NewY > 0)
+                {
+                    if (ImageSize - NewY >= minHeight && ImageSize - NewY < maxHeight)
+                    {
+                        ImageSize -= NewY;
+                    }
+                }
+                else return;
+                Console.WriteLine(ImageSize.ToString() + " y:" + y.ToString());
+            }
         }
 
         private void HandlePushLocal(object obj)
         {
-            if(NotificationONOFF)
+            if (NotificationONOFF)
             {
                 if (!string.IsNullOrEmpty(MessageText))
                 {
@@ -109,9 +135,9 @@ namespace SmartNewsDemo.ViewModel
             }
             Application.Current.SavePropertiesAsync();
         }
-        private  void HandleSelectedFont(object obj)
+        private void HandleSelectedFont(object obj)
         {
-            if(ItemsFont!= null)
+            if (ItemsFont != null)
             {
                 Application.Current.Resources["labelStyleFont"] = ItemsFont;
                 Application.Current.Properties["Font"] = ItemsFont;
@@ -121,17 +147,13 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleSliderChanged(object obj)
         {
-            double number;
-            System.Globalization.CultureInfo EnglishCulture = new System.Globalization.CultureInfo("en-GB");
-            if( double.TryParse(Numbersize,System.Globalization.NumberStyles.Number, EnglishCulture, out number))
-            {
-                var newStep = Math.Round(number, 0);
-                Application.Current.Resources["labelStylesize"] = newStep;
-                Application.Current.Properties["FontSize"] = newStep;
-            }
+
+            var newStep = ToDoubleExtension.ConvertToDouble(Convert.ToDouble(Numbersize),0);
+            Application.Current.Resources["labelStylesize"] = newStep;
+            Application.Current.Properties["FontSize"] = newStep;
             Application.Current.SavePropertiesAsync();
         }
-        
+
         private async void HandleLabelCLick(string font)
         {
             if (font == "Bold")
@@ -158,7 +180,7 @@ namespace SmartNewsDemo.ViewModel
                 await Task.Delay(100);
                 NoneClick = Color.White;
             }
-           await Application.Current.SavePropertiesAsync();
+            await Application.Current.SavePropertiesAsync();
         }
         #endregion
     }

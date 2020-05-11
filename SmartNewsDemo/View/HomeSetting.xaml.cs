@@ -13,8 +13,6 @@ namespace SmartNewsDemo.View
         {
             InitializeComponent();
             BindingContext = home;
-            home.Height = 100;
-            home.Width = 100;
 
             if (Device.RuntimePlatform == Device.iOS)
             {
@@ -24,38 +22,6 @@ namespace SmartNewsDemo.View
             {
                 NavigationPage.SetHasNavigationBar(this, false);
             }
-        }
-        private void Handle_ScrollChanged(object sender, ScrolledEventArgs e)
-        {
-            ScrollView scrollView = sender as ScrollView;
-            var y = e.ScrollY;
-            var contentSize = scrollView.ContentSize.Height;
-            var size = scrollView.Height;
-            double scrollingSpace = contentSize - size;
-            if(scrollingSpace <= y)
-            {
-                home.Height = 100;
-                home.Width = 100;
-            }
-            else
-            {
-                home.Height = 150;
-                home.Width = 150;
-            }
-           
-
-            //if (size - y < 600)
-            //{
-            //    home.Height = 100;
-            //    home.Width = 100;
-            //    //Application.Current.MainPage.DisplayAlert("Notification", "End page", "OK");
-            //}
-            //else if(size-y >600)
-            //{
-
-            //    home.Height = 150;
-            //    home.Width = 150;
-            //}
         }
     }
 }

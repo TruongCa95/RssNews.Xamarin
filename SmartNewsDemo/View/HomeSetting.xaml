@@ -32,19 +32,20 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="HeaderViewer">
+            <Grid Grid.Row="0" x:Name="HeaderViewer">
                 <custom:CircleImage
                     x:Name="CircleImage"
                     Source="android.png"
-                    MinimumHeightRequest="100"
-                    MinimumWidthRequest="100"
-                    WidthRequest="{Binding Height}"
-                    HeightRequest="{Binding Width}"
+                    WidthRequest="{Binding ImageSize}"
+                    HeightRequest="{Binding ImageSize}"
                     Aspect="AspectFill"
                     VerticalOptions="Start"
                     HorizontalOptions="CenterAndExpand" />
             </Grid>
-            <ScrollView Grid.Row="1" x:Name="ScrollViewer" Scrolled="Handle_ScrollChanged">
+            <ScrollView Grid.Row="1" x:Name="ScrollViewer">
+                <ScrollView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="Scrolled" Command="{Binding ScrollVerticalCommand}"/>
+                </ScrollView.Behaviors>
                 <StackLayout>
                     <StackLayout Margin="0,10,0,0" Style="{StaticResource StackStyle}">
                         <Image Source="font_size.png"/>
