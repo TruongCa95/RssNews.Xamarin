@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using SmartNewsDemo.Common.Services.Interface;
 using SmartNewsDemo.Utilitis.ExtensionMethod;
+using SmartNewsDemo.View;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -18,6 +19,7 @@ namespace SmartNewsDemo.ViewModel
         public Color BadgeColor { get; set; }
         public Color NoneClick { get; set; }
         public bool ModeONOFF { get; set; }
+        public int numberNoti = 0;
         public object ItemsFont { get; set; }
         public string MessageText { get; set; }
         public bool NotificationONOFF { get; set; }
@@ -34,6 +36,8 @@ namespace SmartNewsDemo.ViewModel
         public ICommand ToggledModeCommand { get; set; }
         public ICommand PushLocalCommand { get; set; }
         public ICommand ScrollVerticalCommand { get; set; }
+        public ICommand OpenPopupCommand { get; set; }
+        public static event EventHandler<int> NotificationEvent;
         #endregion
         public HomeSettingViewModel()
         {
@@ -43,18 +47,27 @@ namespace SmartNewsDemo.ViewModel
             ToggledModeCommand = new Command(HandleToggledMode);
             PushLocalCommand = new Command(HandlePushLocal);
             ScrollVerticalCommand = new Command(HandelScrollChanged);
+            OpenPopupCommand = new Command((async) =>
+            {
+                HandleOpenPopup();
+            }) ;
             ListFontFamily.AddRange(lstfont);
             VersionApp = $"{VersionTracking.CurrentVersion}";
             ImageSize = 200;
             //UpdateStateStorage();
         }
 
+        #region event
+        private async void HandleOpenPopup()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new TabItemMenu());
+        }
         private void HandelScrollChanged(object obj)
         {
             ScrollView sender = obj as ScrollView;
-            var minHeight = 100;
+            var minHeight = 50;
             var maxHeight = 200;
-            var buffer = 10;
+            var buffer = 5;
             var y = sender.ScrollY;
             {
                 var NewY = ToDoubleExtension.ConvertToDouble(y,0);
@@ -86,6 +99,9 @@ namespace SmartNewsDemo.ViewModel
                 if (!string.IsNullOrEmpty(MessageText))
                 {
                     DependencyService.Get<ILocalNotificationService>().LocalNotification("Notification", MessageText);
+                    EventHandler<int> handler = NotificationEvent;
+                    handler?.Invoke(this, numberNoti);
+                    numberNoti += 1;
                 }
                 else
                 {
@@ -114,7 +130,6 @@ namespace SmartNewsDemo.ViewModel
                 //});
             }
         }
-        #region events
 
         private void HandleToggledMode(object obj)
         {

@@ -42,12 +42,12 @@
                     VerticalOptions="Start"
                     HorizontalOptions="CenterAndExpand" />
             </Grid>
-            <ScrollView Grid.Row="1" x:Name="ScrollViewer" Margin="0,10,0,0">
+            <ScrollView Grid.Row="1" x:Name="ScrollViewer">
                 <ScrollView.Behaviors>
                     <behavior:EventToCommandBehavior EventName="Scrolled" Command="{Binding ScrollVerticalCommand}"/>
                 </ScrollView.Behaviors>
                 <StackLayout>
-                    <StackLayout Margin="0,10,0,0" Style="{StaticResource StackStyle}">
+                    <StackLayout Margin="0,0,0,0" Style="{StaticResource StackStyle}">
                         <Image Source="font_size.png"/>
                         <Label Text="FontSize"
                        VerticalOptions="CenterAndExpand"
@@ -162,58 +162,11 @@
                        Margin="0,0,5,0"
                        HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
-                     <Frame HorizontalOptions="FillAndExpand" 
-                   BorderColor="DimGray" 
-                   HasShadow="True" 
-                   BackgroundColor="{DynamicResource labelStyleColor}">
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="Enter Message"
-                        Margin="20,10,0,0"
-                        HorizontalOptions="StartAndExpand"/>
-                            <Editor HeightRequest="100" 
-                        Text="{Binding MessageText}" 
-                        TextColor="Blue" 
-                        BackgroundColor="{DynamicResource labelStyleColor}" 
-                        HorizontalOptions="Fill"/>
-                            <StackLayout Orientation="Horizontal">
-                                <Button Text="Push local" 
-                                TextColor="Black" 
-                                BackgroundColor="Red" 
-                                HorizontalOptions="FillAndExpand"
-                                WidthRequest="100">
-                                    <Button.Behaviors>
-                                        <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
-                                    </Button.Behaviors>
-                                </Button>
-                            </StackLayout>
-                        </StackLayout>
-                    </Frame>
-                       <Frame HorizontalOptions="FillAndExpand" 
-                   BorderColor="DimGray" 
-                   HasShadow="True" 
-                   BackgroundColor="{DynamicResource labelStyleColor}">
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="Enter Message"
-                        Margin="20,10,0,0"
-                        HorizontalOptions="StartAndExpand"/>
-                            <Editor HeightRequest="100" 
-                        Text="{Binding MessageText}" 
-                        TextColor="Blue" 
-                        BackgroundColor="{DynamicResource labelStyleColor}" 
-                        HorizontalOptions="Fill"/>
-                            <StackLayout Orientation="Horizontal">
-                                <Button Text="Push local" 
-                                TextColor="Black" 
-                                BackgroundColor="Red" 
-                                HorizontalOptions="FillAndExpand"
-                                WidthRequest="100">
-                                    <Button.Behaviors>
-                                        <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding PushLocalCommand}"/>
-                                    </Button.Behaviors>
-                                </Button>
-                            </StackLayout>
-                        </StackLayout>
-                    </Frame>
+                    <Button Text="NavigationPage" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Blue" TextColor="White">
+                        <Button.Behaviors>
+                            <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding OpenPopupCommand}"/>
+                        </Button.Behaviors>
+                    </Button>
                 </StackLayout>
                 </ScrollView>
         </Grid>

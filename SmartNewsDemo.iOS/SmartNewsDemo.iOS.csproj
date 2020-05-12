@@ -154,6 +154,12 @@
     <BundleResource Include="Resources\font_family.png" />
     <BundleResource Include="Resources\newspaper.png" />
     <BundleResource Include="Resources\android.png" />
+    <BundleResource Include="Resources\icon1.png" />
+    <BundleResource Include="Resources\icon2.png" />
+    <BundleResource Include="Resources\icon3.png" />
+    <BundleResource Include="Resources\icon4.png" />
+    <BundleResource Include="Resources\icon5.png" />
+    <BundleResource Include="Resources\icon6.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_about.png" />

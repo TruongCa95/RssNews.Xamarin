@@ -1,12 +1,9 @@
-﻿using SmartNewsDemo.Utilitis;
+﻿using System;
+using System.Windows.Input;
+using Plugin.Connectivity;
 using SmartNewsDemo.View;
 using Syncfusion.XForms.TabView;
-using System;
-using Plugin.Connectivity;
-using System.Collections.Generic;
-using System.Windows.Input;
 using Xamarin.Forms;
-using System.Threading.Tasks;
 using Xamarin.Forms.PancakeView;
 
 namespace SmartNewsDemo.ViewModel
@@ -50,11 +47,6 @@ namespace SmartNewsDemo.ViewModel
             setting.UpdateStateStorage();
         }
 
-
-        //private Xamarin.Forms.View GetItemContent(int index)
-        //{
-        //    return new TabItemContents(RssItems.GetValue(index).ToString()).Content;
-        //}
         private void HandleSelected(object obj)
         {
             //Raise event selected and pass color to TabHeader
@@ -73,10 +65,6 @@ namespace SmartNewsDemo.ViewModel
                 {
                     ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Margin = new Thickness(0, 5, 0, 0);
                     ((item.HeaderContent as StackLayout).Children[0] as PancakeView).Padding = new Thickness(0, 0, 0, -1);
-                    //if (item.Content == null)
-                    //{
-                    //    item.Content = GetItemContent(selectedIndex);
-                    //}
                 }
                 else
                 {

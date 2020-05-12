@@ -16,7 +16,7 @@ namespace SmartNewsDemo.View
         public TabItemMenu()
         {
             InitializeComponent();
-            BindingContext = new TabItemMenuViewModel();
+            this.BindingContext = new TabItemMenuViewModel();
         }
     }
 }

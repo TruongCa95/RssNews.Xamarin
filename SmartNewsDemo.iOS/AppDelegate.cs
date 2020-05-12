@@ -43,5 +43,11 @@ namespace SmartNewsDemo.iOS
             return base.FinishedLaunching(app, options);
 
         }
+        //public UIInterfaceOrientationMask CurrentOrientation = UIInterfaceOrientationMask.Portrait;
+
+        //public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
+        //{
+        //    return CurrentOrientation;
+        //}
     }
 }
