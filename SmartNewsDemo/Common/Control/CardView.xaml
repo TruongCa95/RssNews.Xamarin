@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SmartNewsDemo.Common.Control.CardView">
     <ContentView.Content>
-        <Frame BackgroundColor="WhiteSmoke" HasShadow="True" BorderColor="Blue">
+        <Frame x:Name="Container" HasShadow="True" BorderColor="Blue">
             <AbsoluteLayout Margin="-5,-5,-10,0">
                 <Frame HeightRequest="20"
                        WidthRequest="20"

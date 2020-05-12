@@ -45,21 +45,6 @@ namespace SmartNewsDemo.Common.Control
         }
  
 
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            HomeSettingViewModel.NotificationEvent += NotificationHandle;
-            if (propertyName == NotificationProperty.PropertyName)
-            {
-                lblNotifi.Text = NotificationNumber;
-            }
-        }
-
-        private void NotificationHandle(object sender, int e)
-        {
-            NotificationNumber = e < 99 ? NotificationNumber = e.ToString() : "99+";
-        }
-
         public static readonly BindableProperty IconProperty = BindableProperty.Create
             (
             nameof(Icon),
@@ -78,6 +63,54 @@ namespace SmartNewsDemo.Common.Control
             var control = (CardView)bindable;
             control.ImgIcon.Source = ImageSource.FromFile(newValue.ToString());
         }
+
+        public static readonly BindableProperty BackgroundcolorProperty = BindableProperty.Create
+            (
+            nameof(Backgroundcolor),
+            typeof(string),
+            typeof(CardView),
+            "#EFEFEF", BindingMode.TwoWay,
+            propertyChanged: BackgroundcolorPropertyChanged
+            );
+        public string Backgroundcolor
+        {
+            get => (string)GetValue(BackgroundcolorProperty);
+            set { SetValue(BackgroundcolorProperty, value); }
+        }
+
+        private static void BackgroundcolorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = (CardView)bindable;
+            control.Container.BackgroundColor = Color.FromHex(newValue.ToString());
+        }
+
+        //public static readonly BindableProperty BackgroundImgProperty = BindableProperty.Create
+        //   (
+        //   nameof(BackgroundImg),
+        //   typeof(string),
+        //   typeof(CardView),
+        //   null, BindingMode.TwoWay,
+        //   propertyChanged: BackgroundImgPropertyChanged
+        //   );
+        //public string BackgroundImg
+        //{
+        //    get => (string)GetValue(BackgroundImgProperty);
+        //    set { SetValue(BackgroundImgProperty, value); }
+        //}
+        //private static void BackgroundImgPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        //{
+        //    var control = (CardView)bindable;
+        //    control.ImgBackground.Source = ImageSource.FromFile(newValue.ToString());
+        //}
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            if (propertyName == NotificationProperty.PropertyName)
+            {
+                
+            }
+        }
+
         public CardView()
         {
             InitializeComponent();

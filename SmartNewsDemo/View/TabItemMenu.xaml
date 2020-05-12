@@ -7,40 +7,58 @@
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.TabItemMenu">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="100">
-              <StackLayout.Margin>
+        <StackLayout Orientation="Vertical">
+            <StackLayout.Margin>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="Android, UWP">0</On>
                     <On Platform="iOS">0,30,0,0</On>
                 </OnPlatform>
             </StackLayout.Margin>
-            <Grid>
+            <Grid Padding="0,100,0,0" RowSpacing="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <card:CardView 
+                <card:CardView Padding="10,0,10,0" 
                     Grid.Column="0"
                     Grid.Row="0"
-                    Title="Notification"
+                    Title="Hot News"
                     Icon="icon1.png"
                     Notification="{Binding NotificationNumber}"/>
-                <card:CardView Padding="0,0,0,0"
+                <card:CardView Padding="10,0,10,0"
                     Grid.Column="0"
                     Grid.Row="1"
-                    Title="Setting"
+                    Title="Market"
                     Icon="icon2.png"
                     Notification="{Binding NotificationNumber}"/>
-                <card:CardView 
+                <card:CardView Padding="10,0,10,0"
                     Grid.Column="0"
                     Grid.Row="2"
-                    Title="Profile"
+                    Title="PC-Console"
                     Icon="icon3.png"
+                    Notification="{Binding NotificationNumber}"/>
+                <card:CardView Padding="10,0,10,0"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Title="Mobile"
+                    Icon="icon4.png"
+                    Notification="{Binding NotificationNumber}"/>
+                <card:CardView Padding="10,0,10,0"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Title="Esports"
+                    Icon="icon5.png"
+                    Notification="{Binding NotificationNumber}"/>
+                <card:CardView Padding="10,0,10,0"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Title="MMO"
+                    Icon="icon6.png"
                     Notification="{Binding NotificationNumber}"/>
             </Grid>
         </StackLayout>
