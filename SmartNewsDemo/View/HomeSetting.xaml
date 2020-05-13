@@ -7,6 +7,14 @@
              xmlns:custom="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin" 
              mc:Ignorable="d"
              x:Class="SmartNewsDemo.View.HomeSetting">
+    <NavigationPage.TitleView>
+        <Label Text="{Binding TitleView}"
+               LineBreakMode="TailTruncation"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"/>
+    </NavigationPage.TitleView>
     <ContentPage.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource labelTextColor}"/>
@@ -162,7 +170,7 @@
                        Margin="0,0,5,0"
                        HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
-                    <Button Text="NavigationPage" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Blue" TextColor="White">
+                    <Button Text="Open Popup" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Blue" TextColor="White">
                         <Button.Behaviors>
                             <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding OpenPopupCommand}"/>
                         </Button.Behaviors>

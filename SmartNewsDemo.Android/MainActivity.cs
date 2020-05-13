@@ -9,6 +9,8 @@ using Android.OS;
 using System.Net;
 using Firebase.Iid;
 using ImageCircle.Forms.Plugin.Droid;
+using Rg.Plugins.Popup.Services;
+using Xamarin.Forms.Platform.Android;
 
 namespace SmartNewsDemo.Droid
 {
@@ -22,6 +24,8 @@ namespace SmartNewsDemo.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            //initilaze plugin
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             //Get token device
             var refreshedToken = FirebaseInstanceId.Instance.Token;
             System.Diagnostics.Debug.WriteLine($"FCM Token: {refreshedToken}");
@@ -30,6 +34,7 @@ namespace SmartNewsDemo.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+        
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

@@ -27,6 +27,8 @@ namespace SmartNewsDemo.iOS
             global::Xamarin.Forms.Forms.Init();
             //render Sftabview
             SfTabViewRenderer.Init();
+            //initilaze plugin popup
+            Rg.Plugins.Popup.Popup.Init();
             //First, iOS 8 requires applications to ask for the user's permission to display notifications
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {

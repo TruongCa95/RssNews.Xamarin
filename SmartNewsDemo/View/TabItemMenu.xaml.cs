@@ -1,22 +1,24 @@
 ﻿using SmartNewsDemo.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
+using Rg.Plugins.Popup.Services;
+using System;
+using Xamarin.Forms;
 
 namespace SmartNewsDemo.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TabItemMenu : ContentPage
+    public partial class TabItemMenu : PopupPage
     {
+        private TabItemMenuViewModel viewmodel = new TabItemMenuViewModel();
         public TabItemMenu()
         {
             InitializeComponent();
-            this.BindingContext = new TabItemMenuViewModel();
+            this.BindingContext = viewmodel;
+        }
+        private async void CloseClick(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PopAsync();
         }
     }
 }

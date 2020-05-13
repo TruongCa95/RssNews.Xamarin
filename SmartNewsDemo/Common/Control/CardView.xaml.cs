@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using SmartNewsDemo.ViewModel;
 using Xamarin.Forms;
 
@@ -8,8 +9,7 @@ namespace SmartNewsDemo.Common.Control
 {
     public partial class CardView : ContentView
     {
-        public delegate void SelectedHandler(object sender, EventArgs e);
-        public event SelectedHandler OnSelected;
+        public event EventHandler OnSelected;
 
         public CardView()
         {
@@ -17,6 +17,31 @@ namespace SmartNewsDemo.Common.Control
         }
 
         #region properties custom
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create
+            (
+            "Command",
+            typeof(ICommand),
+            typeof(CardView),
+            null);
+
+        public ICommand Command
+        {
+            get { return (ICommand)GetValue(CommandProperty); }
+            set { SetValue(CommandProperty, value); }
+        }
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create
+            (
+            "CommandParameter",
+            typeof(object),
+            typeof(CardView),
+            null);
+
+        public object CommandParameter
+        {
+            get { return (object)GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
+        }
+
         public static readonly BindableProperty TitleProperty = BindableProperty.Create
            (
            nameof(Title),
@@ -33,14 +58,13 @@ namespace SmartNewsDemo.Common.Control
 
         public static readonly BindableProperty NotificationProperty = BindableProperty.Create
             (
-            nameof(NotificationNumber),
+            nameof(Notification),
             typeof(string),
             typeof(CardView),
             "0",
             BindingMode.TwoWay
             );
-
-        public string NotificationNumber
+        public string Notification
         {
             get => (string)GetValue(NotificationProperty);
             set { SetValue(NotificationProperty, value); }
@@ -108,7 +132,7 @@ namespace SmartNewsDemo.Common.Control
             }
             if (propertyName == NotificationProperty.PropertyName)
             {
-                lblNotifi.Text = NotificationNumber;
+                lblNotifi.Text = Notification;
             }
             if (propertyName == IconProperty.PropertyName)
             {
@@ -126,16 +150,9 @@ namespace SmartNewsDemo.Common.Control
         }
         #endregion
         #region event custom
-        private void OnSelectedClick(object sender, SelectionChangedEventArgs e)
+        private void OnTapped(object sender, EventArgs e)
         {
-            var TappedItem = (Frame)sender;
-            
-
-            // check if a handler is assigned
-            if (OnSelected != null)
-            {
-                //OnSelected(this, new EventArgs(...));
-            }
+            OnSelected?.Invoke(sender,e);
         }
         #endregion
     }

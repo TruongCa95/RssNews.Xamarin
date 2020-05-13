@@ -1,72 +1,102 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              xmlns:card="clr-namespace:SmartNewsDemo.Common.Control"
              mc:Ignorable="d"
+             CloseWhenBackgroundIsClicked="True"
+             BackgroundClicked="CloseClick"
              x:Class="SmartNewsDemo.View.TabItemMenu">
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <StackLayout.Margin>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="Android, UWP">0</On>
-                    <On Platform="iOS">0,30,0,0</On>
-                </OnPlatform>
-            </StackLayout.Margin>
-            <Grid Padding="0,100,0,0" RowSpacing="50">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <card:CardView
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7"
+            DurationIn="100"/>
+    </pages:PopupPage.Animation>
+    <StackLayout Orientation="Vertical">
+        <StackLayout.Margin>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="Android, UWP">0</On>
+                <On Platform="iOS">0,30,0,0</On>
+            </OnPlatform>
+        </StackLayout.Margin>
+        <Grid Padding="0,100,0,0" RowSpacing="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <card:CardView
                     Padding="10,0,10,0"
-                    isVisible="True"
+                    isVisible="{Binding NotiVisiable}"
                     Grid.Column="0"
                     Grid.Row="0"
                     Title="Hot News"
-                    NotificationNumber="{Binding NotificationNumber}"
-                    Icon="icon1.png"/>
-                <card:CardView Padding="10,0,10,0"
+                    Notification="{Binding NotificationNumber}"
+                    Icon="icon1.png">
+                <card:CardView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
+                </card:CardView.Behaviors>
+            </card:CardView>
+            <card:CardView Padding="10,0,10,0"
                     Grid.Column="0"
                     Grid.Row="1"
                     Title="Market"
-                    Icon="icon2.png"
-                    NotificationNumber="10"/>
+                    Icon="icon2.png">
+                 <card:CardView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
+                </card:CardView.Behaviors>
+            </card:CardView>
                 <card:CardView
                     Padding="10,0,10,0"
                     Grid.Column="0"
                     Grid.Row="2"
                     Title="PC-Console"
-                    Icon="icon3.png"
-                    NotificationNumber="20"/>
+                    Icon="icon3.png">
+                     <card:CardView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
+                </card:CardView.Behaviors>
+                </card:CardView>
                 <card:CardView
                     Padding="10,0,10,0"
                     Grid.Column="1"
                     Grid.Row="0"
                     Title="Mobile"
-                    Icon="icon4.png"
-                    NotificationNumber="40"/>
+                    Icon="icon4.png">
+                     <card:CardView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
+                </card:CardView.Behaviors>
+                </card:CardView>
                 <card:CardView
                     Padding="10,0,10,0"
                     Grid.Column="1"
                     Grid.Row="1"
                     Title="Esports"
-                    Icon="icon5.png"
-                    NotificationNumber="60"/>
+                    Icon="icon5.png">
+                     <card:CardView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
+                </card:CardView.Behaviors>
+                </card:CardView>
                 <card:CardView
                     Padding="10,0,10,0"
                     Grid.Column="1"
                     Grid.Row="2"
                     Title="MMO"
-                    Icon="icon6.png"
-                    NotificationNumber="80"/>
-            </Grid>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+                    Icon="icon6.png">
+                     <card:CardView.Behaviors>
+                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
+                </card:CardView.Behaviors>
+                </card:CardView>
+        </Grid>
+    </StackLayout>
+</pages:PopupPage>

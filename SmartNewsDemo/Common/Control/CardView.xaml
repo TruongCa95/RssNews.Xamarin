@@ -4,6 +4,9 @@
              x:Class="SmartNewsDemo.Common.Control.CardView">
     <ContentView.Content>
         <Frame x:Name="Container" HasShadow="True" BorderColor="Blue">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTapped"/>
+            </Frame.GestureRecognizers>
             <AbsoluteLayout Margin="-5,-5,-10,0">
                 <Frame x:Name="frmNotifi"
                        IsVisible="False"
@@ -19,8 +22,8 @@
                        AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize">
                     <Label x:Name="lblNotifi"
                            TextColor="White"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Fill" 
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand" 
                         />
                 </Frame>
                 <StackLayout Orientation="Vertical"
