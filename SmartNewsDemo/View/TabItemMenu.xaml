@@ -17,6 +17,8 @@
             PositionOut="Center"
             ScaleIn="1"
             ScaleOut="0.7"
+            HasBackgroundAnimation="True"
+            EasingIn="BounceOut"
             DurationIn="100"/>
     </pages:PopupPage.Animation>
     <StackLayout Orientation="Vertical">

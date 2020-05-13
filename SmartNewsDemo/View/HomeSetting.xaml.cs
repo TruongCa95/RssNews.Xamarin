@@ -14,14 +14,14 @@ namespace SmartNewsDemo.View
             InitializeComponent();
             BindingContext = home;
 
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                NavigationPage.SetHasNavigationBar(this, true);
-            }
-            else if (Device.RuntimePlatform == Device.Android)
-            {
-                NavigationPage.SetHasNavigationBar(this, false);
-            }
+            //if (Device.RuntimePlatform == Device.iOS)
+            //{
+            //    NavigationPage.SetHasNavigationBar(this, true);
+            //}
+            //else if (Device.RuntimePlatform == Device.Android)
+            //{
+            //    NavigationPage.SetHasNavigationBar(this, false);
+            //}
         }
     }
 }

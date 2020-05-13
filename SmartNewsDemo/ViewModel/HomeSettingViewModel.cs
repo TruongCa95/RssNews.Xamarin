@@ -54,8 +54,14 @@ namespace SmartNewsDemo.ViewModel
             ListFontFamily.AddRange(lstfont);
             VersionApp = $"{VersionTracking.CurrentVersion}";
             ImageSize = 200;
-            TitleView = TabItemMenuViewModel.Title;
+            TitleView = "Setting";
+            TabItemMenuViewModel.PassTitleName += TabItemMenuViewModel_PassTitleName;
             //UpdateStateStorage();
+        }
+
+        private void TabItemMenuViewModel_PassTitleName(object sender, string e)
+        {
+            TitleView = e;
         }
 
         #region event
