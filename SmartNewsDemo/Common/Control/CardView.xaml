@@ -5,7 +5,9 @@
     <ContentView.Content>
         <Frame x:Name="Container" HasShadow="True" BorderColor="Blue">
             <AbsoluteLayout Margin="-5,-5,-10,0">
-                <Frame HeightRequest="20"
+                <Frame x:Name="frmNotifi"
+                       IsVisible="False"
+                       HeightRequest="20"
                        WidthRequest="20"
                        CornerRadius="10"
                        HorizontalOptions="Start"
@@ -17,10 +19,9 @@
                        AbsoluteLayout.LayoutBounds="1,0,AutoSize,AutoSize">
                     <Label x:Name="lblNotifi"
                            TextColor="White"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" 
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"/>
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill" 
+                        />
                 </Frame>
                 <StackLayout Orientation="Vertical"
                              AbsoluteLayout.LayoutFlags="All"

@@ -24,42 +24,48 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <card:CardView Padding="10,0,10,0" 
+                <card:CardView
+                    Padding="10,0,10,0"
+                    isVisible="True"
                     Grid.Column="0"
                     Grid.Row="0"
                     Title="Hot News"
-                    Icon="icon1.png"
-                    Notification="{Binding NotificationNumber}"/>
+                    NotificationNumber="{Binding NotificationNumber}"
+                    Icon="icon1.png"/>
                 <card:CardView Padding="10,0,10,0"
                     Grid.Column="0"
                     Grid.Row="1"
                     Title="Market"
                     Icon="icon2.png"
-                    Notification="{Binding NotificationNumber}"/>
-                <card:CardView Padding="10,0,10,0"
+                    NotificationNumber="10"/>
+                <card:CardView
+                    Padding="10,0,10,0"
                     Grid.Column="0"
                     Grid.Row="2"
                     Title="PC-Console"
                     Icon="icon3.png"
-                    Notification="{Binding NotificationNumber}"/>
-                <card:CardView Padding="10,0,10,0"
+                    NotificationNumber="20"/>
+                <card:CardView
+                    Padding="10,0,10,0"
                     Grid.Column="1"
                     Grid.Row="0"
                     Title="Mobile"
                     Icon="icon4.png"
-                    Notification="{Binding NotificationNumber}"/>
-                <card:CardView Padding="10,0,10,0"
+                    NotificationNumber="40"/>
+                <card:CardView
+                    Padding="10,0,10,0"
                     Grid.Column="1"
                     Grid.Row="1"
                     Title="Esports"
                     Icon="icon5.png"
-                    Notification="{Binding NotificationNumber}"/>
-                <card:CardView Padding="10,0,10,0"
+                    NotificationNumber="60"/>
+                <card:CardView
+                    Padding="10,0,10,0"
                     Grid.Column="1"
                     Grid.Row="2"
                     Title="MMO"
                     Icon="icon6.png"
-                    Notification="{Binding NotificationNumber}"/>
+                    NotificationNumber="80"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

@@ -8,37 +8,39 @@ namespace SmartNewsDemo.Common.Control
 {
     public partial class CardView : ContentView
     {
-        public string NotificationNumber;
+        public delegate void SelectedHandler(object sender, EventArgs e);
+        public event SelectedHandler OnSelected;
+
+        public CardView()
+        {
+            InitializeComponent();
+        }
+
+        #region properties custom
         public static readonly BindableProperty TitleProperty = BindableProperty.Create
            (
            nameof(Title),
            typeof(string),
            typeof(CardView),
            string.Empty,
-           BindingMode.TwoWay,
-           propertyChanged: TitleTextPropertyChanged
+           BindingMode.TwoWay
            );
         public string Title
         {
             get => (string)GetValue(TitleProperty);
             set { SetValue(TitleProperty, value); }
         }
-        private static void TitleTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var control = (CardView)bindable;
-            control.lblTitle.Text = newValue.ToString();
-        }
-
 
         public static readonly BindableProperty NotificationProperty = BindableProperty.Create
             (
-            nameof(Notification),
+            nameof(NotificationNumber),
             typeof(string),
             typeof(CardView),
-            "",
+            "0",
             BindingMode.TwoWay
             );
-        public string Notification
+
+        public string NotificationNumber
         {
             get => (string)GetValue(NotificationProperty);
             set { SetValue(NotificationProperty, value); }
@@ -50,18 +52,12 @@ namespace SmartNewsDemo.Common.Control
             nameof(Icon),
             typeof(string),
             typeof(CardView),
-            null, BindingMode.TwoWay,
-            propertyChanged: IconSourcePropertyChanged
+            null, BindingMode.TwoWay
             );
         public string Icon
         {
             get => (string)GetValue(IconProperty);
             set { SetValue(IconProperty, value); }
-        }
-        private static void IconSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var control = (CardView)bindable;
-            control.ImgIcon.Source = ImageSource.FromFile(newValue.ToString());
         }
 
         public static readonly BindableProperty BackgroundcolorProperty = BindableProperty.Create
@@ -69,8 +65,7 @@ namespace SmartNewsDemo.Common.Control
             nameof(Backgroundcolor),
             typeof(string),
             typeof(CardView),
-            "#EFEFEF", BindingMode.TwoWay,
-            propertyChanged: BackgroundcolorPropertyChanged
+            "#EFEFEF", BindingMode.TwoWay
             );
         public string Backgroundcolor
         {
@@ -78,42 +73,70 @@ namespace SmartNewsDemo.Common.Control
             set { SetValue(BackgroundcolorProperty, value); }
         }
 
-        private static void BackgroundcolorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        public static readonly BindableProperty isVisibleProperty = BindableProperty.Create
+            (
+            nameof(isVisible),
+            typeof(bool),
+            typeof(CardView),
+            false,
+            BindingMode.TwoWay);
+        public bool isVisible
         {
-            var control = (CardView)bindable;
-            control.Container.BackgroundColor = Color.FromHex(newValue.ToString());
+            get => (bool)GetValue(isVisibleProperty);
+            set => SetValue(isVisibleProperty, value);
         }
 
-        //public static readonly BindableProperty BackgroundImgProperty = BindableProperty.Create
-        //   (
-        //   nameof(BackgroundImg),
-        //   typeof(string),
-        //   typeof(CardView),
-        //   null, BindingMode.TwoWay,
-        //   propertyChanged: BackgroundImgPropertyChanged
-        //   );
-        //public string BackgroundImg
-        //{
-        //    get => (string)GetValue(BackgroundImgProperty);
-        //    set { SetValue(BackgroundImgProperty, value); }
-        //}
-        //private static void BackgroundImgPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        //{
-        //    var control = (CardView)bindable;
-        //    control.ImgBackground.Source = ImageSource.FromFile(newValue.ToString());
-        //}
+        public static readonly BindableProperty ItemsSelectedProperty = BindableProperty.Create
+            (
+            nameof(ItemSelected),
+            typeof(object),
+            typeof(CardView),
+            null,
+            BindingMode.TwoWay);
+
+        public object ItemSelected
+        {
+            get { return GetValue(ItemsSelectedProperty); }
+            set { SetValue(ItemsSelectedProperty, value); }
+        }
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
+            if (propertyName == TitleProperty.PropertyName)
+            {
+                lblTitle.Text = Title;
+            }
             if (propertyName == NotificationProperty.PropertyName)
             {
-                
+                lblNotifi.Text = NotificationNumber;
+            }
+            if (propertyName == IconProperty.PropertyName)
+            {
+                ImgIcon.Source = ImageSource.FromFile(Icon);
+            }
+            if (propertyName == BackgroundcolorProperty.PropertyName)
+            {
+                Container.BackgroundColor = Color.FromHex(Backgroundcolor);
+            }
+            if(propertyName==isVisibleProperty.PropertyName)
+            {
+                frmNotifi.IsVisible=isVisible;
+            }
+         
+        }
+        #endregion
+        #region event custom
+        private void OnSelectedClick(object sender, SelectionChangedEventArgs e)
+        {
+            var TappedItem = (Frame)sender;
+            
+
+            // check if a handler is assigned
+            if (OnSelected != null)
+            {
+                //OnSelected(this, new EventArgs(...));
             }
         }
-
-        public CardView()
-        {
-            InitializeComponent();
-        }
+        #endregion
     }
 }
