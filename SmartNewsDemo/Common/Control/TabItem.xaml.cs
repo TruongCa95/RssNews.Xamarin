@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace SmartNewsDemo.Common.Control
 {
-    public partial class TabItem : Label
+    public partial class TabItem : StackLayout
     {
+        public event EventHandler<string> OnTabItemClicked;
+
         public static readonly BindableProperty UrlProperty = BindableProperty.Create
            (
            nameof(Url),
@@ -35,8 +38,14 @@ namespace SmartNewsDemo.Common.Control
         public TabItem()
         {
             InitializeComponent();
-            BindingContext = new SmartNewsDemo.ViewModel.TabViewViewModel();
+        }
 
+        private void OnContentTapped(object sender, EventArgs e)
+        {
+            var pancake = (PancakeView)sender;
+            var title = pancake.FindByName<Label>("lblTitle").Text;
+            EventHandler<string> handler = OnTabItemClicked;
+            handler?.Invoke(sender, title);
         }
     }
 }

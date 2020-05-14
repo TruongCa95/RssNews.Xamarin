@@ -1,0 +1,28 @@
+﻿{
+    "Newspaper": [
+        {
+            "NewsTitle": "TinhTe",
+            "NewsIcon": "icon1.png"
+        },
+        {
+            "NewsTitle": "MMO",
+            "NewsIcon": "icon2.png"
+        },
+        {
+            "NewsTitle": "Esports",
+            "NewsIcon": "icon3.png"
+        },
+        {
+            "NewsTitle": "Hot News",
+            "NewsIcon": "icon4.png"
+        },
+        {
+            "NewsTitle": "Market",
+            "NewsIcon": "icon5.png"
+        },
+        {
+            "NewsTitle": "PC-Console",
+            "NewsIcon": "icon5.png"
+        }
+    ]
+}

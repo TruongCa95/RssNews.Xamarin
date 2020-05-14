@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
@@ -30,6 +31,11 @@ namespace SmartNewsDemo.ViewModel
         private void TabViewViewModel_SelectedItemEvent(object sender, string e)
         {
             StackColor = e;
+        }
+        public override Task OnDisappearing()
+        {
+            TabViewViewModel.SelectedItemEvent -= TabViewViewModel_SelectedItemEvent;
+            return base.OnDisappearing();
         }
     }
 }

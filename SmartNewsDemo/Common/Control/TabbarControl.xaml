@@ -2,9 +2,11 @@
 <ScrollView xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="SmartNewsDemo.Common.Control.TabbarControl"
-            Orientation="Horizontal"
-            xmlns:button="clr-namespace:SmartNewsDemo.Common.Control">
-    <StackLayout Orientation="Horizontal" Spacing="0">
-        <button:TabItem/> 
+            Orientation="Horizontal">
+    <StackLayout>
+        <Grid HorizontalOptions="FillAndExpand">
+            <StackLayout x:Name="Container" Orientation="Horizontal" Spacing="0"/>
+        </Grid>
+        <StackLayout x:Name="BottomColor" HeightRequest="4"/>
     </StackLayout>
 </ScrollView>

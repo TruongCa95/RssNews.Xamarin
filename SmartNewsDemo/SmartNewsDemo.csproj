@@ -25,6 +25,7 @@
     <None Remove="Common\Data\Thumbnail\share.png" />
     <None Remove="Common\Data\Thumbnail\refresh.png" />
     <None Remove="Common\Data\Thumbnail\NewsThumb.jpeg" />
+    <None Remove="Common\Storage\ListCardData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,7 @@
     <EmbeddedResource Include="Common\Data\Thumbnail\share.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\refresh.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\NewsThumb.jpeg" />
+    <EmbeddedResource Include="Common\Storage\ListCardData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +56,7 @@
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -84,5 +87,6 @@
     <Folder Include="Common\Control\" />
     <Folder Include="Utilitis\Http\" />
     <Folder Include="Utilitis\Extension Method\" />
+    <Folder Include="Common\Storage\" />
   </ItemGroup>
 </Project>

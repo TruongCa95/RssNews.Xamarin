@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace SmartNewsDemo.ViewModel
 {
@@ -11,13 +12,22 @@ namespace SmartNewsDemo.ViewModel
     /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
-        #region INotifyPropertyChanged
-
-        /// <summary>
-        /// Occurs when property changed.
-        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-       
-        #endregion
+
+        //Overide Lifecycle using MVVM
+        public virtual Task OnAppearing()
+        {
+            return Task.FromResult<object>(null);
+        }
+
+        public virtual Task OnDisappearing()
+        {
+            return Task.FromResult<object>(null);
+        }
+
+        public virtual Task OnResume()
+        {
+            return Task.FromResult<object>(null);
+        }
     }
 }

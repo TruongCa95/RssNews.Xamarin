@@ -23,7 +23,7 @@ namespace SmartNewsDemo.ViewModel
         public static int numberNoti = 0;
         public object ItemsFont { get; set; }
         public string MessageText { get; set; }
-        public bool NotificationONOFF { get; set; }
+        public bool NotificationONOFF { get; set; } = true;
         public string VersionApp { get; set; }
         public string TitleView { get; set; }
         public double ImageSize { get; set; }
@@ -59,12 +59,12 @@ namespace SmartNewsDemo.ViewModel
             //UpdateStateStorage();
         }
 
+        #region event
+
         private void TabItemMenuViewModel_PassTitleName(object sender, string e)
         {
             TitleView = e;
         }
-
-        #region event
         private async void HandleOpenPopup()
         {
             await PopupNavigation.Instance.PushAsync(new TabItemMenu());
@@ -203,5 +203,10 @@ namespace SmartNewsDemo.ViewModel
             await Application.Current.SavePropertiesAsync();
         }
         #endregion
+        public override Task OnDisappearing()
+        {
+            TabItemMenuViewModel.PassTitleName -= TabItemMenuViewModel_PassTitleName;
+            return base.OnDisappearing();
+        }
     }
 }

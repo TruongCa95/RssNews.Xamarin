@@ -21,84 +21,32 @@
             EasingIn="BounceOut"
             DurationIn="100"/>
     </pages:PopupPage.Animation>
-    <StackLayout Orientation="Vertical">
-        <StackLayout.Margin>
-            <OnPlatform x:TypeArguments="Thickness">
-                <On Platform="Android, UWP">0</On>
-                <On Platform="iOS">0,30,0,0</On>
-            </OnPlatform>
-        </StackLayout.Margin>
-        <Grid Padding="0,100,0,0" RowSpacing="50">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <CollectionView ItemsSource="{Binding Cards}">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                Orientation="Vertical"
+                Span="2"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="0,100,0,0" RowSpacing="50">
             <card:CardView
+                    x:Name="control"
                     Padding="10,0,10,0"
                     isVisible="{Binding NotiVisiable}"
                     Grid.Column="0"
                     Grid.Row="0"
-                    Title="Hot News"
+                    Title="{Binding CardTitle}"
                     Notification="{Binding NotificationNumber}"
-                    Icon="icon1.png">
+                    Icon="{Binding CardIcon}">
                 <card:CardView.Behaviors>
                     <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
                 </card:CardView.Behaviors>
             </card:CardView>
-            <card:CardView Padding="10,0,10,0"
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    Title="Market"
-                    Icon="icon2.png">
-                 <card:CardView.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
-                </card:CardView.Behaviors>
-            </card:CardView>
-                <card:CardView
-                    Padding="10,0,10,0"
-                    Grid.Column="0"
-                    Grid.Row="2"
-                    Title="PC-Console"
-                    Icon="icon3.png">
-                     <card:CardView.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
-                </card:CardView.Behaviors>
-                </card:CardView>
-                <card:CardView
-                    Padding="10,0,10,0"
-                    Grid.Column="1"
-                    Grid.Row="0"
-                    Title="Mobile"
-                    Icon="icon4.png">
-                     <card:CardView.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
-                </card:CardView.Behaviors>
-                </card:CardView>
-                <card:CardView
-                    Padding="10,0,10,0"
-                    Grid.Column="1"
-                    Grid.Row="1"
-                    Title="Esports"
-                    Icon="icon5.png">
-                     <card:CardView.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
-                </card:CardView.Behaviors>
-                </card:CardView>
-                <card:CardView
-                    Padding="10,0,10,0"
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    Title="MMO"
-                    Icon="icon6.png">
-                     <card:CardView.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
-                </card:CardView.Behaviors>
-                </card:CardView>
         </Grid>
-    </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+        
+        </CollectionView>
 </pages:PopupPage>
