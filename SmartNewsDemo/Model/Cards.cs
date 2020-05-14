@@ -7,11 +7,8 @@ namespace SmartNewsDemo.Model
     {
         public string CardTitle { get; set; }
         public string CardIcon { get; set; }
-
-    }
-    public class CardList
-    {
-        public List<Cards> Cards { get; set; }
+        public bool NotificationVisiable { get; set; }
+        public string NotificationNumber { get; set; }
 
     }
 }

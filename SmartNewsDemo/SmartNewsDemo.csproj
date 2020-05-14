@@ -86,7 +86,6 @@
     <Folder Include="Common\Converter\" />
     <Folder Include="Common\Control\" />
     <Folder Include="Utilitis\Http\" />
-    <Folder Include="Utilitis\Extension Method\" />
     <Folder Include="Common\Storage\" />
   </ItemGroup>
 </Project>

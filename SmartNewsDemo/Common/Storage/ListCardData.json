@@ -1,28 +1,38 @@
-﻿{
-    "Cards": [
-        {
-            "CardTitle": "Game",
-            "CardIcon": "icon1.png"
-        },
-        {
-            "CardTitle": "MMO",
-            "CardIcon": "icon2.png"
-        },
-        {
-            "CardTitle": "Esports",
-            "CardIcon": "icon3.png"
-        },
-        {
-            "CardTitle": "Hot News",
-            "CardIcon": "icon4.png"
-        },
-        {
-            "CardTitle": "Market",
-            "CardIcon": "icon5.png"
-        },
-        {
-            "CardTitle": "PC-Console",
-            "CardIcon": "icon5.png"
-        }
-    ]
-}
+﻿[
+  {
+    "CardTitle": "Game",
+    "CardIcon": "icon1.png",
+    "NotificationVisiable": false,
+    "NotificationNumber": ""
+  },
+  {
+    "CardTitle": "MMO",
+    "CardIcon": "icon2.png",
+    "NotificationVisiable": false,
+    "NotificationNumber": ""
+  },
+  {
+    "CardTitle": "Esports",
+    "CardIcon": "icon3.png",
+    "NotificationVisiable": false,
+    "NotificationNumber": ""
+  },
+  {
+    "CardTitle": "Hot News",
+    "CardIcon": "icon4.png",
+    "NotificationVisiable": false,
+    "NotificationNumber": ""
+  },
+  {
+    "CardTitle": "Market",
+    "CardIcon": "icon5.png",
+    "NotificationVisiable": false,
+    "NotificationNumber": ""
+  },
+  {
+    "CardTitle": "PC-Console",
+    "CardIcon": "icon5.png",
+    "NotificationVisiable": false,
+    "NotificationNumber": ""
+  }
+]

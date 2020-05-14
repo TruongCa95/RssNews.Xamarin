@@ -21,7 +21,10 @@
             EasingIn="BounceOut"
             DurationIn="100"/>
     </pages:PopupPage.Animation>
-    <CollectionView ItemsSource="{Binding Cards}">
+    <CollectionView ItemsSource="{Binding Cards}" 
+                    SelectedItem="{Binding ItemSelected}"
+                    SelectionChanged="CollectionView_SelectionChanged"
+                    SelectionChangedCommand="{Binding SelectedCardItemCommand}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout
                 Orientation="Vertical"
@@ -30,23 +33,18 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Grid Padding="0,100,0,0" RowSpacing="50">
-            <card:CardView
+                    <card:CardView
                     x:Name="control"
                     Padding="10,0,10,0"
-                    isVisible="{Binding NotiVisiable}"
+                    isVisible="{Binding NotificationVisiable}"
                     Grid.Column="0"
                     Grid.Row="0"
                     Title="{Binding CardTitle}"
                     Notification="{Binding NotificationNumber}"
                     Icon="{Binding CardIcon}">
-                <card:CardView.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="OnSelected" Command="{Binding SelectedCardItemCommand}"/>
-                </card:CardView.Behaviors>
-            </card:CardView>
-        </Grid>
+                    </card:CardView>
+                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-
-        
-        </CollectionView>
+    </CollectionView>
 </pages:PopupPage>

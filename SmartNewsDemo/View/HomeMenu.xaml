@@ -13,8 +13,6 @@
     <ContentPage.Content>
         <CollectionView
             ItemsSource="{Binding News}"
-            RemainingItemsThreshold="0"
-            RemainingItemsThresholdReachedCommand="{Binding LoadMoreNewsCommand}"
             Margin="15">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
