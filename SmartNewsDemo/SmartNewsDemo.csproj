@@ -27,6 +27,9 @@
     <None Remove="Common\Data\Thumbnail\NewsThumb.jpeg" />
     <None Remove="Common\Storage\ListCardData.json" />
     <None Remove="Common\Storage\ListNewpaperData.json" />
+    <None Remove="Common\Data\Thumbnail\banner_Cafebiz.png" />
+    <None Remove="Common\Data\Thumbnail\banner_Cafef.jpg" />
+    <None Remove="Common\Data\Thumbnail\banner_Gamek.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +45,9 @@
     <EmbeddedResource Include="Common\Data\Thumbnail\NewsThumb.jpeg" />
     <EmbeddedResource Include="Common\Storage\ListCardData.json" />
     <EmbeddedResource Include="Common\Storage\ListNewpaperData.json" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\banner_Cafebiz.png" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\banner_Cafef.jpg" />
+    <EmbeddedResource Include="Common\Data\Thumbnail\banner_Gamek.jpg" />
   </ItemGroup>
 
   <ItemGroup>

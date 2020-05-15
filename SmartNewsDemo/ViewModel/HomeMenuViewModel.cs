@@ -14,7 +14,9 @@ namespace SmartNewsDemo.ViewModel
     {
         #region properties
         public ObservableCollection<NewsPaper> NewsPapers { get; set; }
+        public List<string> Banner { get; set; }
         public NewsPaper ItemSelected { get; set; }
+        string[] banner = { "local:EmbeddedImage SmartNewsDemo.Common.Data.banner_Cafebiz.png", "local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.banner_Cafef.jpg", "local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.banner_Gamek.jpg" };
         #endregion
         #region command
         public ICommand SelectedCommand { get; set; }
@@ -26,6 +28,11 @@ namespace SmartNewsDemo.ViewModel
                 HandleSelected();
             });
             SetData();
+            Banner = new List<string>();
+            foreach (var item in banner)
+            {
+                Banner.Add(item);
+            }
         }
 
         private async void HandleSelected()

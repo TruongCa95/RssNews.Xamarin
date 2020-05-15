@@ -13,44 +13,56 @@
                HorizontalTextAlignment="Center"/>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <CollectionView
+        <StackLayout>
+            <CarouselView>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Banner}"
+                               Aspect="AspectFill"
+                               MinimumHeightRequest="100"
+                               MinimumWidthRequest="300"/>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <CollectionView
             ItemsSource="{Binding NewsPapers}"
             SelectedItem = "{Binding ItemSelected}"
             SelectionMode="Single"
             SelectionChangedCommand="{Binding SelectedCommand}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
                     Orientation="Vertical"
                     Span="3"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Orientation="Vertical"
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical"
                                  Spacing="10"
                                  Padding="10">
-                        <!--Set Hightlight color item-->
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup Name="CommonStates">
-                                <VisualState Name="Normal" />
-                                <VisualState Name="Selected">
-                                    <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="White" />
-                                    </VisualState.Setters>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Image Source="{Binding NewsIcon}"
+                            <!--Set Hightlight color item-->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Image Source="{Binding NewsIcon}"
                                Aspect="AspectFit"
                                MinimumHeightRequest="20"
                                MinimumWidthRequest="60"/>
-                        <Label Grid.Row="1"
+                            <Label Grid.Row="1"
                                Text="{Binding NewsTitle}"
                                LineBreakMode="NoWrap"
                                HorizontalTextAlignment="Center"
                                VerticalOptions="EndAndExpand"/>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
