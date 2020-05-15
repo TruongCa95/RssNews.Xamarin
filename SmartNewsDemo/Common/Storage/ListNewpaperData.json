@@ -1,26 +1,90 @@
 ﻿[
-  {
-    "NewsTitle": "TinhTe",
-    "NewsIcon": "icon1.png"
-  },
-  {
-    "NewsTitle": "Thanhnien",
-    "NewsIcon": "icon2.png"
-  },
-  {
-    "NewsTitle": "TuoiTre",
-    "NewsIcon": "icon3.png"
-  },
-  {
-    "NewsTitle": "Hot News",
-    "NewsIcon": "icon4.png"
-  },
-  {
-    "NewsTitle": "Market",
-    "NewsIcon": "icon5.png"
-  },
-  {
-    "NewsTitle": "PC-Console",
-    "NewsIcon": "icon5.png"
-  }
+    {
+        "NewsIcon": "logo_tinhte.png",
+        "NewsTitle": "Tinh Tế",
+        "NewsCategory": [],
+        "NewsCategoryColor": []
+    },
+    {
+        "NewsIcon": "logo_thanhnien.png",
+        "NewsTitle": "Thanh niên",
+        "NewsCategory": [],
+        "NewsCategoryColor": []
+    },
+    {
+        "NewsIcon": "logo_tuoitre.png",
+        "NewsTitle": "Tuổi Trẻ", 
+        "NewsCategory": [],
+        "NewsCategoryColor": []
+    },
+    {
+        "NewsIcon": "logo_Gamek.png",
+        "NewsTitle": "GameK",
+        "NewsCategory": [
+            "https://gamek.vn/trang-chu.rss",
+            "https://gamek.vn/game-online.rss",
+            "https://gamek.vn/thi-truong.rss",
+            "https://gamek.vn/pc-console.rss",
+            "https://gamek.vn/esport.rss",
+            "https://gamek.vn/mobile-social.rss",
+            "https://gamek.vn/gaming-gear.rss",
+            "https://gamek.vn/manga-film.rss"
+        ],
+        "NewsCategoryColor": [
+            "Red",
+            "Gold",
+            "Orange",
+            "Blue",
+            "Green",
+            "Silver",
+            "Red",
+            "Orange"
+        ]
+    },
+    {
+        "NewsIcon": "logo_cafef.png",
+        "NewsTitle": "CafeF",
+        "NewsCategory": [
+            "https://cafef.vn/trang-chu.rss",
+            "https://cafef.vn/thoi-su.rss",
+            "https://cafef.vn/thi-truong-chung-khoan.rss",
+            "https://cafef.vn/bat-dong-san.rss",
+            "https://cafef.vn/doanh-nghiep.rss",
+            "https://cafef.vn/tai-chinh-ngan-hang.rss",
+            "https://cafef.vn/tai-chinh-quoc-te.rss",
+            "https://cafef.vn/vi-mo-dau-tu.rss",
+            "https://cafef.vn/hang-hoa-nguyen-lieu.rss"
+        ],
+        "NewsCategoryColor": [
+            "Red",
+            "Gold",
+            "Orange",
+            "Blue",
+            "Green",
+            "Silver",
+            "Red",
+            "Orange",
+            "Green"
+        ]
+    },
+    {
+        "NewsIcon": "logo_cafebiz.png",
+        "NewsTitle": "Cafebiz",
+        "NewsCategory": [
+            "https://cafebiz.vn/thoi-su.rss",
+            "https://cafebiz.vn/kinh-te-vi-mo.rss",
+            "https://cafebiz.vn/cau-chuyen-kinh-doanh.rss",
+            "https://cafebiz.vn/cong-nghe.rss",
+            "https://cafebiz.vn/song.rss",
+            "https://cafebiz.vn/trang-chu.rss"
+        ],
+        "NewsCategoryColor": [
+            "Red",
+            "Gold",
+            "Orange",
+            "Blue",
+            "Green",
+            "Silver"
+        ]
+    }
 ]

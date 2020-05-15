@@ -17,8 +17,7 @@ namespace SmartNewsDemo.ViewModel
         public Cards ItemSelected { get; set; }
         public string NotificationNumber { get; set; }
         public bool NotiVisiable { get; set; }
-        public string BackColor { get; set; }
-        public bool isSelected;
+        public Color BackColor { get; set; }
         public static string Title;
         #endregion
 
@@ -35,25 +34,20 @@ namespace SmartNewsDemo.ViewModel
 
         private void SetData()
         {
-            var data = ReadAndWriteFile.GetJsonData("ListCardData.json");
-            var result = JsonConvert.DeserializeObject<List<Cards>>(data);
+            var jsonString = ReadAndWriteFile.GetJsonData("ListCardData.json");
+            var result = JsonConvert.DeserializeObject<List<Cards>>(jsonString);
             Cards = new ObservableCollection<Cards>(result);
         }
 
         private void HandleTapped(object obj)
         {
-            if(ItemSelected!=null)
-            {
-                var frm = (Frame)obj;
-                frm.BackgroundColor = Color.FromHex("#C0C0C0");
-                //get element child
-                var lbl = frm.FindByName<Label>("lblTitle");
-                Title = lbl.Text;
-                EventHandler<string> handler = PassTitleName;
-                handler?.Invoke(this, Title);
-            }
-            ItemSelected = null;
-
+            var frm = (Frame)obj;
+            frm.BackgroundColor = Color.FromHex("#C0C0C0");
+            //get element child
+            var lbl = frm.FindByName<Label>("lblTitle");
+            Title = lbl.Text;
+            EventHandler<string> handler = PassTitleName;
+            handler?.Invoke(this, Title);
         }
 
         void SetNotifiNumber()

@@ -9,7 +9,7 @@ namespace SmartNewsDemo.Common.Control
         public TabbarControl()
         {
             InitializeComponent();
-            BindingContext = new SmartNewsDemo.ViewModel.TabViewViewModel();
+            
         }
     }
 }

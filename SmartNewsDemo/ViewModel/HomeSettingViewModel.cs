@@ -38,6 +38,7 @@ namespace SmartNewsDemo.ViewModel
         public ICommand PushLocalCommand { get; set; }
         public ICommand ScrollVerticalCommand { get; set; }
         public ICommand OpenPopupCommand { get; set; }
+        public ICommand OpenMenuCommand { get; set; }
         #endregion
         public HomeSettingViewModel()
         {
@@ -51,12 +52,21 @@ namespace SmartNewsDemo.ViewModel
             {
                 HandleOpenPopup();
             }) ;
+            OpenMenuCommand = new Command((async) =>
+            {
+                HandleOpenMenu();
+            });
             ListFontFamily.AddRange(lstfont);
             VersionApp = $"{VersionTracking.CurrentVersion}";
             ImageSize = 200;
             TitleView = "Setting";
             TabItemMenuViewModel.PassTitleName += TabItemMenuViewModel_PassTitleName;
             //UpdateStateStorage();
+        }
+
+        private async void HandleOpenMenu()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new HomeMenu());
         }
 
         #region event
@@ -123,7 +133,7 @@ namespace SmartNewsDemo.ViewModel
         {
             if (Application.Current.Properties.ContainsKey("Mode"))
             {
-                Numbersize = Application.Current.Properties["FontSize"].ToString();
+                //Numbersize = Application.Current.Properties["FontSize"].ToString();
                 //ItemsFont = Application.Current.Properties["Font"].ToString();
                 ModeONOFF = Convert.ToBoolean(Application.Current.Properties["Mode"]);
             }

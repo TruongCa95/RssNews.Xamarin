@@ -64,13 +64,13 @@
     <OptimizePNGs>true</OptimizePNGs>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NotificationHelper.cs" />
     <Compile Include="NotificationDelegate.cs" />
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -166,6 +166,12 @@
     <BundleResource Include="Resources\icon4.png" />
     <BundleResource Include="Resources\icon5.png" />
     <BundleResource Include="Resources\icon6.png" />
+    <BundleResource Include="Resources\logo_cafef.png" />
+    <BundleResource Include="Resources\logo_thanhnien.png" />
+    <BundleResource Include="Resources\logo_tinhte.png" />
+    <BundleResource Include="Resources\logo_cafebiz.png" />
+    <BundleResource Include="Resources\logo_tuoitre.png" />
+    <BundleResource Include="Resources\logo_Gamek.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_about.png" />

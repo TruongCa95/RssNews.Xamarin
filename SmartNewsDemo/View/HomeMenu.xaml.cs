@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using SmartNewsDemo.ViewModel;
 using Xamarin.Forms;
 
 namespace SmartNewsDemo.View
@@ -10,6 +10,7 @@ namespace SmartNewsDemo.View
         public HomeMenu()
         {
             InitializeComponent();
+            this.BindingContext = new HomeMenuViewModel();
         }
     }
 }

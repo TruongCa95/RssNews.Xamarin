@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Plugin.Connectivity;
+using SmartNewsDemo.Model;
 using SmartNewsDemo.View;
 using Syncfusion.XForms.TabView;
 using Xamarin.Forms;
@@ -12,6 +15,7 @@ namespace SmartNewsDemo.ViewModel
     {
         #region properties,variable
         public TabItemCollection Tabitems { get; set; }
+        public List<string> ColorItems;
         public SfTabItem tabItem;
         public bool isConnected;
         public int countClick = 1;
@@ -26,32 +30,19 @@ namespace SmartNewsDemo.ViewModel
         public ICommand SelectionChangeCommand { get; set; }
         #endregion
 
-        #region Data
-        string[] ColorItems = { "Red", "Gold", "Orange", "Blue", "Green", "Silver" };
-        string[] RssItems = {
-            "https://gamek.vn/trang-chu.rss",
-            "https://cafef.vn/trang-chu.rss",
-            "https://thanhnien.vn/rss/home.rss",
-            "https://tuoitre.vn/rss/tin-moi-nhat.rss",
-            "https://tinhte.vn/rss",
-            "https://cafebiz.vn/cong-nghe.rss"};
-        #endregion
-
         public TabViewViewModel()
         {
             Tabitems = new TabItemCollection();
             CheckConnected();
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
             SelectionChangeCommand = new Command(HandleSelected);
-            var setting = new HomeSettingViewModel();
-            setting.UpdateStateStorage();
         }
 
         private void HandleSelected(object obj)
         {
             //Raise event selected and pass color to TabHeader
             var index = TabItemIndex;
-            var colors = ColorItems.GetValue(index).ToString();
+            var colors = ColorItems[index].ToString();
             EventHandler<string> handler = SelectedItemEvent;
             handler?.Invoke(this, colors);
 
@@ -79,7 +70,7 @@ namespace SmartNewsDemo.ViewModel
             if (e.IsConnected)
             {
                 Tabitems = new TabItemCollection();
-                SetContent();
+                MasterPage.SeletedItemEvent += MasterPage_SeletedItemEvent;
             }
             else
             {
@@ -94,7 +85,7 @@ namespace SmartNewsDemo.ViewModel
         {
             if (CrossConnectivity.Current.IsConnected)
             {
-                SetContent();
+                MasterPage.SeletedItemEvent += MasterPage_SeletedItemEvent;
             }
             else
             {
@@ -104,29 +95,32 @@ namespace SmartNewsDemo.ViewModel
                 });
             }
         }
-        public void SetContent()
+
+        private void MasterPage_SeletedItemEvent(object sender, object e)
         {
-            //Process Auto generate tabitem
-            if (RssItems.Length != 0)
+            if(e!=null)
             {
-                int i = 0;
-                foreach (var itemRss in RssItems)
+                NewsPaper newsPaper = (NewsPaper)e;
+                var RssItems = newsPaper.NewsCategory;
+                ColorItems = newsPaper.NewsCategoryColor;
+                //Process Auto generate tabitem
+                for(int i=0; i<RssItems.Count;i++)
                 {
-                    var NamePath = itemRss.Substring(8);
-                    int index = NamePath.IndexOf('.');
+                    int idx = RssItems[i].LastIndexOf('/');
+                    var NamePath = RssItems[i].Substring(idx + 1);
+                    var TrimPath = NamePath.Replace("-", string.Empty);
+                    //find index '.' first in string
+                    int index = TrimPath.IndexOf('.');
                     if (index > 0)
                     {
-                        var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(NamePath.Substring(0, index).ToLower());
-                        TabItemContents content = new TabItemContents(itemRss);
-                        TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems.GetValue(i).ToString());
+                        var pieces = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(TrimPath.Substring(0, index).ToLower());
+                        TabItemContents content = new TabItemContents(RssItems[i]);
+                        TabItemHeaders headers = new TabItemHeaders(pieces, ColorItems[i].ToString());
                         tabItem = new SfTabItem
                         {
                             HeaderContent = headers.Content,
                             Content = content.Content,
-                            FontIconFontFamily = "Arial",
-                            FontIconFontSize = 100
                         };
-                        i += 1;
                         Tabitems.Add(tabItem);
                     }
                 }

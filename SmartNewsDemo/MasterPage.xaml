@@ -12,7 +12,7 @@
              x:Class="SmartNewsDemo.MasterPage">
     <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
-        <NavigationPage Title="Home">
+        <NavigationPage Title="News">
             <x:Arguments>
                 <view:TabView/>
             </x:Arguments>

@@ -26,6 +26,7 @@
     <None Remove="Common\Data\Thumbnail\refresh.png" />
     <None Remove="Common\Data\Thumbnail\NewsThumb.jpeg" />
     <None Remove="Common\Storage\ListCardData.json" />
+    <None Remove="Common\Storage\ListNewpaperData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,7 @@
     <EmbeddedResource Include="Common\Data\Thumbnail\refresh.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\NewsThumb.jpeg" />
     <EmbeddedResource Include="Common\Storage\ListCardData.json" />
+    <EmbeddedResource Include="Common\Storage\ListNewpaperData.json" />
   </ItemGroup>
 
   <ItemGroup>

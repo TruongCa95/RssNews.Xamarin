@@ -49,7 +49,8 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid BackgroundColor="{Binding .,Converter={StaticResource AlternatingHighlightColorConverter}, ConverterParameter={x:Reference lstdetail}}">
+                                    <Grid
+                                          BackgroundColor="{Binding .,Converter={StaticResource AlternatingHighlightColorConverter}, ConverterParameter={x:Reference lstdetail}}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="3*" />
                                             <RowDefinition Height="*" />
@@ -58,11 +59,17 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <Image Grid.RowSpan="2"
-                                           Source="{Binding ThumbnailUrl}"
+                                        <Frame Padding="0"
+                                               Margin="0"
+                                               HasShadow="False"
+                                               Grid.RowSpan="2"
+                                               CornerRadius="5">
+                                            <Image 
+                                               Source="{Binding ThumbnailUrl}"
                                                Aspect="AspectFill"
                                                WidthRequest="100"
-                                           BackgroundColor="Transparent"/>
+                                               BackgroundColor="Transparent"/>
+                                        </Frame>
                                         <Label Grid.Column="1"
                                            Text="{Binding Title}"
                                            LineBreakMode="WordWrap"

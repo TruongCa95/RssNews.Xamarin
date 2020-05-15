@@ -15,6 +15,7 @@
                     <Label x:Name="lbl" 
                         Margin="0,5,0,0"
                        TextColor="White"
+                       LineBreakMode="NoWrap"
                        FontFamily="{DynamicResource labelStyleFont}"
                        Text="{Binding btnTitle}" 
                        BackgroundColor="{Binding btnColor}"

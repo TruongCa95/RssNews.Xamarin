@@ -170,11 +170,19 @@
                        Margin="0,0,5,0"
                        HorizontalOptions="EndAndExpand"/>
                     </StackLayout>
-                    <Button Text="Open Popup" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Blue" TextColor="White">
+                    <StackLayout Orientation="Horizontal">
+                         <Button Text="Open Popup" HorizontalOptions="StartAndExpand" VerticalOptions="Center" BackgroundColor="Blue" TextColor="White">
                         <Button.Behaviors>
                             <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding OpenPopupCommand}"/>
                         </Button.Behaviors>
                     </Button>
+                         <Button Text="Open HomeMunu" HorizontalOptions="EndAndExpand" VerticalOptions="Center" BackgroundColor="Blue" TextColor="White">
+                        <Button.Behaviors>
+                            <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding OpenMenuCommand}"/>
+                        </Button.Behaviors>
+                    </Button>
+                    </StackLayout>
+                   
                 </StackLayout>
                 </ScrollView>
         </Grid>

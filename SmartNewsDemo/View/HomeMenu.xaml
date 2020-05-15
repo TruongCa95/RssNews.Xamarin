@@ -4,6 +4,8 @@
              x:Class="SmartNewsDemo.View.HomeMenu">
     <NavigationPage.TitleView>
         <Label Text="Top List NewsPaper"
+               TextColor="Black"
+               FontAttributes="Bold"
                LineBreakMode="TailTruncation"
                VerticalOptions="CenterAndExpand"
                HorizontalOptions="CenterAndExpand"
@@ -12,8 +14,10 @@
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <CollectionView
-            ItemsSource="{Binding News}"
-            Margin="15">
+            ItemsSource="{Binding NewsPapers}"
+            SelectedItem = "{Binding ItemSelected}"
+            SelectionMode="Single"
+            SelectionChangedCommand="{Binding SelectedCommand}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
                     Orientation="Vertical"
@@ -21,20 +25,30 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Image Source="{Binding ImageNews}"
-                               Aspect="AspectFill"
-                               HeightRequest="60"
-                               WidthRequest="60"/>
+                    <StackLayout Orientation="Vertical"
+                                 Spacing="10"
+                                 Padding="10">
+                        <!--Set Hightlight color item-->
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="White" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Image Source="{Binding NewsIcon}"
+                               Aspect="AspectFit"
+                               MinimumHeightRequest="20"
+                               MinimumWidthRequest="60"/>
                         <Label Grid.Row="1"
-                               Text="{Binding NameNews}"
-                               LineBreakMode="TailTruncation"
+                               Text="{Binding NewsTitle}"
+                               LineBreakMode="NoWrap"
+                               HorizontalTextAlignment="Center"
                                VerticalOptions="EndAndExpand"/>
-                    </Grid>
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
