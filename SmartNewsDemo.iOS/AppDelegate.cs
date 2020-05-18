@@ -24,7 +24,7 @@ namespace SmartNewsDemo.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+            global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
             //render Sftabview
             SfTabViewRenderer.Init();
             //initilaze plugin popup
@@ -41,6 +41,7 @@ namespace SmartNewsDemo.iOS
             //set the Delegate to handle
             UNUserNotificationCenter.Current.Delegate = new NotificationDelegate();
             ImageCircleRenderer.Init();
+            global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
 

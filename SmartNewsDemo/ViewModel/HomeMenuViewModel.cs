@@ -14,9 +14,9 @@ namespace SmartNewsDemo.ViewModel
     {
         #region properties
         public ObservableCollection<NewsPaper> NewsPapers { get; set; }
-        public List<string> Banner { get; set; }
+        public List<Banners> Banner { get; set; }
         public NewsPaper ItemSelected { get; set; }
-        string[] banner = { "local:EmbeddedImage SmartNewsDemo.Common.Data.banner_Cafebiz.png", "local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.banner_Cafef.jpg", "local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.banner_Gamek.jpg" };
+        public string JsonString;
         #endregion
         #region command
         public ICommand SelectedCommand { get; set; }
@@ -28,11 +28,6 @@ namespace SmartNewsDemo.ViewModel
                 HandleSelected();
             });
             SetData();
-            Banner = new List<string>();
-            foreach (var item in banner)
-            {
-                Banner.Add(item);
-            }
         }
 
         private async void HandleSelected()
@@ -45,9 +40,14 @@ namespace SmartNewsDemo.ViewModel
 
         private void SetData()
         {
-            var jsonstring = ReadAndWriteFile.GetJsonData("ListNewpaperData.json");
-            var result = JsonConvert.DeserializeObject<List<NewsPaper>>(jsonstring);
-            NewsPapers = new ObservableCollection<NewsPaper>(result);
+            //Collection View Data
+            JsonString= ReadAndWriteFile.GetJsonData("ListNewpaperData.json");
+            var resultNews = JsonConvert.DeserializeObject<List<NewsPaper>>(JsonString);
+            NewsPapers = new ObservableCollection<NewsPaper>(resultNews);
+            //Image Slider Data
+            JsonString = ReadAndWriteFile.GetJsonData("ListBannerData.json");
+            Banner = JsonConvert.DeserializeObject<List<Banners>>(JsonString);
+           
         }
     }
 }

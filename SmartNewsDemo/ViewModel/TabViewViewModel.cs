@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Essentials;
 using System.Windows.Input;
-using Plugin.Connectivity;
 using SmartNewsDemo.Model;
 using SmartNewsDemo.View;
 using Syncfusion.XForms.TabView;
@@ -34,7 +34,7 @@ namespace SmartNewsDemo.ViewModel
         {
             Tabitems = new TabItemCollection();
             CheckConnected();
-            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+            Connectivity.ConnectivityChanged += Current_ConnectivityChanged;
             SelectionChangeCommand = new Command(HandleSelected);
         }
 
@@ -65,9 +65,10 @@ namespace SmartNewsDemo.ViewModel
             }
         }
         //Capture network status change
-        private void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
+        private void Current_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            if (e.IsConnected)
+            var access = e.NetworkAccess;
+            if (access == NetworkAccess.Internet)
             {
                 Tabitems = new TabItemCollection();
                 MasterPage.SeletedItemEvent += MasterPage_SeletedItemEvent;
@@ -83,7 +84,9 @@ namespace SmartNewsDemo.ViewModel
         //Check Network
         public void CheckConnected()
         {
-            if (CrossConnectivity.Current.IsConnected)
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
             {
                 MasterPage.SeletedItemEvent += MasterPage_SeletedItemEvent;
             }
@@ -94,6 +97,11 @@ namespace SmartNewsDemo.ViewModel
                     Application.Current.MainPage.DisplayAlert("No Internet Connection", "Please connect to Internet", "OK");
                 });
             }
+            //var profiles = Connectivity.ConnectionProfiles;
+            //if (profiles.Contains(ConnectionProfile.WiFi))
+            //{
+            //    // Active Wi-Fi connection.
+            //}
         }
 
         private void MasterPage_SeletedItemEvent(object sender, object e)

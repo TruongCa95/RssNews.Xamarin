@@ -9,8 +9,6 @@ using Android.OS;
 using System.Net;
 using Firebase.Iid;
 using ImageCircle.Forms.Plugin.Droid;
-using Rg.Plugins.Popup.Services;
-using Xamarin.Forms.Platform.Android;
 
 namespace SmartNewsDemo.Droid
 {
@@ -22,14 +20,15 @@ namespace SmartNewsDemo.Droid
             ServicePointManager.ServerCertificateValidationCallback += (o, cert, chain, errors) => true;
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
             base.OnCreate(savedInstanceState);
-            //initilaze plugin
+            //initilaze plugin popup
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             //Get token device
             var refreshedToken = FirebaseInstanceId.Instance.Token;
             System.Diagnostics.Debug.WriteLine($"FCM Token: {refreshedToken}");
+            //initilaze plugin ImageCircle
             ImageCircleRenderer.Init();
+            global::Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

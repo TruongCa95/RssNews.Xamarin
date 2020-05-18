@@ -14,16 +14,27 @@
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout>
-            <CarouselView>
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Image Source="{Binding Banner}"
-                               Aspect="AspectFill"
-                               MinimumHeightRequest="100"
-                               MinimumWidthRequest="300"/>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+            <AbsoluteLayout>
+                <CarouselView x:Name="MainCarouselView"
+                              AbsoluteLayout.LayoutFlags="All"
+                              AbsoluteLayout.LayoutBounds="0,1,1,1"
+                              ItemsUpdatingScrollMode="KeepItemsInView"
+                              HorizontalScrollBarVisibility="Never"
+                              ItemsSource="{Binding Banner}"
+                              IndicatorView="indicatorView">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image x:Name="images" Source="{Binding BannerSource}" Aspect="Fill"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                           AbsoluteLayout.LayoutBounds="0.5,0.95,1,1"
+                           IndicatorColor="LightGray"
+                           SelectedIndicatorColor="DarkGray"
+                           HorizontalOptions="CenterAndExpand" />
+            </AbsoluteLayout>
             <CollectionView
             ItemsSource="{Binding NewsPapers}"
             SelectedItem = "{Binding ItemSelected}"

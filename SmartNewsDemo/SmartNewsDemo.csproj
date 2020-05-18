@@ -30,6 +30,7 @@
     <None Remove="Common\Data\Thumbnail\banner_Cafebiz.png" />
     <None Remove="Common\Data\Thumbnail\banner_Cafef.jpg" />
     <None Remove="Common\Data\Thumbnail\banner_Gamek.jpg" />
+    <None Remove="Common\Storage\ListBannerData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,9 +46,7 @@
     <EmbeddedResource Include="Common\Data\Thumbnail\NewsThumb.jpeg" />
     <EmbeddedResource Include="Common\Storage\ListCardData.json" />
     <EmbeddedResource Include="Common\Storage\ListNewpaperData.json" />
-    <EmbeddedResource Include="Common\Data\Thumbnail\banner_Cafebiz.png" />
-    <EmbeddedResource Include="Common\Data\Thumbnail\banner_Cafef.jpg" />
-    <EmbeddedResource Include="Common\Data\Thumbnail\banner_Gamek.jpg" />
+    <EmbeddedResource Include="Common\Storage\ListBannerData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,9 +56,8 @@
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.657" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.772" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.1.0.48" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
