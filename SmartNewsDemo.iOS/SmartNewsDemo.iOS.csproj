@@ -126,7 +126,6 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.772" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>18.1.0.52</Version>
@@ -139,6 +138,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.5.0.725</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -172,6 +174,10 @@
     <BundleResource Include="Resources\logo_cafebiz.png" />
     <BundleResource Include="Resources\logo_tuoitre.png" />
     <BundleResource Include="Resources\logo_Gamek.png" />
+    <BundleResource Include="Resources\login_facebook.svg" />
+    <BundleResource Include="Resources\login_gmail.svg" />
+    <BundleResource Include="Resources\login_twitter.svg" />
+    <BundleResource Include="Resources\login_telegram.svg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_about.png" />

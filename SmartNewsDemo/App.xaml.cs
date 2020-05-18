@@ -12,7 +12,7 @@ namespace SmartNewsDemo
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjQyNDcwQDMxMzgyZTMxMmUzMG5xNjQ4YVhXdEdPaG00U1NsdXZBcFlGZmlvUm1qeThQYVFoclhTV2FaN3c9");
             InitializeComponent();
             Xamarin.Essentials.VersionTracking.Track();
-            MainPage = new NavigationPage(new SmartNewsDemo.View.HomeMenu());
+            MainPage = new NavigationPage(new SmartNewsDemo.View.LoginForm());
             //MainPage = new NavigationPage(new MasterPage());
         }
 

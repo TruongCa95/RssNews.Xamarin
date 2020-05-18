@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundImageSource="https://lh3.googleusercontent.com/jl7ATQc7Y7KK4jENMwrF2YEjw5c4ouhe7mXrigPDMXF3HzSUtgSbJW3FrdlSZQo8ZF9tGKNpFdZw7yHWl_0VY2mbWiFQ4d55A08h_JvuYxFPqgEXCWJ-0rykYMQUyB0ytCD92xNB=w2400"
+             x:Class="SmartNewsDemo.View.LoginForm">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+         <StackLayout Orientation="Vertical"
+                      WidthRequest="300"
+                      AbsoluteLayout.LayoutFlags="PositionProportional"
+                      AbsoluteLayout.LayoutBounds="0.5,0.5,AutoSize,AutoSize"
+                      Padding="30"
+                      Spacing="40">  
+            <Frame BackgroundColor="#BF043055" HasShadow="False">  
+                <StackLayout Orientation="Vertical" Spacing="10">  
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Email"
+                           PlaceholderColor="Blue" HeightRequest="40"
+                           Keyboard="Email"  
+                           TextColor="Black"/>  
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="*******"
+                           PlaceholderColor="Blue" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="Black"/>  
+                </StackLayout>  
+            </Frame>  
+            <Button Command="{Binding SubmitCommand}" Text="Login" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="#088da5" />
+             <StackLayout Orientation="Horizontal">
+                 <Image Source="icon1.png"/>
+                 <Image Source="login_gmail.svg"/>
+                 <Image Source="login_telegram.svg"/>
+                 <Image Source="login_twitter.svg"/>
+            </StackLayout>
+        </StackLayout>
+            </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
