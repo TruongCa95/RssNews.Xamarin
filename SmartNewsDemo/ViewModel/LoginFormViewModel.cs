@@ -13,7 +13,8 @@ namespace SmartNewsDemo.ViewModel
     public class LoginFormViewModel : BaseViewModel
     {
         #region properties, variable
-        public bool frmIsVisiable { get; set; }
+        public string BtnName { get; set; }
+        public bool FrmIsVisiable { get; set; }
         public string AlertMessage { get; set; }
         public bool Busy { get; set; }
         public string Email { get; set; }
@@ -32,7 +33,7 @@ namespace SmartNewsDemo.ViewModel
             {
                 HandleSubmit();
             });
-
+            BtnName = "Login";
         }
         private void SetIconLogin()
         {
@@ -58,35 +59,36 @@ namespace SmartNewsDemo.ViewModel
             {
                 if (current != NetworkAccess.Internet)
                 {
-                    frmIsVisiable = true;
+                    FrmIsVisiable = true;
                     AlertMessage = AlertMessageConstants.ErrorNetwork;
                     await Task.Delay(3000);
-                    frmIsVisiable = false;
+                    FrmIsVisiable = false;
                 }
                 else if (Email == null|| Password == null)
                 {
-                    frmIsVisiable = true;
+                    FrmIsVisiable = true;
                     AlertMessage = AlertMessageConstants.EmptyUserOrPass;
                     await Task.Delay(3000);
-                    frmIsVisiable = false;
+                    FrmIsVisiable = false;
                 }
                 else if (!Regex.IsMatch(Email, emailPattern))
                 {
-                    frmIsVisiable = true;
+                    FrmIsVisiable = true;
                     AlertMessage = AlertMessageConstants.WrongEmailFormat;
                     await Task.Delay(3000);
-                    frmIsVisiable = false;
+                    FrmIsVisiable = false;
                 }
                 else if (Email != "truong.lavan@vti.com" || Password != "723516")
                 {
-                    frmIsVisiable = true;
+                    FrmIsVisiable = true;
                     AlertMessage = AlertMessageConstants.WrongUserOrPass;
                     await Task.Delay(3000);
-                    frmIsVisiable = false;
+                    FrmIsVisiable = false;
                 }
                 else
                 {
                     Busy = true;
+                    BtnName = "";
                     await Task.Delay(2000);
                     await Application.Current.MainPage.Navigation.PushAsync(new HomeMenu());
                     Password = string.Empty;

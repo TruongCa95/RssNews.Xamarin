@@ -72,7 +72,7 @@
     <Compile Include="NotificationDelegate.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
-    <Compile Include="CustomRenderer\CustomRendererButton.cs" />
+    <Compile Include="CustomRenderer\CustomButtonRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -212,7 +212,5 @@
   <ItemGroup>
     <BundleResource Include="Resources\signaling.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CustomRenderer\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

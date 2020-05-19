@@ -5,12 +5,12 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(CustomButton), typeof(CustomRendererButton))]
+[assembly: ExportRenderer(typeof(CustomButton), typeof(CustomButtonRenderer))]
 namespace SmartNewsDemo.iOS.CustomRenderer
 {
-    public class CustomRendererButton: ButtonRenderer
+    public class CustomButtonRenderer: ButtonRenderer
     {
-        public CustomRendererButton()
+        public CustomButtonRenderer()
         {
         }
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Button> e)

@@ -6,18 +6,12 @@
              x:Class="SmartNewsDemo.View.LoginForm">
     <ContentPage.Content>
         <AbsoluteLayout>
-            <ActivityIndicator IsRunning="{Binding Busy}"
-                               IsVisible="{Binding Busy}"
-                               AbsoluteLayout.LayoutFlags="PositionProportional"
-                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
-                               VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="CenterAndExpand"/>
             <Label Text="Sign In"
                    TextColor="OrangeRed"
                    FontAttributes="Bold"
                    FontSize="Title"
-                   AbsoluteLayout.LayoutFlags="PositionProportional"
-                   AbsoluteLayout.LayoutBounds="0.5,0.2,100,100"
+                   AbsoluteLayout.LayoutFlags="XProportional"
+                   AbsoluteLayout.LayoutBounds="0.5,0.25,AutoSize,AutoSize"
                    HorizontalOptions="CenterAndExpand"
                    HorizontalTextAlignment="Center"/>
             <StackLayout Orientation="Vertical"
@@ -38,7 +32,7 @@
                            TextColor="Black"/>
                     </StackLayout>
                 </Frame>
-                <customControls:CustomButton Command="{Binding SubmitCommand}" Text="Login" TextColor="White"  
+                <Button Command="{Binding SubmitCommand}" Text="{Binding BtnName}" TextColor="White"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
                     BackgroundColor="#088da5" />
                 <StackLayout Orientation="Horizontal"
@@ -52,10 +46,20 @@
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
-                <customControls:CustomButton Text="Do not have an account? Register Now!" HorizontalOptions="CenterAndExpand" FontSize="Body"/>
+                <customControls:CustomButton Text="Do not have an account? Register Now!" 
+                                             TextColor="#03C3FD"
+                                             HorizontalOptions="CenterAndExpand" 
+                                             FontSize="Default"/>
             </StackLayout>
+            <ActivityIndicator IsRunning="{Binding Busy}"
+                               IsVisible="{Binding Busy}"
+                               Color="Blue"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"/>
             <Frame CornerRadius="30" Opacity="10"
-                   IsVisible="{Binding frmIsVisiable}"
+                   IsVisible="{Binding FrmIsVisiable}"
                    BackgroundColor="LightGray"
                    AbsoluteLayout.LayoutFlags="PositionProportional"
                    AbsoluteLayout.LayoutBounds="0.5,0.95,AutoSize,AutoSize">
