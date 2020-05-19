@@ -17,9 +17,9 @@ namespace SmartNewsDemo.iOS.CustomRenderer
             if (Control != null)
             {
 
-                Control.BorderStyle = UITextBorderStyle.None;
-                Control.Layer.CornerRadius = 10;
-                Control.TextColor = UIColor.White;
+                UITextField textField = Control;
+                textField.BorderStyle = UITextBorderStyle.None;
+                textField.ClearButtonMode = UITextFieldViewMode.WhileEditing;
 
             }
         }

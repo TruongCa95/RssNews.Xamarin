@@ -1,8 +1,5 @@
-﻿using System;
-using Android.Content;
-using Android.Content.Res;
+﻿using Android.Content;
 using Android.Graphics.Drawables;
-using Android.Text;
 using SmartNewsDemo.Common.Control;
 using SmartNewsDemo.Droid.CustomRenderer;
 using Xamarin.Forms;
@@ -22,11 +19,7 @@ namespace SmartNewsDemo.Droid.CustomRenderer
 
             if (Control != null)
             {
-                GradientDrawable gd = new GradientDrawable();
-                gd.SetColor(global::Android.Graphics.Color.Transparent);
-                this.Control.SetBackgroundDrawable(gd);
-                this.Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
-                Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.White));
+                Control.Background = new ColorDrawable(Color.Transparent.ToAndroid());
             }
         }
     }

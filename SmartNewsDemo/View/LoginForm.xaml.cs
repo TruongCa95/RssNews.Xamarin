@@ -11,14 +11,14 @@ namespace SmartNewsDemo.View
         {
             InitializeComponent();
             this.BindingContext = new LoginFormViewModel();
-            if (Device.RuntimePlatform=="Android")
-            {
-                NavigationPage.SetHasNavigationBar(this, false);
-            }
-            else
-            {
-                NavigationPage.SetHasNavigationBar(this, true);
-            }
+            //if (Device.RuntimePlatform=="Android")
+            //{
+            //    NavigationPage.SetHasNavigationBar(this, false);
+            //}
+            //else
+            //{
+            //    NavigationPage.SetHasNavigationBar(this, true);
+            //}
             Email.Focus();
         }
     }
