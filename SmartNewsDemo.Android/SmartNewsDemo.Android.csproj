@@ -171,19 +171,23 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\login_facebook.svg">
+    <AndroidResource Include="Resources\drawable\login_facebook.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\login_gmail.svg">
+    <AndroidResource Include="Resources\drawable\login_telegram.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\login_twitter.svg">
+    <AndroidResource Include="Resources\drawable\login_twitter.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\login_telegram.svg">
+    <AndroidResource Include="Resources\drawable\login_gmail.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\login_microsoft.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

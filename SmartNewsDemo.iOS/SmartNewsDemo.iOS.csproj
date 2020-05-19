@@ -174,10 +174,11 @@
     <BundleResource Include="Resources\logo_cafebiz.png" />
     <BundleResource Include="Resources\logo_tuoitre.png" />
     <BundleResource Include="Resources\logo_Gamek.png" />
-    <BundleResource Include="Resources\login_facebook.svg" />
-    <BundleResource Include="Resources\login_gmail.svg" />
-    <BundleResource Include="Resources\login_twitter.svg" />
-    <BundleResource Include="Resources\login_telegram.svg" />
+    <BundleResource Include="Resources\login_facebook.png" />
+    <BundleResource Include="Resources\login_telegram.png" />
+    <BundleResource Include="Resources\login_twitter.png" />
+    <BundleResource Include="Resources\login_gmail.png" />
+    <BundleResource Include="Resources\login_microsoft.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_about.png" />

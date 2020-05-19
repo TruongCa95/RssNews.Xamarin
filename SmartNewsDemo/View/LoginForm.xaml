@@ -26,11 +26,15 @@
             <Button Command="{Binding SubmitCommand}" Text="Login" TextColor="White"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
                     BackgroundColor="#088da5" />
-             <StackLayout Orientation="Horizontal">
-                 <Image Source="icon1.png"/>
-                 <Image Source="login_gmail.svg"/>
-                 <Image Source="login_telegram.svg"/>
-                 <Image Source="login_twitter.svg"/>
+             <StackLayout Orientation="Horizontal"
+                          HeightRequest="50"
+                          HorizontalOptions="CenterAndExpand"
+                          VerticalOptions="CenterAndExpand">
+                 <ImageButton Source="login_facebook.png"/>
+                 <ImageButton Source="login_gmail.png"/>
+                 <ImageButton Source="login_microsoft.png"/>
+                 <ImageButton Source="login_telegram.png"/>
+                 <ImageButton Source="login_twitter.png"/>
             </StackLayout>
         </StackLayout>
             </AbsoluteLayout>
