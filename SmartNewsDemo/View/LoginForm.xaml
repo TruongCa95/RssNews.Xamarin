@@ -29,12 +29,13 @@
              <StackLayout Orientation="Horizontal"
                           HeightRequest="50"
                           HorizontalOptions="CenterAndExpand"
-                          VerticalOptions="CenterAndExpand">
-                 <ImageButton Source="login_facebook.png"/>
-                 <ImageButton Source="login_gmail.png"/>
-                 <ImageButton Source="login_microsoft.png"/>
-                 <ImageButton Source="login_telegram.png"/>
-                 <ImageButton Source="login_twitter.png"/>
+                          VerticalOptions="CenterAndExpand"
+                          BindableLayout.ItemsSource="{Binding ListIconOauth2}">
+                 <BindableLayout.ItemTemplate>
+                     <DataTemplate>
+                         <ImageButton Source="{Binding}"/>
+                     </DataTemplate>
+                 </BindableLayout.ItemTemplate>
             </StackLayout>
         </StackLayout>
             </AbsoluteLayout>
