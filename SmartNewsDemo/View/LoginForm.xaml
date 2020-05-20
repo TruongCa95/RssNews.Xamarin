@@ -5,15 +5,22 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="SmartNewsDemo.View.LoginForm">
     <ContentPage.Content>
-        <AbsoluteLayout>
+        <AbsoluteLayout Padding="10">
             <Label Text="Sign In"
                    TextColor="OrangeRed"
                    FontAttributes="Bold"
                    FontSize="Title"
-                   AbsoluteLayout.LayoutFlags="XProportional"
-                   AbsoluteLayout.LayoutBounds="0.5,0.25,AutoSize,AutoSize"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                   AbsoluteLayout.LayoutBounds="0.5,0"
                    HorizontalOptions="CenterAndExpand"
-                   HorizontalTextAlignment="Center"/>
+                   HorizontalTextAlignment="Center">
+                <Label.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android, UWP">0</On>
+                    <On Platform="iOS">0,50,0,0</On>
+                </OnPlatform>
+                </Label.Padding>
+            </Label>
             <StackLayout Orientation="Vertical"
                       WidthRequest="300"
                       AbsoluteLayout.LayoutFlags="PositionProportional"

@@ -93,6 +93,7 @@ namespace SmartNewsDemo.ViewModel
                     await Application.Current.MainPage.Navigation.PushAsync(new HomeMenu());
                     Password = string.Empty;
                     Busy = false;
+                    BtnName = "Login"; 
                 }
             }
             catch (Exception)
