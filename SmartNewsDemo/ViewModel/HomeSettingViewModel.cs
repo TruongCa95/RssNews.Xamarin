@@ -39,6 +39,7 @@ namespace SmartNewsDemo.ViewModel
         public ICommand ScrollVerticalCommand { get; set; }
         public ICommand OpenPopupCommand { get; set; }
         public ICommand OpenMenuCommand { get; set; }
+        public ICommand SignOutCommand { get; set; }
         #endregion
         public HomeSettingViewModel()
         {
@@ -48,6 +49,10 @@ namespace SmartNewsDemo.ViewModel
             ToggledModeCommand = new Command(HandleToggledMode);
             PushLocalCommand = new Command(HandlePushLocal);
             ScrollVerticalCommand = new Command(HandelScrollChanged);
+            SignOutCommand = new Command((async) =>
+            {
+                HandleSignOut();
+            });
             OpenPopupCommand = new Command((async) =>
             {
                 HandleOpenPopup();
@@ -62,6 +67,11 @@ namespace SmartNewsDemo.ViewModel
             TitleView = "Setting";
             TabItemMenuViewModel.PassTitleName += TabItemMenuViewModel_PassTitleName;
             //UpdateStateStorage();
+        }
+
+        private async void HandleSignOut()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new LoginForm());
         }
 
         private async void HandleOpenMenu()

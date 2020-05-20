@@ -6,13 +6,13 @@
              NavigationPage.HasNavigationBar="False"
              x:Class="SmartNewsDemo.View.TabView">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout.Margin>
+        <StackLayout Margin="{OnPlatform Android='0', iOS='0,30,0,0'}">
+            <!--<StackLayout.Margin>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="Android, UWP">0</On>
                     <On Platform="iOS">0,30,0,0</On>
                 </OnPlatform>
-            </StackLayout.Margin>
+            </StackLayout.Margin>-->
             <SftabView:SfTabView x:Name="theTabView" 
                              BackgroundColor="{DynamicResource labelStyleColor}"
                              IsScrollButtonEnabled="False"

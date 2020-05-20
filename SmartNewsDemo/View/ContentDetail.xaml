@@ -15,11 +15,9 @@
                          HorizontalOptions="EndAndExpand"
                          HeightRequest="30"
                          WidthRequest="40"
+                         Command="{Binding ShowMoreLayoutCommand}"
                          IsVisible="{Binding imgbtnVisible}"
                          BackgroundColor="Transparent">
-                <ImageButton.Behaviors>
-                    <behavior:EventToCommandBehavior EventName="Clicked" Command="{Binding ShowMoreLayoutCommand}"/>
-                </ImageButton.Behaviors>
             </ImageButton>
             <StackLayout x:Name="LayoutMore"
                          IsVisible="{Binding MoreVisible}"
@@ -96,16 +94,16 @@
                 </Grid>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.back-button.png}" 
                          HorizontalOptions="Start"
-                             WidthRequest="90"
+                         WidthRequest="90"
                          IsVisible="{Binding btnVisable}"
                          Clicked="OnBack"
                          BackgroundColor="Transparent"/>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.next.png}"
                              Grid.Column="1"
-                         WidthRequest="90"
-                         IsVisible="{Binding btnVisable}"
-                         Clicked="OnNext"
-                         BackgroundColor="Transparent"/>
+                            WidthRequest="90"
+                            IsVisible="{Binding btnVisable}"
+                            Clicked="OnNext"
+                            BackgroundColor="Transparent"/>
                 <ImageButton Source="{local:EmbeddedImage SmartNewsDemo.Common.Data.Thumbnail.refresh.png}" 
                              WidthRequest="90"
                              Grid.Column="2"

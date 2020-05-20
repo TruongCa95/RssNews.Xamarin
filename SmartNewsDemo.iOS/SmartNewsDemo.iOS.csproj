@@ -142,7 +142,7 @@
       <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.5.0.725</Version>
+      <Version>4.6.0.800</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -181,6 +181,7 @@
     <BundleResource Include="Resources\login_twitter.png" />
     <BundleResource Include="Resources\login_gmail.png" />
     <BundleResource Include="Resources\login_microsoft.png" />
+    <BundleResource Include="Resources\icon_signout.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_about.png" />

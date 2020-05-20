@@ -1,66 +1,36 @@
-﻿using SmartNewsDemo.Common.Constants;
-using SmartNewsDemo.View;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using SmartNewsDemo.Common.Constants;
+using SmartNewsDemo.View;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SmartNewsDemo.ViewModel
 {
-    public class LoginFormViewModel : BaseViewModel
+    public class RegisterFormViewModel: BaseViewModel
     {
         #region properties, variable
-        public string BtnName { get; set; }
         public bool FrmIsVisiable { get; set; }
-        public string AlertMessage { get; set; }
         public bool Busy { get; set; }
+        public string AlertMessage { get; set; }
         public string Email { get; set; }
+        public string BtnName { get; set; }
         public string Password { get; set; }
-        public List<string> ListIconOauth2 { get; set; }
-
         #endregion
         #region command
         public ICommand SubmitCommand { get; set; }
-        public ICommand NavigationRegisterCommand { get; set; }
         #endregion
-        public LoginFormViewModel()
+        public RegisterFormViewModel()
         {
-            SetIconLogin();
-            NavigationRegisterCommand = new Command((async) =>
-             {
-                 HandleNavigationRegister();
-             });
+            BtnName = "Sign In";
             SubmitCommand = new Command((async) =>
             {
                 HandleSubmit();
             });
-            BtnName = "Login";
         }
 
-        private async void HandleNavigationRegister()
-        {
-            await Application.Current.MainPage.Navigation.PushAsync(new RegisterForm());
-        }
-
-        private void SetIconLogin()
-        {
-            string[] iconOauth2 =
-            {
-            "login_facebook.png",
-            "login_gmail.png",
-            "login_microsoft.png",
-            "login_telegram.png",
-            "login_twitter.png"
-            };
-            ListIconOauth2 = new List<string>();
-            foreach (var item in iconOauth2)
-            {
-                ListIconOauth2.Add(item);
-            }
-        }
         private async void HandleSubmit()
         {
             var current = Connectivity.NetworkAccess;
@@ -74,7 +44,7 @@ namespace SmartNewsDemo.ViewModel
                     await Task.Delay(3000);
                     FrmIsVisiable = false;
                 }
-                else if (Email == null|| Password == null)
+                else if (Email == null || Password == null)
                 {
                     FrmIsVisiable = true;
                     AlertMessage = AlertMessageConstants.EmptyUserOrPass;
@@ -88,22 +58,15 @@ namespace SmartNewsDemo.ViewModel
                     await Task.Delay(3000);
                     FrmIsVisiable = false;
                 }
-                else if (Email != "truong.lavan@vti.com" || Password != "723516")
-                {
-                    FrmIsVisiable = true;
-                    AlertMessage = AlertMessageConstants.WrongUserOrPass;
-                    await Task.Delay(3000);
-                    FrmIsVisiable = false;
-                }
                 else
                 {
                     Busy = true;
                     BtnName = "";
                     await Task.Delay(2000);
-                    await Application.Current.MainPage.Navigation.PushAsync(new HomeMenu());
+                    await Application.Current.MainPage.Navigation.PushAsync(new LoginForm());
                     Password = string.Empty;
                     Busy = false;
-                    BtnName = "Login"; 
+                    BtnName = "Login";
                 }
             }
             catch (Exception)
@@ -114,4 +77,3 @@ namespace SmartNewsDemo.ViewModel
         }
     }
 }
-

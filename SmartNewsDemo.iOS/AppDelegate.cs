@@ -24,11 +24,7 @@ namespace SmartNewsDemo.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
-            //render Sftabview
-            SfTabViewRenderer.Init();
-            //initilaze plugin popup
-            Rg.Plugins.Popup.Popup.Init();
+            InitControl();
             //First, iOS 8 requires applications to ask for the user's permission to display notifications
             if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
             {
@@ -40,11 +36,21 @@ namespace SmartNewsDemo.iOS
             }
             //set the Delegate to handle
             UNUserNotificationCenter.Current.Delegate = new NotificationDelegate();
-            ImageCircleRenderer.Init();
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
 
+        }
+        private void InitControl()
+        {
+            global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
+            global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
+            //render Sftabview
+            SfTabViewRenderer.Init();
+            //initilaze plugin popup
+            Rg.Plugins.Popup.Popup.Init();
+            ImageCircleRenderer.Init();
         }
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {

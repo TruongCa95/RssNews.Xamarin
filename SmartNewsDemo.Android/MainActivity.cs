@@ -21,7 +21,13 @@ namespace SmartNewsDemo.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
-            //initilaze plugin popup
+            InitControl(savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            LoadApplication(new App());
+        }
+        private void InitControl(Bundle savedInstanceState)
+        {
+            // initilaze plugin popup
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             //Get token device
             var refreshedToken = FirebaseInstanceId.Instance.Token;
@@ -30,8 +36,6 @@ namespace SmartNewsDemo.Droid
             ImageCircleRenderer.Init();
             global::Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
         }
         protected override void OnResume()
         {
