@@ -12,5 +12,11 @@ namespace SmartNewsDemo.View
             InitializeComponent();
             this.BindingContext = new RegisterFormViewModel();
         }
+        //focus entry
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            FirstName.Focus();
+        }
     }
 }

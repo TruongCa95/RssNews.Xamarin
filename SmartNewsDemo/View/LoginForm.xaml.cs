@@ -19,6 +19,11 @@ namespace SmartNewsDemo.View
             //{
             //    NavigationPage.SetHasNavigationBar(this, true);
             //}
+        }
+        //focus entry
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             Email.Focus();
         }
     }

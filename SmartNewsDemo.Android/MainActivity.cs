@@ -34,6 +34,7 @@ namespace SmartNewsDemo.Droid
             System.Diagnostics.Debug.WriteLine($"FCM Token: {refreshedToken}");
             //initilaze plugin ImageCircle
             ImageCircleRenderer.Init();
+            global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
             global::Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
         }
