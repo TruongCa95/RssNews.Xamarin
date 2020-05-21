@@ -1,14 +1,11 @@
-﻿using System;
-
+﻿using System.Net;
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using System.Net;
+using Android.Runtime;
 using Firebase.Iid;
 using ImageCircle.Forms.Plugin.Droid;
+using Xamarin.Forms;
 
 namespace SmartNewsDemo.Droid
 {
@@ -22,6 +19,7 @@ namespace SmartNewsDemo.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(savedInstanceState);
             InitControl(savedInstanceState);
+            Forms.SetFlags(new string[] { "CarouselView_Experimental", "RadioButton_Experimental","IndicatorView_Experimental" });
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
@@ -34,8 +32,6 @@ namespace SmartNewsDemo.Droid
             System.Diagnostics.Debug.WriteLine($"FCM Token: {refreshedToken}");
             //initilaze plugin ImageCircle
             ImageCircleRenderer.Init();
-            global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
-            global::Xamarin.Forms.Forms.SetFlags(new string[] { "IndicatorView_Experimental" });
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
         }
         protected override void OnResume()

@@ -16,6 +16,7 @@ namespace SmartNewsDemo.ViewModel
         public bool Busy { get; set; }
         public string AlertMessage { get; set; }
         public string Email { get; set; }
+        public string RetypePassword { get; set; }
         public string BtnName { get; set; }
         public string Password { get; set; }
         #endregion
@@ -66,7 +67,6 @@ namespace SmartNewsDemo.ViewModel
                     await Application.Current.MainPage.Navigation.PushAsync(new LoginForm());
                     Password = string.Empty;
                     Busy = false;
-                    BtnName = "Login";
                 }
             }
             catch (Exception)

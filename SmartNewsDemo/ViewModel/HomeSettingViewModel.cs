@@ -65,10 +65,13 @@ namespace SmartNewsDemo.ViewModel
             VersionApp = $"{VersionTracking.CurrentVersion}";
             ImageSize = 200;
             TitleView = "Setting";
-            TabItemMenuViewModel.PassTitleName += TabItemMenuViewModel_PassTitleName;
+            //TabItemMenuViewModel.PassTitleName += TabItemMenuViewModel_PassTitleName;
             //UpdateStateStorage();
         }
+        public async void SettingStorage()
+        {
 
+        }
         private async void HandleSignOut()
         {
             await Application.Current.MainPage.Navigation.PushAsync(new LoginForm());
@@ -139,23 +142,6 @@ namespace SmartNewsDemo.ViewModel
             }
         }
 
-        public void UpdateStateStorage()
-        {
-            if (Application.Current.Properties.ContainsKey("Mode"))
-            {
-                //Numbersize = Application.Current.Properties["FontSize"].ToString();
-                //ItemsFont = Application.Current.Properties["Font"].ToString();
-                ModeONOFF = Convert.ToBoolean(Application.Current.Properties["Mode"]);
-            }
-            else
-            {
-                //Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
-                //{
-                //    Application.Current.MainPage.DisplayAlert("Storage Status", "empty", "OK");
-                //});
-            }
-        }
-
         private void HandleToggledMode(object obj)
         {
             Application.Current.Properties["Mode"] = ModeONOFF;
@@ -163,15 +149,11 @@ namespace SmartNewsDemo.ViewModel
             {
                 Application.Current.Resources["labelStyleColor"] = "#232323";
                 Application.Current.Resources["labelTextColor"] = "#FFFFFF";
-                Application.Current.Properties["labelStyleColor"] = "#232323";
-                Application.Current.Properties["labelTextColor"] = "#FFFFFF";
             }
             else
             {
                 Application.Current.Resources["labelStyleColor"] = "#FFFFFF";
                 Application.Current.Resources["labelTextColor"] = "#000000";
-                Application.Current.Properties["labelStyleColor"] = "#FFFFFF";
-                Application.Current.Properties["labelTextColor"] = "#000000";
             }
             Application.Current.SavePropertiesAsync();
         }
@@ -187,11 +169,8 @@ namespace SmartNewsDemo.ViewModel
 
         private void HandleSliderChanged(object obj)
         {
-
             var newStep = ToDoubleExtension.ConvertToDouble(Convert.ToDouble(Numbersize),0);
             Application.Current.Resources["labelStylesize"] = newStep;
-            Application.Current.Properties["FontSize"] = newStep;
-            Application.Current.SavePropertiesAsync();
         }
 
         private async void HandleLabelCLick(string font)
@@ -200,7 +179,6 @@ namespace SmartNewsDemo.ViewModel
             {
                 BoldClick = Color.FromHex("#E7E0E4");
                 Application.Current.Resources["labelStyleFontAtribute"] = FontAttributes.Bold;
-                Application.Current.Properties["FontAtribute"] = FontAttributes.Bold;
                 await Task.Delay(100);
                 BoldClick = Color.White;
             }
@@ -208,7 +186,6 @@ namespace SmartNewsDemo.ViewModel
             {
                 ItalicClick = Color.FromHex("#E7E0E4");
                 Application.Current.Resources["labelStyleFontAtribute"] = FontAttributes.Italic;
-                Application.Current.Properties["FontAtribute"] = FontAttributes.Italic;
                 await Task.Delay(100);
                 ItalicClick = Color.White;
             }
@@ -216,17 +193,11 @@ namespace SmartNewsDemo.ViewModel
             {
                 NoneClick = Color.FromHex("#E7E0E4");
                 Application.Current.Resources["labelStyleFontAtribute"] = FontAttributes.None;
-                Application.Current.Properties["FontAtribute"] = FontAttributes.None;
                 await Task.Delay(100);
                 NoneClick = Color.White;
             }
             await Application.Current.SavePropertiesAsync();
         }
         #endregion
-        public override Task OnDisappearing()
-        {
-            TabItemMenuViewModel.PassTitleName -= TabItemMenuViewModel_PassTitleName;
-            return base.OnDisappearing();
-        }
     }
 }

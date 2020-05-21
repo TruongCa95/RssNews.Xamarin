@@ -5,10 +5,20 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#4CA3DD"
              x:Class="SmartNewsDemo.View.RegisterForm">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="customControls:CustomFrame">
+                <Setter Property="Padding" Value="20,5,5,5"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="OutlineColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <AbsoluteLayout Padding="10">
+        <AbsoluteLayout Padding="0,10,0,0">
             <Label Text="Register"
-                   TextColor="OrangeRed"
+                   TextColor="Red"
                    Margin="{OnPlatform Android='0', iOS='0,50,0,0'}"
                    FontAttributes="Bold"
                    FontSize="Title"
@@ -18,37 +28,41 @@
                    HorizontalTextAlignment="Center">
             </Label>
             <StackLayout Orientation="Vertical"
-                      WidthRequest="300"
                       AbsoluteLayout.LayoutFlags="PositionProportional"
-                      AbsoluteLayout.LayoutBounds="0.5,0.5,AutoSize,AutoSize"
+                      AbsoluteLayout.LayoutBounds="0.5,0.5"
                       Padding="30"
                       Spacing="15">
-                <Frame BackgroundColor="#dee2e1" HasShadow="False">
-                    <StackLayout Orientation="Vertical" Spacing="10">
-                        <customControls:CustomEntry x:Name="FirstName" Text="{Binding FirstName}" Placeholder="First Name"
-                           PlaceholderColor="Blue" HeightRequest="40"
-                           TextColor="Black">
-                            <!--<Entry.Keyboard>
-                                <Keyboard x:FactoryMethod="Create">
-                                    <x:Arguments>
-                                        <KeyboardFlags>CapitalizeWord</KeyboardFlags>
-                                    </x:Arguments>
-                                </Keyboard>
-                            </Entry.Keyboard>-->
-                        </customControls:CustomEntry>
-                        <customControls:CustomEntry x:Name="LastName" Text="{Binding LastName}" Placeholder="Last Name"
-                           PlaceholderColor="Blue" HeightRequest="40"
-                           TextColor="Black"/>
-                        <customControls:CustomEntry x:Name="Email" Text="{Binding Email}" Placeholder="Email"
-                           PlaceholderColor="Blue" HeightRequest="40"
-                           Keyboard="Email"  
-                           TextColor="Black"/>
-                        <customControls:CustomEntry x:Name="Password" Text="{Binding Password}" Placeholder="Password"
-                           PlaceholderColor="Blue" HeightRequest="40"   
-                           IsPassword="True"  
-                           TextColor="Black"/>
-                    </StackLayout>
-                </Frame>
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <customControls:CustomFrame>
+                            <customControls:CustomEntry x:Name="FirstName"
+                                                    Text="{Binding FirstName}"
+                                                    Placeholder="First Name">
+                            </customControls:CustomEntry>
+                    </customControls:CustomFrame>
+                    <customControls:CustomFrame>
+                        <customControls:CustomEntry x:Name="LastName"
+                                                    Text="{Binding LastName}"
+                                                    Placeholder="Last Name"/>
+                    </customControls:CustomFrame>
+                    <customControls:CustomFrame>
+                        <customControls:CustomEntry x:Name="Email"
+                                                    Text="{Binding Email}"
+                                                    Placeholder="Email"
+                                                    Keyboard="Email"/>
+                    </customControls:CustomFrame>
+                    <customControls:CustomFrame>
+                        <customControls:CustomEntry x:Name="Password"
+                                                    Text="{Binding Password}"
+                                                    Placeholder="Password"
+                                                    IsPassword="True"/>
+                    </customControls:CustomFrame>
+                    <customControls:CustomFrame>
+                        <customControls:CustomEntry x:Name="RePassword"
+                                                    Text="{Binding RetypePassword}"
+                                                    Placeholder="Retype password"
+                                                    IsPassword="True"/>
+                    </customControls:CustomFrame>
+                </StackLayout>
                 <StackLayout Orientation="Vertical">
                     <Label Text="Gender" TextColor="Blue"/>
                     <StackLayout Orientation="Horizontal" Spacing="50">
@@ -83,11 +97,12 @@
                                AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
                                VerticalOptions="CenterAndExpand"
                                HorizontalOptions="CenterAndExpand"/>
-            <Frame CornerRadius="30" Opacity="10"
+            <Frame CornerRadius="30"
                    IsVisible="{Binding FrmIsVisiable}"
-                   BackgroundColor="LightGray"
+                   Opacity="0.5"
+                   BackgroundColor="#EEEEEE"
                    AbsoluteLayout.LayoutFlags="PositionProportional"
-                   AbsoluteLayout.LayoutBounds="0.5,0.95,AutoSize,AutoSize">
+                   AbsoluteLayout.LayoutBounds="0.5,1,AutoSize,AutoSize">
                 <Label Text="{Binding AlertMessage}" 
                        TextColor="Black" 
                        VerticalOptions="CenterAndExpand" 

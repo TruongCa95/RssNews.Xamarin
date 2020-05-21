@@ -91,6 +91,7 @@
     <Compile Include="SplashActivity.cs" />
     <Compile Include="CustomRenderer\CustomEntryRenderer.cs" />
     <Compile Include="WebAuthenticatorCallbackActivity.cs" />
+    <Compile Include="CustomRenderer\CustomFrameRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -217,6 +218,26 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\icon_signout.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\blue_resct.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\icon_HiddenPassword.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\icon_Password.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\icon_user.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\icon_showPassword.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

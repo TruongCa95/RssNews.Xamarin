@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using Syncfusion.XForms.iOS.TabView;
-using Foundation;
 using UIKit;
 using UserNotifications;
-using ImageCircle.Forms.Plugin.iOS;
+using Xamarin.Forms;
 
 namespace SmartNewsDemo.iOS
 {
@@ -36,7 +34,7 @@ namespace SmartNewsDemo.iOS
             }
             //set the Delegate to handle
             UNUserNotificationCenter.Current.Delegate = new NotificationDelegate();
-
+            Forms.SetFlags(new string[] { "CarouselView_Experimental", "RadioButton_Experimental", "IndicatorView_Experimental" });
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
@@ -44,8 +42,6 @@ namespace SmartNewsDemo.iOS
         }
         private void InitControl()
         {
-            global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
-            global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
             //render Sftabview
             SfTabViewRenderer.Init();
             //initilaze plugin popup

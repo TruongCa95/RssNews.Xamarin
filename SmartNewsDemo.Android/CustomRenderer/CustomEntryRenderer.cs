@@ -1,5 +1,7 @@
 ﻿using Android.Content;
+using Android.Content.Res;
 using Android.Graphics.Drawables;
+using Android.Text;
 using SmartNewsDemo.Common.Control;
 using SmartNewsDemo.Droid.CustomRenderer;
 using Xamarin.Forms;
@@ -20,6 +22,11 @@ namespace SmartNewsDemo.Droid.CustomRenderer
             if (Control != null)
             {
                 Control.Background = new ColorDrawable(Color.Transparent.ToAndroid());
+                GradientDrawable gd = new GradientDrawable();
+                gd.SetCornerRadius(10); // increase or decrease to changes the corner look
+                this.Control.SetBackgroundDrawable(gd);
+                this.Control.SetRawInputType(InputTypes.TextFlagNoSuggestions);
+                Control.SetHintTextColor(ColorStateList.ValueOf(global::Android.Graphics.Color.White));
             }
         }
     }
