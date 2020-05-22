@@ -9,7 +9,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="customControls:CustomFrame">
-                <Setter Property="Padding" Value="20,5,5,5"/>
+                <Setter Property="Padding" Value="{OnPlatform Android='10,0,0,0', iOS='20,10,10,10'}"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="HasShadow" Value="False"/>
                 <Setter Property="OutlineColor" Value="White"/>

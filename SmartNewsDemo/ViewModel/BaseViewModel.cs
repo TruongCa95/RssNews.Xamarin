@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -15,19 +16,18 @@ namespace SmartNewsDemo.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         //Overide Lifecycle using MVVM
-        public virtual Task OnAppearing()
+        public virtual void OnAppearing()
         {
-            return Task.FromResult<object>(null);
-        }
 
-        public virtual Task OnDisappearing()
-        {
-            return Task.FromResult<object>(null);
         }
-
-        public virtual Task OnResume()
+        public virtual void OnDisappearing()
         {
-            return Task.FromResult<object>(null);
+
+        }
+        internal event Func<string, Task> DoDisplayAlert;
+        public Task DisplayAlertAsync(string message)
+        {
+            return DoDisplayAlert?.Invoke(message) ?? Task.CompletedTask;
         }
     }
 }

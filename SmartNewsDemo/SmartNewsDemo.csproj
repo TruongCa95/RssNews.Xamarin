@@ -25,12 +25,13 @@
     <None Remove="Common\Data\Thumbnail\share.png" />
     <None Remove="Common\Data\Thumbnail\refresh.png" />
     <None Remove="Common\Data\Thumbnail\NewsThumb.jpeg" />
-    <None Remove="Common\Storage\ListCardData.json" />
-    <None Remove="Common\Storage\ListNewpaperData.json" />
     <None Remove="Common\Data\Thumbnail\banner_Cafebiz.png" />
     <None Remove="Common\Data\Thumbnail\banner_Cafef.jpg" />
     <None Remove="Common\Data\Thumbnail\banner_Gamek.jpg" />
     <None Remove="Common\Storage\ListBannerData.json" />
+    <None Remove="Common\Storage\Dummy\ListBannerData.json" />
+    <None Remove="Common\Storage\Dummy\ListCardData.json" />
+    <None Remove="Common\Storage\Dummy\ListNewpaperData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,9 +45,9 @@
     <EmbeddedResource Include="Common\Data\Thumbnail\share.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\refresh.png" />
     <EmbeddedResource Include="Common\Data\Thumbnail\NewsThumb.jpeg" />
-    <EmbeddedResource Include="Common\Storage\ListCardData.json" />
-    <EmbeddedResource Include="Common\Storage\ListNewpaperData.json" />
-    <EmbeddedResource Include="Common\Storage\ListBannerData.json" />
+    <EmbeddedResource Include="Common\Storage\Dummy\ListBannerData.json" />
+    <EmbeddedResource Include="Common\Storage\Dummy\ListCardData.json" />
+    <EmbeddedResource Include="Common\Storage\Dummy\ListNewpaperData.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -93,5 +94,6 @@
     <Folder Include="Common\Control\" />
     <Folder Include="Utilitis\Http\" />
     <Folder Include="Common\Storage\" />
+    <Folder Include="Common\Storage\Dummy\" />
   </ItemGroup>
 </Project>

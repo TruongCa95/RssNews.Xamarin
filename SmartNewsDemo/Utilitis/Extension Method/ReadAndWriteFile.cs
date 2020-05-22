@@ -13,7 +13,7 @@ namespace SmartNewsDemo.Utilitis.Extension_Method
         {
            
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(ReadAndWriteFile)).Assembly;
-            Stream stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Common.Storage.{JsonFileName}");
+            Stream stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Common.Storage.Dummy.{JsonFileName}");
             if (stream != null)
             {
                 using (var reader = new StreamReader(stream))

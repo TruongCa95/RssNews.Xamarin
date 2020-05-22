@@ -68,10 +68,5 @@ namespace SmartNewsDemo.ViewModel
                 NotificationNumber = number.ToString();
             }
         }
-        public override Task OnAppearing()
-        {
-            NotiVisiable = true;
-            return base.OnAppearing();
-        }
     }
 }

@@ -32,10 +32,6 @@ namespace SmartNewsDemo.ViewModel
         {
             StackColor = e;
         }
-        public override Task OnDisappearing()
-        {
-            TabViewViewModel.SelectedItemEvent -= TabViewViewModel_SelectedItemEvent;
-            return base.OnDisappearing();
-        }
+        
     }
 }

@@ -14,7 +14,7 @@ namespace SmartNewsDemo.iOS.CustomRenderer
         protected override void OnElementChanged(ElementChangedEventArgs<Frame> e)
         {
             base.OnElementChanged(e);
-            this.Layer.CornerRadius = 18;
+            this.Layer.CornerRadius = 15;
             this.Layer.Bounds.Inset(1, 1);
             Layer.BorderColor = UIColor.White.CGColor;
             Layer.BorderWidth = 2;

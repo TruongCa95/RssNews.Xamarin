@@ -68,11 +68,7 @@ namespace SmartNewsDemo.ViewModel
         {
             try
             {
-                WebAuthenticator r = null;
-                if(schema.Equals("Apple")&& DeviceInfo.Platform==DevicePlatform.iOS&&DeviceInfo.Version.Major>=13)
-                {
-                    r = await AppleSignInAuthenticator.AuthenticateAsync();
-                }
+               
             }
             catch (Exception ex)
             {
@@ -84,7 +80,6 @@ namespace SmartNewsDemo.ViewModel
         {
             var email = await SecureStorage.GetAsync("email");
             var pass= await SecureStorage.GetAsync("password");
-            IsPassword = false;
             Password = pass;
             Email = email;
         }
