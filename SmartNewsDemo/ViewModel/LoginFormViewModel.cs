@@ -1,4 +1,5 @@
 ﻿using SmartNewsDemo.Common.Constants;
+using SmartNewsDemo.Common.Services.RequestServices;
 using SmartNewsDemo.View;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace SmartNewsDemo.ViewModel
         public bool IsChecked { get; set; }
         public bool IsVisiableHiddenPass { get; set; }
         public List<string> ListIconOauth2 { get; set; }
+        private UserRequest userRequest;
 
         #endregion
         #region command
@@ -159,21 +161,20 @@ namespace SmartNewsDemo.ViewModel
                     await Task.Delay(3000);
                     FrmIsVisiable = false;
                 }
-                else if (Email != "truong.lavan@vti.com" || Password != "723516")
+                else if (await userRequest.LoginAsync(Email, Password))
+                {
+                    Busy = true;
+                    await Task.Delay(1000);
+                    await Application.Current.MainPage.Navigation.PushAsync(new HomeMenu());
+                    Password = string.Empty;
+                    Busy = false;
+                }
+                else
                 {
                     FrmIsVisiable = true;
                     AlertMessage = AlertMessageConstants.WrongUserOrPass;
                     await Task.Delay(3000);
                     FrmIsVisiable = false;
-                }
-                else
-                {
-                    Busy = true;
-                    BtnName = "";
-                    await Task.Delay(2000);
-                    await Application.Current.MainPage.Navigation.PushAsync(new HomeMenu());
-                    Password = string.Empty;
-                    Busy = false;
                 }
             }
             catch (Exception)

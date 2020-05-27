@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls= "clr-namespace:SmartNewsDemo.Common.Control"
+             xmlns:behavior="clr-namespace:SmartNewsDemo.Common.Behavior"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#4CA3DD"
              x:Class="SmartNewsDemo.View.RegisterForm">
@@ -66,14 +67,36 @@
                 <StackLayout Orientation="Vertical">
                     <Label Text="Gender" TextColor="Blue"/>
                     <StackLayout Orientation="Horizontal" Spacing="50">
-                        <RadioButton Text="Male"/>
-                        <RadioButton Text="Female"/>
-                        <RadioButton Text="Other"/>
+                        <RadioButton x:Name="rdm" Text="Male">
+                            <RadioButton.Behaviors>
+                                <behavior:EventToCommandBehavior EventName="CheckedChanged"
+                                                                 Command="{Binding CheckedCommand}"
+                                                                 CommandParameter="{Binding Source={x:Reference rdm}, Path=Text}"/>
+                            </RadioButton.Behaviors>
+                        </RadioButton>
+                        <RadioButton x:Name="rdfm" Text="Female">
+                            <RadioButton.Behaviors>
+                                <behavior:EventToCommandBehavior EventName="CheckedChanged"
+                                                                 Command="{Binding CheckedCommand}"
+                                                                 CommandParameter="{Binding Source={x:Reference rdfm}, Path=Text}"/>
+                            </RadioButton.Behaviors>
+                        </RadioButton>
+                        <RadioButton x:Name="rdother" Text="Other">
+                            <RadioButton.Behaviors>
+                                <behavior:EventToCommandBehavior EventName="CheckedChanged"
+                                                                 Command="{Binding CheckedCommand}"
+                                                                 CommandParameter="{Binding Source={x:Reference rdother}, Path=Text}"/>
+                            </RadioButton.Behaviors>
+                        </RadioButton>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Vertical">
                     <Label Text="Date of Birth" TextColor="Blue"/>
-                    <DatePicker x:Name="Datepicker" VerticalOptions="CenterAndExpand"/>
+                    <DatePicker x:Name="Datepicker" VerticalOptions="CenterAndExpand" Date="{Binding DateValue}">
+                        <DatePicker.Behaviors>
+                            <behavior:EventToCommandBehavior EventName="DateSelected" Command="{Binding SelectedDateCommand}"/>
+                        </DatePicker.Behaviors>
+                    </DatePicker>
                 </StackLayout>
                 <Button Command="{Binding SubmitCommand}" Text="{Binding BtnName}" TextColor="White"  
                     FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
@@ -100,6 +123,7 @@
             <Frame CornerRadius="30"
                    IsVisible="{Binding FrmIsVisiable}"
                    Opacity="0.5"
+                    Margin="{OnPlatform Android=0, iOS='0,0,0,30'}"
                    BackgroundColor="#EEEEEE"
                    AbsoluteLayout.LayoutFlags="PositionProportional"
                    AbsoluteLayout.LayoutBounds="0.5,1,AutoSize,AutoSize">

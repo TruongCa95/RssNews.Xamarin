@@ -17,8 +17,4 @@ namespace SmartNewsDemo.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
-    public partial class NewsArctileEx : NewsArticles
-    {
-    }
-
 }

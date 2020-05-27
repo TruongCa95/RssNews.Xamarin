@@ -14,6 +14,7 @@ namespace SmartNewsDemo.ViewModel
         #region properties, variable
         public bool FrmIsVisiable { get; set; }
         public bool Busy { get; set; }
+        public DateTime DateValue { get; set; }
         public string AlertMessage { get; set; }
         public string Email { get; set; }
         public string RetypePassword { get; set; }
@@ -22,14 +23,32 @@ namespace SmartNewsDemo.ViewModel
         #endregion
         #region command
         public ICommand SubmitCommand { get; set; }
+        public ICommand CheckedCommand { get; set; }
+        public ICommand SelectedDateCommand { get; set; }
         #endregion
         public RegisterFormViewModel()
         {
+            DateValue = DateTime.UtcNow;
             BtnName = "Sign In";
             SubmitCommand = new Command((async) =>
             {
                 HandleSubmit();
             });
+            SelectedDateCommand = new Command(HandeleSelectedDate);
+            CheckedCommand = new Command(HandleCheckedGender);
+        }
+
+        private void HandeleSelectedDate(object obj)
+        {
+            var date = DateValue;
+        }
+
+        private void HandleCheckedGender(object obj)
+        {
+            var rdb = (RadioButton)obj;
+            var val = rdb.Text;
+            Console.WriteLine(val);
+            val = null;
         }
 
         private async void HandleSubmit()
@@ -59,13 +78,19 @@ namespace SmartNewsDemo.ViewModel
                     await Task.Delay(3000);
                     FrmIsVisiable = false;
                 }
+                else if(Password!= RetypePassword)
+                {
+                    FrmIsVisiable = true;
+                    AlertMessage = AlertMessageConstants.PasswordIncorrect;
+                    await Task.Delay(3000);
+                    FrmIsVisiable = false;
+                }
                 else
                 {
                     Busy = true;
                     BtnName = "";
                     await Task.Delay(2000);
                     await Application.Current.MainPage.Navigation.PushAsync(new LoginForm());
-                    Password = string.Empty;
                     Busy = false;
                 }
             }

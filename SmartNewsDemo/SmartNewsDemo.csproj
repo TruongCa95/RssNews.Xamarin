@@ -95,5 +95,8 @@
     <Folder Include="Utilitis\Http\" />
     <Folder Include="Common\Storage\" />
     <Folder Include="Common\Storage\Dummy\" />
+    <Folder Include="Common\Services\RequestServices\" />
+    <Folder Include="Model\Login\" />
+    <Folder Include="Common\Services\Navigation\" />
   </ItemGroup>
 </Project>
